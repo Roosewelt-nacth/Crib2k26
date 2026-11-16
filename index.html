@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crib Archive · 2023 → 2026</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+:root{
+  --paper:#eeeeec; --dot:#d4d4d1; --ink:#101114; --mute:#62646b; --line:#c9c9c5;
+  --night:#0d1224; --night2:#1f2f66; --gold:#f2b84b; --violet:#5b4a9a; --mist:#aebbd9; --limestone:#ede3cb;
+  --glass:rgba(255,255,255,.55); --glass-line:rgba(255,255,255,.8);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;
+  background-image:radial-gradient(var(--dot) 1.6px,transparent 1.7px);background-size:34px 34px}
+a{color:inherit}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;margin:0;letter-spacing:-.02em;text-wrap:balance}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left))}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(13,18,36,.72);color:#fff}
+nav .wrap{display:flex;align-items:center;gap:22px;height:58px}
+nav b{font-family:'Space Grotesk';font-size:17px}
+nav a{text-decoration:none;opacity:.8;font-size:14px}
+nav a:hover{opacity:1}
+nav .sp{flex:1}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#000;color:#fff;border-radius:14px;padding:10px 18px;text-decoration:none;font-weight:500;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 6px 16px rgba(0,0,0,.28)}
+.pill.light{background:rgba(255,255,255,.8);color:#000;box-shadow:inset 0 1px 0 #fff,0 4px 12px rgba(0,0,0,.12)}
+@media(max-width:760px){nav a.h{display:none}}
+
+/* hero */
+.hero{position:relative;background:radial-gradient(1200px 500px at 70% 10%,#26358a55,transparent),linear-gradient(180deg,#0a0e1c,#0d1224 60%,#141a33);color:#fff;overflow:hidden;padding:72px 0 0}
+.hero::before,.hero::after{content:"";position:absolute;background:rgba(255,255,255,.13)}
+.hero::before{left:0;right:0;top:230px;height:1px}
+.hero::after{top:0;bottom:0;left:max(20px,calc(50% - 570px));width:1px}
+.hero .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:end}
+@media(max-width:900px){.hero .grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(40px,7vw,84px);line-height:.98;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:#c9cfe6;max-width:46ch;margin:18px 0 26px}
+.cross{position:absolute;width:11px;height:11px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.1)}
+.shot{position:relative;border-radius:20px 20px 0 0;overflow:hidden;border:1px solid rgba(255,255,255,.22);border-bottom:0;box-shadow:0 -20px 60px rgba(91,74,154,.35)}
+.shot img{display:block;width:100%;height:auto}
+.shot .cap{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.14);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.3);padding:6px 12px;border-radius:10px;color:#fff}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.stats span{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 14px;color:#e7eaf7}
+.stats b{color:var(--gold);font-weight:500}
+
+section{padding:84px 0 20px;scroll-margin-top:60px}
+.eyebrow{color:var(--mute)}
+h2{font-size:clamp(28px,4vw,46px);margin:8px 0 10px}
+.lede{color:var(--mute);max-width:62ch;margin:0 0 34px}
+
+/* folders (glass cards, after the folder reference) */
+.folders{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:34px}
+.folder{position:relative;height:380px;filter:drop-shadow(0 18px 24px rgba(0,0,0,.14))}
+.folder .back{position:absolute;inset:0 0 40px 0;border-radius:26px;overflow:hidden;background:#222}
+.folder .back img,.folder .back .g{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.15)}
+.folder .back::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.05),rgba(0,0,0,.35))}
+.folder .tab{position:absolute;top:-16px;left:0;width:46%;height:34px;border-radius:18px 18px 0 0;background:inherit}
+.folder .front{position:absolute;left:0;right:0;bottom:0;height:62%;border-radius:26px;background:var(--glass);border:1px solid var(--glass-line);
+  backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);padding:22px 24px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;
+  box-shadow:inset 0 1px 0 #fff}
+.folder .front h3{font-size:26px}
+.folder .front p{margin:0;color:#2a2b31;font-size:14px;max-width:24ch;padding-right:56px}
+.folder .front .btn{position:absolute;right:20px;bottom:20px;width:54px;height:54px;border-radius:16px;background:#050505;color:#fff;display:grid;place-items:center;font-size:26px;text-decoration:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 8px 18px rgba(0,0,0,.35)}
+.folder .year{position:absolute;top:18px;right:20px;color:#fff;z-index:2;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.folder.dark .front{background:rgba(10,10,14,.62);border-color:rgba(255,255,255,.18);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.folder.dark .front p{color:#d3d3d9}
+.folder.dark .btn{background:rgba(255,255,255,.9);color:#000}
+.g1{background:linear-gradient(135deg,#d9c8a0,#8a7a52 45%,#3b4a8a)}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;align-items:start}
+.gallery figure{margin:0;grid-column:span 6;background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 10px 26px rgba(0,0,0,.07)}
+.gallery figure.wide{grid-column:span 12}
+.gallery figure.third{grid-column:span 4}
+@media(max-width:800px){.gallery figure,.gallery figure.third{grid-column:span 12}}
+.gallery img{display:block;width:100%;height:auto}
+.gallery figcaption{padding:12px 16px;display:flex;justify-content:space-between;gap:12px;color:var(--mute);font-size:14px}
+.gallery figcaption b{color:var(--ink);font-weight:600}
+
+/* dark band: theme + palette */
+.band{background:linear-gradient(180deg,#0d1224,#141a33);color:#fff;margin-top:84px;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;left:0;right:0;top:120px;height:1px;background:rgba(255,255,255,.12)}
+.band section{padding-top:72px}
+.glass{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:20px;backdrop-filter:blur(16px);padding:22px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:22px}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:14px}
+.sw div{border-radius:12px;padding:30px 10px 10px;font-size:12px;border:1px solid rgba(255,255,255,.2)}
+.sw b{display:block;font-weight:600}
+.bar{height:28px;border-radius:8px;overflow:hidden;display:flex;margin:12px 0 4px}
+.show{display:grid;gap:7px;margin-top:14px}
+.show div{display:grid;grid-template-columns:70px 1fr;gap:12px;align-items:baseline;font-size:14px}
+.show .mono{color:var(--gold)}
+
+/* tables */
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.doc{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);border:1px solid var(--glass-line);border-radius:16px;padding:14px 16px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.doc:hover{background:#fff}
+.doc i{font-style:normal;width:42px;height:42px;border-radius:12px;background:#0d1224;color:var(--gold);display:grid;place-items:center;font:500 11px 'JetBrains Mono'}
+.doc b{display:block;font-weight:600}
+.doc span{color:var(--mute);font-size:13.5px}
+
+.claude{background:#0d1224;color:#e8ebf7;border-radius:22px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:800px){.claude{grid-template-columns:1fr}}
+.claude pre{margin:0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:16px;white-space:pre-wrap;font:13px/1.6 'JetBrains Mono',monospace;color:#e8ebf7}
+.claude ol{margin:10px 0 0;padding-left:20px;color:#c9cfe6}
+button{font:inherit;cursor:pointer}
+footer{margin-top:90px;background:#0a0e1c;color:#9aa0b8;padding:34px 0 46px}
+footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap"><b>Crib / Archive</b><span class="sp"></span><a class="h" href="#years">Years</a><a class="h" href="#2026">2026</a><a class="h" href="#theme">Theme</a><a class="h" href="#files">Files</a><a class="h" href="#claude">Claude</a><a class="pill" href="2026/pack/index.html">Build pack</a></div></nav>
+
+<header class="hero">
+  <span class="cross" style="left:max(15px,calc(50% - 575px));top:225px"></span>
+  <div class="wrap grid">
+    <div style="padding-bottom:44px">
+      <div class="mono" style="color:var(--mist)">Parish Christmas crib · 2023 → 2026 and onward</div>
+      <h1 style="margin-top:14px">That night in <em>Bethlehem</em></h1>
+      <p>A living archive of every crib we have built: layouts, references, blueprints, prompts, costs and the plan for the next one. Kept in one place so it can be rebuilt, reused and shown.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="pill" href="2026/pack/index.html">Open the 2026 build pack</a><a class="pill light" href="#years">Browse the years</a></div>
+      <div class="stats" style="margin-top:26px"><span class="mono">Stage <b>9 × 16 ft</b></span><span class="mono">Show <b>4 min</b></span><span class="mono">Opens <b>24 Dec 2026</b></span></div>
+    </div>
+    <div class="shot"><img src="references/ai-night-show.webp" alt="Night-show reference of the crib with glowing angels and a path of light"><span class="cap mono">Style reference · night show</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="years">
+  <div class="mono eyebrow">01 · Archive</div>
+  <h2>One folder per year</h2>
+  <p class="lede">Each crib is a folder: its layout, its photos, what it cost, what we learned. Add a new folder every year.</p>
+  <div class="folders">
+    <a class="folder" href="2023/layout-page.jpg" style="text-decoration:none;color:inherit">
+      <div class="back"><div class="g g1"></div></div><div class="tab" style="background:#c8b78a"></div><span class="year mono">2023</span>
+      <div class="front"><h3>2023</h3><p>The neighbourhood in miniature: church at 45° with the temple, courts, shops and skywalk.</p><span class="btn">+</span></div>
+    </a>
+    <a class="folder dark" href="2026/pack/index.html" style="text-decoration:none;color:inherit">
+      <div class="back"><img src="references/ai-night-show.webp" alt=""></div><div class="tab" style="background:#1f2f66"></div><span class="year mono">2026</span>
+      <div class="front"><h3>That Night in Bethlehem</h3><p>A cave under a crowded guest room, shepherds, a census and a four-minute light show.</p><span class="btn">+</span></div>
+    </a>
+    <a class="folder dark" href="CLAUDE.md" style="text-decoration:none;color:inherit">
+      <div class="back"><img src="references/real-cascade-blue-drape.webp" alt=""></div><div class="tab" style="background:#203276"></div><span class="year mono">Next</span>
+      <div class="front"><h3>Next year</h3><p>Copy the 2026 folder, update CLAUDE.md, and the archive keeps growing.</p><span class="btn">+</span></div>
+    </a>
+  </div>
+</section>
+
+<section id="2023">
+  <div class="mono eyebrow">02 · 2023</div>
+  <h2>The first layout</h2>
+  <p class="lede">The 2023 crib was drawn as a map of the neighbourhood: the church turned 45°, with the temple, throw-ball and basketball courts, the apartment, a father's house, Asha Nivas, the shops and a skywalk. This sheet is the layout we built from. The final photo and the two hand sketches are not in the repo yet; add them to <code>2023/</code>.</p>
+  <div class="gallery"><figure class="wide" style="text-align:center"><img src="2023/layout-page.jpg" alt="Hand-drawn 2023 crib layout with measurements" style="max-width:520px;margin:0 auto"><figcaption><b>2023 layout drawing</b><a href="2023/final-layout-crib-2023.pdf">PDF</a></figcaption></figure></div>
+</section>
+
+<section id="2026">
+  <div class="mono eyebrow">03 · 2026</div>
+  <h2>That Night in Bethlehem</h2>
+  <p class="lede">The 2026 plan, from one blueprint: where the crib sits in the church, what visitors see from the public spot, and every part.</p>
+  <div class="gallery">
+    <figure class="wide"><img src="2026/images/blueprint.png" alt="Master blueprint with top view, section and schedule" loading="lazy"><figcaption><b>Master blueprint</b><span>Plan · section · 30 items</span></figcaption></figure>
+    <figure><img src="2026/images/view1-visitor.png" alt="Block-out from the public view spot" loading="lazy"><figcaption><b>View 1</b><span>From the public spot</span></figcaption></figure>
+    <figure><img src="2026/images/view2-aisle.png" alt="Block-out from the centre aisle" loading="lazy"><figcaption><b>View 2</b><span>Wide, from the aisle</span></figcaption></figure>
+    <figure class="third"><img src="2026/images/church-key-plan.png" alt="Church key plan" loading="lazy"><figcaption><b>Key plan</b></figcaption></figure>
+    <figure class="third"><img src="2026/images/book-of-bethlehem.jpg" alt="Early concept render, Book of Bethlehem" loading="lazy"><figcaption><b>Early concept</b></figcaption></figure>
+    <figure class="third"><img src="references/ai-daylight-diorama.webp" alt="Daylight diorama reference" loading="lazy"><figcaption><b>Daylight reference</b></figcaption></figure>
+  </div>
+</section>
+</main>
+
+<div class="band" id="theme">
+<div class="wrap"><section>
+  <div class="mono" style="color:var(--mist)">04 · Theme, light and colour</div>
+  <h2>The Nativity as it happened, and a show in the dark</h2>
+  <p class="lede" style="color:#b9c0dc">A cave under a crowded guest room, a Roman census, shepherds in terraced fields, a far Magi caravan. Forced perspective makes 9 × 16 ft read like a valley.</p>
+  <div class="cols">
+    <div class="glass"><h3>Colour: twelve, no more</h3>
+      <div class="bar"><div style="flex:60;background:#1F2F66"></div><div style="flex:30;background:#D2BC8C"></div><div style="flex:10;background:#F2B84B"></div></div>
+      <div class="mono" style="display:flex;color:#b9c0dc"><span style="flex:60">60% cool</span><span style="flex:30">30% earth</span><span style="flex:10">10% gold</span></div>
+      <div class="sw">
+        <div style="background:#F2B84B;color:#000"><b>Lamp gold</b>#F2B84B</div><div style="background:#FFF1CF;color:#000"><b>Warm white</b>#FFF1CF</div><div style="background:#3A5BA8"><b>Mary blue</b>#3A5BA8</div>
+        <div style="background:#1F2F66"><b>Midnight</b>#1F2F66</div><div style="background:#5B4A9A"><b>Dusk violet</b>#5B4A9A</div><div style="background:#AEBBD9;color:#000"><b>Mist blue</b>#AEBBD9</div>
+        <div style="background:#EDE3CB;color:#000"><b>Limestone</b>#EDE3CB</div><div style="background:#D2BC8C;color:#000"><b>Sand</b>#D2BC8C</div><div style="background:#B98A3E"><b>Ochre</b>#B98A3E</div>
+        <div style="background:#7D8A4A"><b>Olive</b>#7D8A4A</div><div style="background:#A5583A"><b>Terracotta</b>#A5583A</div><div style="background:#15151A"><b>Near-black</b>#15151A</div>
+      </div>
+      <p style="color:#b9c0dc;font-size:14px;margin:14px 0 0">Gold is the one complementary colour against the blue night, and appears in only five places: the cave, the star, the path, the lamps and the Magi lanterns.</p>
+    </div>
+    <div class="glass"><h3>The four-minute show</h3>
+      <div class="show">
+        <div><span class="mono">0:00</span><span>Dusk, amber wash over the hills</span></div>
+        <div><span class="mono">0:30</span><span>Night falls; oil lamps and campfire</span></div>
+        <div><span class="mono">1:00</span><span>Fibre-optic stars, mist, ambient sound</span></div>
+        <div><span class="mono">1:40</span><span>“Glory to God”: the angel floats over the shepherds</span></div>
+        <div><span class="mono">1:50</span><span>The hidden angel choir glows in UV</span></div>
+        <div><span class="mono">2:30</span><span>The star brightens; light runs down the path</span></div>
+        <div><span class="mono">3:00</span><span>The cave glows; the shadow of a cross</span></div>
+        <div><span class="mono">3:30</span><span>Everything warm; the Magi lanterns light</span></div>
+      </div>
+    </div>
+    <div class="glass"><h3>Budget tiers</h3>
+      <div class="show" style="margin-top:12px">
+        <div><span class="mono">₹82,885</span><span><b>Prop-only</b>: materials only; figures reused, stage and lights rented</span></div>
+        <div><span class="mono">₹1,50,535</span><span><b>Lean</b>: reuse and DIY where possible</span></div>
+        <div><span class="mono">₹2,53,660</span><span><b>Full</b>: everything new</span></div>
+      </div>
+      <p style="color:#b9c0dc;font-size:14px;margin:14px 0 0">Rough estimates, ±25%, with 10% contingency. Part-by-part detail is in the build pack.</p>
+      <p style="margin:16px 0 0"><a class="pill light" href="2026/pack/index.html">Open the build pack</a></p>
+    </div>
+  </div>
+</section></div>
+</div>
+
+<main class="wrap">
+<section id="files">
+  <div class="mono eyebrow">05 · Files</div>
+  <h2>Everything in the repo</h2>
+  <p class="lede">Every document, image and reference, in one list.</p>
+  <div class="docs">
+    <a class="doc" href="2026/pack/index.html"><i>HTML</i><div><b>2026 build pack</b><span>Parts, materials, costs, schedule, colour</span></div></a>
+    <a class="doc" href="2026/docs/build-pack.pdf"><i>PDF</i><div><b>Build pack, 18 sheets</b><span>Print-ready A3 landscape</span></div></a>
+    <a class="doc" href="2023/final-layout-crib-2023.pdf"><i>PDF</i><div><b>2023 layout</b><span>Original hand-drawn layout</span></div></a>
+    <a class="doc" href="2026/docs/final-theme.md"><i>MD</i><div><b>Final theme</b><span>That Night in Bethlehem</span></div></a>
+    <a class="doc" href="2026/docs/ideas-23-concepts.md"><i>MD</i><div><b>23 concepts</b><span>Every idea we considered, with prompts</span></div></a>
+    <a class="doc" href="2026/docs/image-prompts.md"><i>MD</i><div><b>Image prompts v2</b><span>Whole-scene prompts with the church context</span></div></a>
+    <a class="doc" href="2026/docs/component-prompts.md"><i>MD</i><div><b>Component prompts</b><span>One studio prompt per part</span></div></a>
+    <a class="doc" href="2026/docs/first-five-concepts.html"><i>HTML</i><div><b>First five concepts</b><span>The earliest visual exploration</span></div></a>
+    <a class="doc" href="references/"><i>DIR</i><div><b>References</b><span>Style images and site design references</span></div></a>
+    <a class="doc" href="source/"><i>PY</i><div><b>Source</b><span>Python that generates the drawings and packs</span></div></a>
+    <a class="doc" href="CLAUDE.md"><i>MD</i><div><b>CLAUDE.md</b><span>Project memory for any new chat</span></div></a>
+    <a class="doc" href="README.md"><i>MD</i><div><b>README</b><span>Folder guide</span></div></a>
+  </div>
+</section>
+
+<section id="claude">
+  <div class="mono eyebrow">06 · Keep it going</div>
+  <h2>Pick it up in any chat or account</h2>
+  <p class="lede">The whole project is written down in <code>CLAUDE.md</code>. Open the repo in a new Claude chat and the work continues where it stopped.</p>
+  <div class="claude">
+    <div><h3 style="color:#fff">Start a new session</h3>
+      <ol><li>Clone or open the repo.</li><li>Ask Claude to read <code>CLAUDE.md</code> first.</li><li>Say what you need: a new year, a price change, a new prompt.</li><li>Commit and push; this site updates itself.</li></ol></div>
+    <div><pre id="start">Read CLAUDE.md in this repo, then continue the crib project. Today I want to: ______</pre>
+      <p style="margin:12px 0 0"><button class="pill" id="copy" type="button">Copy this starter</button></p></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span class="mono">Crib Archive · 2023 → 2026</span><span class="mono">Built to be kept and reused</span></div></footer>
+
+<script>
+document.getElementById('copy').addEventListener('click',function(){
+  var b=this,t=document.getElementById('start').textContent;
+  try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied'},function(){b.textContent='Select and copy'})}catch(e){b.textContent='Select and copy'}
+});
+</script>
+</body>
+</html>
