@@ -1,0 +1,94 @@
+"""Crew pack (no prices): per block 4 pages: (1) simple card with picture and image prompt, (2) blueprint drawing, (3) parts table + cut list with exact sizes, (4) exact build sequence.
+Run after make_views.py and make_crew.py: python source/make_crew_pack.py -> 2026/crew/ (crew-pack.pdf, <letter>-crew.pdf, crew-prompts.md)"""
+import os, sys, re, html, shutil
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import make_blocks as mb
+import make_views as mv
+import make_prompts as mp
+import make_crew as mc
+import crew_steps as cs
+
+ROOT = mb.ROOT; OUT = os.path.join(ROOT, '2026', 'crew'); os.makedirs(os.path.join(OUT, 'img'), exist_ok=True)
+mc.OUT = OUT   # reuse the picture helpers, writing into the crew folder
+
+CSS = mc.CSS + ('.pg{height:197mm}.pic{max-height:62mm}.bp{width:100%;max-height:96mm;object-fit:contain;display:block;border:1px solid #cfc9b8;border-radius:5px}'
+                '.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.cols3{display:grid;grid-template-columns:1fr 1.1fr;gap:10px}'
+                '.parts{font-size:11px}.parts td,.parts th{padding:2px 4px}.two-col{column-count:2;column-gap:12px}.note{background:#fbf3df;border:1px solid #e0c98a;border-radius:6px;padding:6px 10px;font-size:11.5px;margin-top:6px}'
+                '.steps2{margin:2px 0 0;padding-left:20px}.steps2 li{margin-bottom:5px}')
+
+def li(xs, c=''): return f'<ul class="{c}">' + ''.join(f'<li>{html.escape(x)}</li>' for x in xs) + '</ul>'
+
+def page1(k):
+    b = mb.B[k]; look, mat = mp.LOOK[k]; pic = mc.crew_pic(k)
+    steps = [mc.short(s, 120) for s in b['steps'] if not s.isupper()][:5]
+    items = [f'{r[0]} ({r[1]})' for r in b['rows'] if r[0] != 'Total'][:7]
+    prompt = ('Stage: 9 ft wide at the SHORT front, 16 ft DEEP along the long left side (do not swap). Attached: (1) the final photo of the whole crib, to match its look and materials; (2) a picture of ONE block, to match its shape and place. '
+              'Create ONE real-looking phone photograph of just this block as built, seen from the front-left at a three-quarter angle, turned about 33 degrees as in the attached picture, on a plain light-grey background with soft warm light. '
+              f'BLOCK {k}, {mv.NAMES[k]}: {look} {"" if k == "A" else "Size and place: " + b["where"] + " "}Materials: {mat}. Real physical handmade model, not CGI, not an illustration. No Christmas tree, no snow, no text. '
+              'Palette: lamp gold, warm white, Mary blue, midnight blue, dusk violet, mist blue, limestone, sand, ochre, olive; no red, bright green or pink. 16:9.')
+    a, e = mc.window(k)
+    body = (f'<section class="pg">{mc.head(k, b["items"], "Page 1 of 4 · what it is")}'
+            f'<div class="top"><div><p class="cap">Target look (generated)</p>{mc.gen_html(k)}</div><div><p class="cap">How it looks from the public spot, and where it goes</p><img class="pic" src="{pic}"></div></div>'
+            f'<div class="meta" style="margin:4px 0"><b>Size and place:</b> {html.escape(b["where"])} &nbsp; <b>Build:</b> {mc.fd(a, e)} &nbsp; <b>Team:</b> {html.escape(b["team"])}</div>'
+            f'<div class="three"><div class="box"><h2>In short</h2><ol>{"".join(f"<li>{html.escape(x)}</li>" for x in steps)}</ol></div>'
+            f'<div class="box"><h2>You need</h2>{li(items)}<h2 style="margin-top:6px">Done when</h2>{li(b["done"][:3], "chk")}</div>'
+            f'<div class="box"><h2>Prompt to generate the end result</h2><pre>{html.escape(prompt)}</pre></div></div></section>')
+    return body, prompt
+
+def page2(k):
+    svg, w, h = mv.frame_svg() if k == 'A' else mv.blueprint_svg(k); path = os.path.join(OUT, 'img', f'{k}-blueprint.png'); mv.png(svg, w, h, path)
+    return (f'<section class="pg">{mc.head(k, "Blueprint with exact measurements", "Page 2 of 4 · the drawing")}'
+            f'<div class="box" style="margin-top:6px"><img class="bp" style="max-height:165mm" src="img/{k}-blueprint.png"></div>'
+            '<p style="margin:2px 0 0;font-size:11.5px;color:#444">Feet. x is measured from the LEFT edge of the stage, y from the BACK wall. Heights are above the deck. Numbers match the parts table on the next page.</p></section>')
+
+def page3(k):
+    x = cs.X[k]
+    groups = mv.frame_groups() if k == 'A' else mv.part_groups(k)
+    rows = ''
+    for g in groups:
+        wh = g['wheres'][0] if g['count'] == 1 else (f'{g["count"]} places, e.g. ' + g['wheres'][0] + (f'; {g["wheres"][1]}' if len(g['wheres']) > 1 else ''))
+        rows += f'<tr><td><b>{g["no"]}</b></td><td>{html.escape(g["name"])}{" ×" + str(g["count"]) if g["count"] > 1 else ""}</td><td>{html.escape(g["size"])}</td><td>{html.escape(wh)}</td><td>{html.escape(g["base"])}</td></tr>'
+    cut = ''.join(f'<tr><td><b>{html.escape(i)}</b></td><td>{html.escape(q)}</td></tr>' for i, q in x['cut'])
+    stack = f'<div class="note">{html.escape(cs.STACK_NOTE)}</div>' if k in ('B', 'C') else ''
+    return (f'<section class="pg">{mc.head(k, "Every part: size and place", "Page 3 of 4 · the numbers")}'
+            f'<div class="box" style="margin-top:6px"><h2>Parts table (x from the LEFT edge, y from the BACK wall, heights above the deck)</h2><table class="parts" style="font-size:12px"><tr><th>No.</th><th>Part</th><th>Size</th><th>Where</th><th>Sits at</th></tr>{rows}</table>{stack}</div>'
+            f'<div class="box"><h2>Cut and make list (exact sizes)</h2><table class="parts" style="font-size:12px">{cut}</table></div></section>')
+
+def page4(k):
+    x = cs.X[k]; b = mb.B[k]
+    mats = ', '.join(f'{r[0]} ({r[1]})' for r in b['rows'] if r[0] != 'Total')
+    steps = ''.join(f'<li>{html.escape(s)}</li>' for s in x['steps'])
+    return (f'<section class="pg">{mc.head(k, "Exact build: do this, in this order", "Page 4 of 4 · build it")}'
+            f'<div class="cols3" style="margin-top:8px"><div class="box"><h2>Do exactly this</h2><ol class="steps2" style="font-size:12.5px">{steps}</ol></div>'
+            f'<div><div class="box"><h2>Before you start</h2>{li(b["before"])}</div><div class="box"><h2>Materials to get</h2><div style="font-size:11.5px">{html.escape(mats)}</div><p style="margin:5px 0 0;font-size:11.5px"><b>Tools:</b> {html.escape(b["tools"])}</p></div>'
+            f'<div class="box"><h2>Done when (tick each)</h2>{li(b["done"], "chk")}</div><div class="box"><h2>Hands over to</h2>{html.escape(b["hands"])}</div></div></div></section>')
+
+def start_pages():
+    d = os.path.join(ROOT, '2026', 'share', 'final-blueprint-3-views.png'); shutil.copy(d, os.path.join(OUT, 'img', 'final-blueprint.png'))
+    shutil.copy(os.path.join(ROOT, '2026', 'images', 'eye-view-v3-generated.jpg'), os.path.join(OUT, 'img', 'final-look.jpg'))
+    thumbs = ''.join(f'<img src="img/{n}.jpg" style="width:100%;height:21mm;object-fit:cover;border-radius:3px">' for k in mb.ORDER for n in mc.GEN.get(k, []) if mc.have(n))
+    for k in mb.ORDER:
+        for n in mc.GEN.get(k, []):
+            if mc.have(n): shutil.copy(os.path.join(mc.GENDIR, n + '.jpg'), os.path.join(OUT, 'img', n + '.jpg'))
+    team = ''.join(f'<tr><td><b>{k}</b></td><td>{html.escape(mv.NAMES[k])}</td><td>{mc.fd(*mc.window(k))}</td><td>{html.escape(mb.B[k]["team"])}</td></tr>' for k in mb.ORDER)
+    checks = ['Deck height (2 ft assumed) and a free 9 × 16 ft', 'Ceiling height (about 15 ft assumed) and ceiling type', 'Altar centred on the front wall; crib at its right end', 'Power point, exit and the deck load rating', 'Work-at-height rules for hanging block I', 'How much 2023 plywood still exists']
+    p1 = (f'<section class="pg"><div class="head" style="background:#2b2a33"><div><h1>Crib 2026 · That Night in Bethlehem · crew pack</h1><p>Opens 24 December 2026 · stage 9 ft wide × 16 ft deep · 11 blocks (A, B, C, E to L; there is no D, the rock hill is part of B)</p></div></div>'
+          f'<div class="cols" style="margin-top:6px"><div><img src="img/final-look.jpg" style="width:100%;border-radius:6px;border:1px solid #cfc9b8"><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin-top:4px">{thumbs}</div></div>'
+          f'<div><div class="box"><h2>Who builds what, and when</h2><table><tr><th>Block</th><th>Name</th><th>Build window</th><th>Team</th></tr>{team}</table></div>'
+          f'<div class="box"><h2>How to use this pack</h2><ol><li>Find your block letter.</li><li>Page 1: what it looks like and a prompt for a picture of the finished block.</li><li>Page 2: the blueprint drawing. Page 3: every numbered part with its exact size and place, and the cut list. Page 4: the steps, in order. Tick "done when" and hand over.</li></ol></div></div></div></section>')
+    p2 = (f'<section class="pg"><div class="head" style="background:#2b2a33"><div><h1>The whole crib: front, side and top, plus the view from the public spot</h1><p>Feet. Stage 9 ft wide at the front × 16 ft deep. Letters are the block letters.</p></div></div>'
+          f'<div class="box" style="margin-top:6px"><img src="img/final-blueprint.png" style="width:100%;max-height:150mm;object-fit:contain"></div>'
+          f'<div class="box"><h2>Check on site first</h2>{"".join("<span style=&quot;margin-right:18px&quot;>☐ " + html.escape(c) + "</span>" for c in checks)}</div></section>').replace('&quot;', '"')
+    return p1 + p2
+
+if __name__ == '__main__':
+    md = ['# Crew prompts (one per block)', '', 'Attach the final crib photo `2026/images/eye-view-v3-generated.jpg` and the block picture `2026/crew/img/<letter>-pic.png`.', '']
+    bodies = []
+    for k in mb.ORDER:
+        b1, prompt = page1(k); body = b1 + page2(k) + page3(k) + page4(k); bodies.append(body)
+        md += [f'## Block {k} · {mv.NAMES[k]}', '', '```', prompt, '```', '']
+        hp = os.path.join(OUT, f'{k}-crew.html'); open(hp, 'w', encoding='utf8').write(f'<!doctype html><meta charset="utf-8"><style>{CSS}</style>{body}')
+        mb.pdf(hp, os.path.join(OUT, f'{k}-crew.pdf')); print(k)
+    full = f'<!doctype html><meta charset="utf-8"><style>{CSS}</style>{start_pages()}{"".join(bodies)}'
+    open(os.path.join(OUT, 'crew-pack.html'), 'w', encoding='utf8').write(full); mb.pdf(os.path.join(OUT, 'crew-pack.html'), os.path.join(OUT, 'crew-pack.pdf'))
+    open(os.path.join(OUT, 'crew-prompts.md'), 'w', encoding='utf8').write('\n'.join(md)); print('done')
