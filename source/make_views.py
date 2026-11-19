@@ -9,8 +9,8 @@ import math, os, subprocess
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, '2026', 'share'); BV = os.path.join(OUT, 'block-views'); os.makedirs(BV, exist_ok=True)
 COL = {'A': (120,120,120), 'B': (230,120,20), 'C': (200,50,50), 'E': (40,150,70), 'F': (120,60,200),
-       'G': (30,110,220), 'H': (210,170,0), 'I': (0,170,190), 'J': (60,60,160), 'K': (230,60,160), 'L': (110,200,60)}
-NAMES = {'A':'Stage frame and rake','B':'Cave, rock hill and Holy Family','C':'House with upper room','E':"Shepherds' field",'F':'Floating angel unit','G':'Village street','H':'Lights and control','I':'Sky: cloud spiral and star','J':'Backdrop','K':'Far village and Magi shelf','L':'Foreground and view spot'}
+       'G': (30,110,220), 'H': (210,170,0), 'I': (0,170,190), 'J': (60,60,160), 'K': (230,60,160), 'L': (110,200,60), 'M': (0,120,110)}
+NAMES = {'A':'Two-layer stage','B':'Cave, rock hill and Holy Family','C':'House with upper room','E':"Shepherds' field",'F':'Pipe-cleaner angel choir','G':'Village street','H':'Lights (one plug, one box)','I':'Star and cloud spiral','J':'Backdrop','K':'Far village and Magi caravan','L':'Foreground and view spot','M':'Photo corner: pond and selfie mirror'}
 CEIL = 13.0; EYE = 3.2
 V = (-3.0, 19.0); HANG = (7.8, 1.2); C = (4.4, 7.4)
 d = (V[0]-C[0], V[1]-C[1]); L_ = math.hypot(*d); v = (d[0]/L_, d[1]/L_); u = (-v[1], v[0])
@@ -25,35 +25,35 @@ E = []  # (block, name, kind, poly, z0, z1, extra)
 def add(b, name, kind, poly, z0, z1, **kw): E.append(dict(b=b, name=name, kind=kind, poly=poly, z0=z0, z1=z1, **kw))
 
 add('A', 'deck + skirting', 'box', rect(0,0,9,16), -2.0, 0.0, dark=True)
+add('A', 'upper layer (second level)', 'box', rect(0,0,9,4.5), 0.0, 1.5)
 hill = [(3.0,2.2),(6.0,1.8),(9.0,1.7),(9.0,9.0),(7.1,9.1),(6.2,8.9),(5.6,9.9),(3.4,9.6),(2.0,7.6),(2.6,5.0)]
-add('B', 'rock hill', 'box', hill, 0.0, 3.0)
-for y0, y1, lv in ((0,1.75,2.0),(1.75,3.5,1.6),(3.5,5.25,1.2),(5.25,7.0,0.8)):
-    add('E', f'terrace +{lv}', 'box', rect(0,y0,3.4,y1-y0), 0.0, lv)
-add('E', 'shepherd ledge', 'box', rect(0.2,7.0,1.7,2.6), 0.0, 0.8)
-add('E', 'sheepfold', 'box', rect(0.4,1.75,2.0,1.3), 1.6, 1.85)
-add('E', 'watchtower', 'box', circ(3.0,1.0,0.5), 2.0, 3.5)
-for (x, y) in ((0.5,7.5),(1.3,8.0)): add('E', 'shepherd', 'box', rect(x,y,0.3,0.3), 0.8, 2.0)
-for (x, y) in ((0.6,8.7),(1.4,9.0),(0.9,9.2),(0.3,8.3),(1.6,8.2),(0.4,9.25)): add('E', 'sheep', 'box', rect(x,y,0.35,0.3), 0.8, 1.25)
-add('E', 'campfire', 'box', circ(1.0,8.3,0.15,8), 0.8, 1.1, gold=True)
-add('F', 'ridge', 'box', rect(0.3,4.6,2.4,1.0), 1.2, 2.0)
-add('F', 'angel unit (acrylic at 45 deg)', 'box', rect(0.3,3.2,2.4,1.4), 1.2, 2.6, glass=True)
-add('B', 'cave', 'cave', rrect(C, 2.0, 1.25), 0.5, 3.0)
-add('B', 'Holy Family', 'box', rrect(off(C,-0.15), 1.5, 0.6), 0.5, 2.5, small=True)
-add('C', 'guest room', 'box', rrect(off(C,1.5), 2.0, 1.0), 2.8, 4.3, glass=True)
-add('G', 'street', 'box', rect(6.2,9.3,1.1,6.7), 0.0, 0.5)
-add('G', 'house A', 'box', rect(7.6,9.4,1.4,1.6), 0.7, 2.7)
-add('G', 'house B', 'box', rect(7.4,11.3,1.6,1.8), 0.6, 3.1)
-add('G', 'house C', 'box', rect(7.6,13.4,1.4,1.6), 0.4, 2.2)
+add('B', 'rock hill', 'box', hill, 0.0, 3.3)
+add('E', 'sheepfold', 'box', rect(0.4,1.75,2.0,1.3), 1.5, 1.75)
+add('E', 'watchtower', 'box', circ(3.0,1.0,0.5), 1.5, 3.0)
+for (x, y) in ((0.5,7.5),(1.3,8.0)): add('E', 'shepherd', 'box', rect(x,y,0.3,0.3), 0.0, 1.2)
+for (x, y) in ((0.6,8.7),(1.4,9.0),(0.9,9.2),(0.3,8.3),(1.6,8.2),(0.4,9.25)): add('E', 'sheep', 'box', rect(x,y,0.35,0.3), 0.0, 0.4)
+add('E', 'campfire', 'box', circ(1.0,8.3,0.15,8), 0.0, 0.3, gold=True)
+add('F', 'hero angel (pipe cleaner)', 'box', rect(1.45,2.25,0.3,0.3), 2.5, 4.5)
+for (x, y) in ((0.6,2.0),(0.9,3.3),(2.2,2.4),(2.4,3.6),(1.2,1.3),(2.0,1.0),(0.5,3.9),(1.8,3.9),(2.6,2.9)): add('F', 'small angel (pipe cleaner)', 'box', rect(x,y,0.25,0.25), 2.0, 2.8)
+add('B', 'cave', 'cave', rrect(C, 2.0, 1.25), 0.0, 2.5)
+add('B', 'Holy Family', 'box', rrect(off(C,-0.15), 1.5, 0.6), 0.0, 2.0, small=True)
+add('C', 'guest room', 'box', rrect(off(C,1.5), 2.0, 1.0), 3.3, 4.8, glass=True)
+add('G', 'street', 'box', rect(6.2,9.3,1.1,6.7), 0.0, 0.05)
+add('G', 'house A', 'box', rect(7.6,9.4,1.4,1.6), 0.0, 2.0)
+add('G', 'house B', 'box', rect(7.4,11.3,1.6,1.8), 0.0, 2.5)
+add('G', 'house C', 'box', rect(7.6,13.4,1.4,1.6), 0.0, 1.8)
 add('G', 'well', 'box', circ(5.6,11.2,0.45), 0.0, 0.6)
 add('G', 'census table + soldier', 'box', rect(4.5,12.8,1.4,1.0), 0.0, 1.9)
 add('G', 'donkeys', 'box', rect(4.6,10.0,1.2,0.6), 0.0, 1.1)
+add('K', 'far-village rock ridge', 'box', rect(7.8,5.2,0.8,3.8), 0.0, 3.0)
 add('K', 'far village', 'box', rect(7.8,5.2,0.8,3.8), 3.0, 3.35)
 add('K', 'Magi shelf + caravan', 'box', rect(8.7,5.4,0.3,3.0), 3.6, 3.95)
 add('H', 'path of light', 'flat', [(1.75,15.9),(2.05,15.9),(2.55,13.6),(3.25,11.2),(3.8,9.25),(MOUTH[0]+0.25,MOUTH[1]),(MOUTH[0]-0.25,MOUTH[1]),(3.3,9.25),(2.75,11.2),(2.05,13.6)], 0.0, 0.03, gold=True)
-add('H', 'speaker', 'box', rect(0.0,11.3,0.3,0.4), 0.0, 0.5)
-add('H', 'control box (under deck)', 'box', rect(7.6,15.2,1.2,0.8), -1.5, -0.1, hidden=True)
-add('H', 'UV bar (back wall)', 'box', rect(1.0,0.0,3.3,0.12), 4.8, 5.0)
-add('H', 'UV bar (right wall)', 'box', rect(8.88,6.0,0.12,3.3), 4.8, 5.0)
+add('H', 'speaker', 'box', rect(0.0,15.2,0.3,0.4), 0.0, 0.5)
+add('H', 'distribution box (hatch A)', 'box', rect(0.0,0.2,1.2,0.8), 1.0, 1.5, hidden=True)
+for (x, y) in ((2.0,0.8),(5.0,0.8),(8.3,2.0)): add('H', 'night-sky wash flood (on a stand)', 'box', rect(x,y,0.4,0.3), 1.5, 2.3)
+for (x, y) in ((1.6,6.4),(2.9,8.6)): add('H', 'field flood (on a stand)', 'box', rect(x,y,0.4,0.3), 0.0, 0.8)
+add('H', 'angel lamp (clip lamp)', 'box', rect(1.8,2.3,0.3,0.3), 2.0, 2.5)
 add('I', 'star burst', 'star', circ(HANG[0],HANG[1],1.0), 10.5, 12.5)
 add('I', 'bead strands', 'strands', circ(HANG[0],HANG[1],0.9), 4.5, 10.5)
 add('I', 'cloud and angel spiral', 'spiral', [HANG, LND], 4.5, 10.5)
@@ -64,6 +64,9 @@ add('J', 'right-wall drape', 'box', rect(9.0,0,0.12,16), 5.0, CEIL, drape=True)
 add('L', 'olive tree (front left)', 'tree', circ(1.0,14.2,0.6), 0.0, 2.0)
 add('L', 'olive tree (front right)', 'tree', circ(5.4,14.9,0.5), 0.0, 1.6)
 add('L', 'plaque', 'box', rect(3.2,15.5,2.0,0.4), 0.0, 0.8)
+add('M', 'pond', 'box', rect(0.35,10.3,1.6,3.0), 0.0, 0.12, glass=True)
+_mc = (-6.0, 19.0); _n = (math.cos(math.radians(23)), -math.sin(math.radians(23))); _t = (-_n[1], _n[0])
+add('M', 'selfie mirror', 'box', [(_mc[0]+sx*_t[0]*1.0+sy*_n[0]*0.08, _mc[1]+sx*_t[1]*1.0+sy*_n[1]*0.08) for sx, sy in ((-1,1),(1,1),(1,-1),(-1,-1))], -2.0, 3.0)
 
 def light(c, k=0.55): return '#%02x%02x%02x' % tuple(int(255-(255-x)*k) for x in c)
 def dark(c): return '#%02x%02x%02x' % tuple(int(x*0.55) for x in c)
@@ -166,13 +169,14 @@ def _shade(h, k):
     h = h.lstrip('#'); r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
     return '#%02x%02x%02x' % tuple(max(0, min(255, int(c*k))) for c in (r, g, b))
 
-def persp_panel(elems, fillfn, strokefn, W=1200, H=680, ghost=lambda e: False, letters=True, x0=0, y0=0):
+def persp_panel(elems, fillfn, strokefn, W=1200, H=680, ghost=lambda e: False, letters=True, x0=0, y0=0, cam=None, yaw=None, hfov=None, vshift=0):
     """True perspective from V (same camera as the grey block-out: yaw 33 deg, 96 deg lens, eye 5.2 ft above the floor)."""
-    F = W/2/math.tan(HFOV/2); fx, fy = math.sin(YAW), -math.cos(YAW); rx, ry = math.cos(YAW), math.sin(YAW)
+    _cam = cam or CAMV; _yaw = YAW if yaw is None else yaw; _hfov = HFOV if hfov is None else hfov
+    F = W/2/math.tan(_hfov/2); fx, fy = math.sin(_yaw), -math.cos(_yaw); rx, ry = math.cos(_yaw), math.sin(_yaw)
     def pr(x, y, z):
-        dx, dy, dz = x-CAMV[0], y-CAMV[1], (z+2.0)-CAMV[2]
+        dx, dy, dz = x-_cam[0], y-_cam[1], (z+2.0)-_cam[2]
         fw = max(dx*fx+dy*fy, 0.3); rt = dx*rx+dy*ry
-        return (x0+W/2+F*rt/fw, y0+H/2-F*dz/fw+H*0.04, fw)
+        return (x0+W/2+F*rt/fw, y0+H/2-F*dz/fw+H*0.04+vshift, fw)
     faces = []
     def addf(pts3, fill, k, stroke, sw=1.4, op=1):
         pp = [pr(*q) for q in pts3]
@@ -180,6 +184,8 @@ def persp_panel(elems, fillfn, strokefn, W=1200, H=680, ghost=lambda e: False, l
     for e in elems:
         g = ghost(e); fill = '#e6e6e6' if g else fillfn(e); stroke = '#bdbdbd' if g else strokefn(e); k = e['kind']; poly = e['poly']
         op = 0.6 if (e.get('glass') or k == 'cave' or e['b'] == 'J') and not g else 1
+        if sum((q[0]-_cam[0])*fx+(q[1]-_cam[1])*fy for q in poly)/len(poly) < 1.0: continue
+        if sum((q[0]-_cam[0])*fx+(q[1]-_cam[1])*fy for q in poly)/len(poly) < 1.0: continue
         if g: op = 0.3
         if e.get('hidden'): continue
         if k == 'spiral':
@@ -209,7 +215,7 @@ def persp_panel(elems, fillfn, strokefn, W=1200, H=680, ghost=lambda e: False, l
         for i in range(n):
             a_, b_ = poly[i], poly[(i+1) % n]; mx, my = (a_[0]+b_[0])/2, (a_[1]+b_[1])/2; nx_, ny_ = b_[1]-a_[1], -(b_[0]-a_[0])
             if (mx-cx)*nx_+(my-cy)*ny_ < 0: nx_, ny_ = -nx_, -ny_
-            if (CAMV[0]-mx)*nx_+(CAMV[1]-my)*ny_ <= 0: continue
+            if (_cam[0]-mx)*nx_+(_cam[1]-my)*ny_ <= 0: continue
             l = math.hypot(nx_, ny_) or 1; kk = 0.62+0.38*max(0, (nx_*-0.5+ny_*0.8)/l)
             addf([(a_[0], a_[1], z0), (b_[0], b_[1], z0), (b_[0], b_[1], z1), (a_[0], a_[1], z1)], fill, kk, stroke, 1.2, op)
         addf([(x, y, z1) for x, y in poly], fill, 1.1, stroke, 1.6, op)
@@ -253,12 +259,12 @@ def master():
             s.append(f'<rect x="{vw.X(0):.1f}" y="{gy_ceil-20:.1f}" width="{hw}" height="20" fill="url(#hatch)" stroke="#2b2a33"/>')
             s.append(f'<line x1="{vw.X(0)-30:.1f}" y1="{gy_floor:.1f}" x2="{vw.X(0)+hw+30:.1f}" y2="{gy_floor:.1f}" stroke="#2b2a33" stroke-width="3"/>')
             s.append(f'<line x1="{vw.X(0):.1f}" y1="{gy_deck:.1f}" x2="{vw.X(0)+hw:.1f}" y2="{gy_deck:.1f}" stroke="#8a8a92" stroke-dasharray="4 4"/>')
-        els = [e for e in E if not (vw.kind != 'top' and e['b'] == 'H' and e['kind'] == 'flat')]
+        els = [e for e in E if e['name'] != 'selfie mirror' and not (vw.kind != 'top' and e['b'] == 'H' and e['kind'] == 'flat')]
         s.append(draw_view(vw, els, fill2, strk))
         # block letters
         for b in COL:
             if b in ('A',): continue
-            sel = [e for e in E if e['b'] == b and not (vw.kind != 'top' and e['kind'] == 'flat')]
+            sel = [e for e in E if e['b'] == b and e['name'] != 'selfie mirror' and not (vw.kind != 'top' and e['kind'] == 'flat')]
             if b == 'H': sel = [e for e in sel if (e['name'] == 'path of light' if vw.kind == 'top' else e['name'] == 'speaker')]
             pe = [proj(vw.kind, e) for e in sel]
             if not pe: continue
@@ -271,7 +277,7 @@ def master():
         # height ruler
         if vw.kind != 'top':
             hw = (9 if vw.kind == 'front' else 16)*S; xr = vw.X(0)+hw+16
-            for z, lab in ((0,'deck'),(3.0,'+3.0 hill crest'),(4.3,'+4.3 house roof'),(CEIL,'+13 ceiling (assumed)')):
+            for z, lab in ((0,'deck'),(3.3,'+3.3 hill top'),(4.8,'+4.8 house roof'),(CEIL,'+13 ceiling (assumed)')):
                 s.append(f'<line x1="{vw.X(0)-6:.1f}" y1="{vw.Y(z):.1f}" x2="{xr-8:.1f}" y2="{vw.Y(z):.1f}" stroke="#a9a9b3" stroke-dasharray="2 5"/>')
                 s.append(T(xr, vw.Y(z)+5, lab, 14, '#5d5b66'))
             ey = vw.Y(EYE)
@@ -280,14 +286,16 @@ def master():
             s.append(dim_h(vw.X(0), vw.X(0)+hw, vw.Y(-2)+34, '9 ft' if vw.kind == 'front' else '16 ft'))
         else:
             s.append(dim_h(vw.X(0), vw.X(9), vw.oy+16*S+30, '9 ft')); s.append(dim_v(vw.X(0)-24, vw.oy, vw.oy+16*S, '16 ft'))
-            s.append(T(vw.X(0), vw.oy+16*S+62, 'Public view spot V: 3 ft left and 3 ft in front of the front-left corner, eye 5.2 ft above the floor.', 15, '#a8322c'))
+            s.append(T(vw.X(0), vw.oy+16*S+84, '32 selfie mirror: on the church floor, 6 ft left of the stage edge and 3 ft left of V,', 15, '#006e66'))
+    s.append(T(vw.X(0), vw.oy+16*S+104, 'turned 23° toward the crib (outside this view). 31 pond: 1.6 × 3 ft at the front left.', 15, '#006e66'))
+    s.append(T(vw.X(0), vw.oy+16*S+62, 'Public view spot V: 3 ft left and 3 ft in front of the front-left corner, eye 5.2 ft above the floor.', 15, '#a8322c'))
     py0 = top0 + (ZMAX-ZMIN)*S + 150
     s.append(T(40, py0-20, 'TILTED VIEW FROM THE PUBLIC SPOT V: the stage is turned 33 degrees, 9 ft wall on the left, 16 ft wall running away to the right', 20, weight='bold'))
     s.append(f'<rect x="40" y="{py0}" width="1500" height="850" fill="#f3f1ea" stroke="#2b2a33" stroke-width="2"/>')
-    s.append(persp_panel(E, fill2, strk, W=1500, H=850, x0=40, y0=py0))
+    s.append(persp_panel([e for e in E if e['name'] != 'selfie mirror'], fill2, strk, W=1500, H=850, x0=40, y0=py0))
     ly = py0 + 40; lx0 = 1620
     s.append(T(lx0, ly, 'BLOCKS', 20, weight='bold'))
-    for i, b in enumerate('ABCEFGHIJKL'):
+    for i, b in enumerate('ABCEFGHIJKLM'):
         x = lx0 + (i % 2)*680; y = ly + 40 + (i//2)*44
         s.append(f'<rect x="{x}" y="{y-16}" width="34" height="22" fill="{light(COL[b])}" stroke="{dark(COL[b])}" stroke-width="2"/>' + T(x+46, y+2, f'{b}  {NAMES[b]}', 18))
     s.append('</svg>')
@@ -352,10 +360,18 @@ def part_groups(b):
         elif e['kind'] == 'spiral': size = '2.5 ft wide, 3 turns, from 10.5 ft down to 4.5 ft above the deck; 30 small angels (4-6 in)'
         elif e['kind'] == 'star': size = '2 ft wide, hung about 1 ft below the ceiling'
         elif e['kind'] == 'flat': size = '0.5 ft (6 in) wide × 7.7 ft long, set flush in the deck'
+        elif nm == 'pond': size = '1.6 ft (19 in) wide × 3 ft (36 in) long; sealed tray 1.5 in high holding 1 in of water, pebble edge'
+        elif nm == 'selfie mirror': size = '2 ft (24 in) wide × 5 ft (60 in) tall acrylic mirror in a frame about 1.5 in thick, on a weighted base; stands on the church floor, faces the queue, turned about 23° toward the crib'
+        elif nm == 'hero angel (pipe cleaner)': size = 'about 2 ft (24 in) tall, white chenille and tulle, on a wire pole about 1 ft long'
+        elif nm == 'small angel (pipe cleaner)': size = '8–10 in tall on a wire stake 8–12 in long, white chenille and tulle'
+        elif nm == 'night-sky wash flood (on a stand)': size = '10 W 12 V cool-white flood behind a deep night-blue gel, on a small stand about 10 in high, aimed up at the backdrop'
+        elif nm == 'field flood (on a stand)': size = '10 W 12 V flood, warm-neutral 3500–4000 K, on a small stand hidden behind a rock, aimed at the shepherds'
+        elif nm == 'angel lamp (clip lamp)': size = '10 W cool-white 5000 K clip lamp on the sheepfold post, aimed at the angels'
+        elif nm == 'distribution box (hatch A)': size = 'metal box with 6 A MCB, 30 mA RCCB, 3 switches, power supplies; under loose lid A (1.2 × 0.8 ft)'
         elif nm == 'shepherd': size = 'figure 1.2 ft (14 in) tall, scale 1:6; stands on a base about 4 in across'
         elif nm == 'sheep': size = 'about 0.45 ft (5 in) long, 0.4 ft (5 in) tall; real wool'
         elif nm == 'campfire': size = 'about 4 in across, 4 in tall, orange flicker LED inside'
-        elif nm == 'rock hill': size = 'about 7 ft × 6 ft base (irregular, see top view), up to 3 ft high; keep 1 ft free behind for wiring'
+        elif nm == 'rock hill': size = 'about 7 ft × 6 ft base (irregular, see top view), up to 3.3 ft high; keep 1 ft free behind for cables'
         elif e['kind'] == 'tree':
             dia = math.hypot(p[0][0]-p[len(p)//2][0], p[0][1]-p[len(p)//2][1])*1.25
             size = f'canopy about {fi(dia)} across, {fi(z)} tall'
@@ -378,6 +394,7 @@ def part_groups(b):
         base = 'on the deck' if e['z0'] == 0 else f'{e["z0"]:.1f} ft above the deck'
         if e['z0'] < 0: base = 'under the deck'
         if nm in ('cave', 'Holy Family', 'guest room', 'rock hill'): base = 'see stack note'
+        if nm == 'selfie mirror': where = 'centre x −6.0 ft (6 ft to the LEFT of the stage edge, 3 ft left of V), y 19.0 ft (3 ft in front of the stage front edge)'; base = 'on the church floor'
         key = (nm, size)
         g = groups.setdefault(key, dict(name=nm, size=size, wheres=[], base=base, members=[]))
         g['wheres'].append(where); g['members'].append(idx)
@@ -447,66 +464,53 @@ def blueprint_svg(b):
     s.append('</svg>')
     return '\n'.join(s), Wt, Ht
 
-RAMP = [(16, 0.0), (10.5, 0.0), (9.5, 0.3), (8, 1.8), (7, 3.0), (0, 3.0)]   # (y from back wall, leg height above deck); f = 16 - y
-
 def frame_groups():
-    secs = [f'S{r*2+c+1}: x {c*4}–{c*4+4}, y {r*4}–{r*4+4}' for r in range(4) for c in range(2)]
-    return [dict(no=1, name='Frame sections S1–S8', size='each 4 ft × 4 ft; 2×2 in battens, 4 sides + 1 cross batten each way at the 2 ft centre', wheres=['; '.join(secs)], count=1, base='on the deck'),
-            dict(no=2, name='Edge strips R1–R4', size='each 1 ft × 4 ft, along the right wall', wheres=['x 8–9, y 0–16, in four 4 ft pieces'], count=1, base='on the deck'),
-            dict(no=3, name='Leg heights (by distance f from the front edge)', size='f 0–5.5 ft: no legs · f 6.5 ft: 0.3 ft (4 in) · f 8 ft: 1.8 ft (22 in) · f 9–16 ft: 3.0 ft (36 in); ramp straight between', wheres=['y = 16 − f from the back wall'], count=1, base='on the deck'),
-            dict(no=4, name='Left terrace boxes (made in block E)', size='3.4 ft wide, 1.75 ft deep each, tops +2.0 / +1.6 / +1.2 / +0.8 ft', wheres=['x 0–3.4; y 0–1.75, 1.75–3.5, 3.5–5.25, 5.25–7.0'], count=1, base='on the deck'),
-            dict(no=5, name='Hatch lid A (control box)', size='1.2 ft × 0.8 ft, loose plywood', wheres=['x 7.6–8.8, y 15.2–16.0'], count=1, base='flush with the deck'),
-            dict(no=6, name='Hatch lid B (angel screen + mister)', size='1.3 ft × 0.6 ft, loose plywood', wheres=['x 0.9–2.2, y 3.7–4.3'], count=1, base='flush with the deck'),
-            dict(no=7, name='Hatch lid C (speaker)', size='1 ft × 1 ft, loose plywood', wheres=['x 0–1, y 11.2–12.2'], count=1, base='flush with the deck'),
-            dict(no=8, name='Skirting, black pleated', size='25 ft run, 2 ft drop, Velcro', wheres=['front edge (9 ft) and left edge (16 ft)'], count=1, base='hangs to the floor')]
+    return [dict(no=1, name='Upper layer: two plywood boxes U1 and U2', size='each 4.5 ft × 4.5 ft × 1.5 ft high, side by side = 9 ft wide × 4.5 ft deep × 1.5 ft high', wheres=['U1: x 0–4.5, y 0–4.5; U2: x 4.5–9, y 0–4.5 (against the back wall)'], count=1, base='on the deck'),
+            dict(no=2, name='Step face', size='9 ft long × 1.5 ft high plywood face along the front of the boxes; faced with dry-stone by block E', wheres=['y 4.5 (11.5 ft from the front), x 0–9'], count=1, base='on the deck'),
+            dict(no=3, name='Lower layer = the rented deck', size='flat, 9 ft wide × 11.5 ft deep in front of the step (the deck itself is 16 ft long and 2 ft above the church floor)', wheres=['x 0–9, y 4.5–16'], count=1, base='0 ft (deck level)'),
+            dict(no=4, name='Hatch lid A (distribution box)', size='1.2 ft × 0.8 ft, loose plywood lid', wheres=['x 0–1.2, y 0.2–1.0'], count=1, base='flush with the top of the upper layer (+1.5 ft)'),
+            dict(no=5, name='Hatch lid B (field junction)', size='1 ft × 0.8 ft, loose plywood lid', wheres=['x 1.0–2.0, y 3.6–4.4'], count=1, base='flush with the top of the upper layer (+1.5 ft)'),
+            dict(no=6, name='Hatch lid C (speaker)', size='1 ft × 1 ft, loose plywood lid', wheres=['x 0–1, y 15–16'], count=1, base='flush with the deck'),
+            dict(no=7, name='Skirting, black pleated', size='25 ft run (9 ft front + 16 ft left), 2 ft drop, Velcro', wheres=['front edge and left edge'], count=1, base='hangs to the church floor')]
 
 def frame_svg():
     S = 44; W = 1500; H = 960
     s = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">{DEFS}<rect width="{W}" height="{H}" fill="#fff"/>']
-    s.append(T(20, 34, 'BLOCK A · Stage frame and rake: blueprint with measurements (feet). Numbers match the parts table.', 24, weight='bold'))
-    # top view
-    tx, ty = 70, 110
-    s.append(T(tx, ty-16, 'TOP: sections and hatches (x from the left edge, y from the back wall)', 15, weight='bold'))
+    s.append(T(20, 34, 'BLOCK A · Two-layer stage: blueprint with measurements (feet). Numbers match the parts table.', 24, weight='bold'))
+    def num(n, x, y):
+        return f'<circle cx="{x:.1f}" cy="{y:.1f}" r="12" fill="#fff" stroke="#111" stroke-width="1.6"/>' + T(x, y+5, str(n), 14, '#111', 'middle', 'bold')
+    tx, ty = 100, 110
+    s.append(T(tx, ty-16, 'PLAN (looking down): back wall at the top, public side at the bottom', 15, weight='bold'))
+    s.append(f'<rect x="{tx}" y="{ty-12}" width="{9*S}" height="12" fill="url(#hatch)" stroke="#2b2a33"/><rect x="{tx+9*S}" y="{ty-12}" width="12" height="{16*S+12}" fill="url(#hatch)" stroke="#2b2a33"/>')
     s.append(f'<rect x="{tx}" y="{ty}" width="{9*S}" height="{16*S}" fill="#fdfdfb" stroke="#2b2a33" stroke-width="2"/>')
-    for r in range(4):
-        for c in range(2):
-            n = r*2+c+1; x0, y0 = tx+c*4*S, ty+r*4*S
-            s.append(f'<rect x="{x0}" y="{y0}" width="{4*S}" height="{4*S}" fill="#eceff4" fill-opacity=".7" stroke="#6a7a96" stroke-width="1.6"/>' + T(x0+4*S/2, y0+4*S/2+6, f'S{n}', 20, '#33415f', 'middle', 'bold'))
-            s.append(f'<line x1="{x0+2*S}" y1="{y0}" x2="{x0+2*S}" y2="{y0+4*S}" stroke="#aab4c8" stroke-dasharray="4 4"/><line x1="{x0}" y1="{y0+2*S}" x2="{x0+4*S}" y2="{y0+2*S}" stroke="#aab4c8" stroke-dasharray="4 4"/>')
-    for r in range(4): s.append(f'<rect x="{tx+8*S}" y="{ty+r*4*S}" width="{S}" height="{4*S}" fill="#dfe6d8" stroke="#6b8a5a" stroke-width="1.6"/>' + T(tx+8.5*S, ty+r*4*S+2*S+5, f'R{r+1}', 14, '#3e5a30', 'middle', 'bold'))
-    for (y0, y1, lv) in ((0, 1.75, 2.0), (1.75, 3.5, 1.6), (3.5, 5.25, 1.2), (5.25, 7.0, 0.8)):
-        s.append(f'<rect x="{tx}" y="{ty+y0*S}" width="{3.4*S}" height="{(y1-y0)*S}" fill="none" stroke="#2f8a4a" stroke-width="2.2" stroke-dasharray="7 4"/>' + T(tx+1.7*S, ty+(y0+y1)/2*S+5, f'+{lv}', 14, '#2f8a4a', 'middle', 'bold'))
-    for no, (x0, y0, w, h) in ((5, (7.6, 15.2, 1.2, 0.8)), (6, (0.9, 3.7, 1.3, 0.6)), (7, (0, 11.2, 1, 1))):
-        s.append(f'<rect x="{tx+x0*S}" y="{ty+y0*S}" width="{w*S}" height="{h*S}" fill="#fff2c8" stroke="#a8322c" stroke-width="2" stroke-dasharray="6 3"/><circle cx="{tx+(x0+w/2)*S}" cy="{ty+(y0+h/2)*S}" r="11" fill="#fff" stroke="#111"/>' + T(tx+(x0+w/2)*S, ty+(y0+h/2)*S+5, str(no), 13, '#111', 'middle', 'bold'))
-    for f in (5.5, 6.5, 8, 9):
-        yy = ty+(16-f)*S; s.append(f'<line x1="{tx}" y1="{yy}" x2="{tx+9*S}" y2="{yy}" stroke="#a8322c" stroke-width="1.5" stroke-dasharray="10 5"/>' + T(tx+9*S+8, yy+5, f'f = {f}', 13, '#a8322c'))
-    for i in range(10): s.append(T(tx+i*S, ty-3, str(i), 11, '#666', 'middle'))
-    for j in range(17): s.append(T(tx-6, ty+j*S+4, str(j), 11, '#666', 'end'))
-    s.append(dim_h(tx, tx+9*S, ty+16*S+28, '9 ft (front, public side)')); s.append(dim_v(tx-30, ty, ty+16*S, '16 ft (left side)'))
-    s.append(T(tx, ty+16*S+60, 'f = distance from the front edge. Red dashed lines mark where the leg height changes.', 12, '#a8322c'))
-    # side profile
-    sx, sy = 700, 150; SS = 44; base = sy+3.6*SS
-    s.append(T(sx, sy-40, 'SIDE: ramp profile and leg heights (back wall on the left, front on the right)', 15, weight='bold'))
-    pts = [(sx+y*SS, base-h*SS) for y, h in RAMP]
-    poly = [(sx, base), *[(x, y) for x, y in pts], (sx+16*SS, base)]
-    poly = [(sx, base-3.0*SS)] + [(sx+y*SS, base-h*SS) for y, h in sorted(RAMP)] + [(sx+16*SS, base)]
-    s.append('<polygon points="%s" fill="#e3c590" stroke="#8a5a12" stroke-width="2"/>' % ' '.join('%.1f,%.1f' % q for q in [(sx, base)] + [(sx+y*SS, base-h*SS) for y, h in sorted(RAMP)] + [(sx+16*SS, base)]))
-    s.append(f'<rect x="{sx}" y="{base}" width="{16*SS}" height="{2*SS}" fill="#33333a"/>' + T(sx+8*SS, base+SS+6, 'existing deck 2 ft (black skirting on the front and left)', 14, '#fff', 'middle'))
-    for y, h in sorted(RAMP):
-        s.append(f'<line x1="{sx+y*SS}" y1="{base}" x2="{sx+y*SS}" y2="{base-max(h,0.05)*SS}" stroke="#8a5a12" stroke-dasharray="3 3"/>' + T(sx+y*SS, base-h*SS-8, f'{h} ft', 14, '#8a5a12', 'middle', 'bold'))
-        s.append(T(sx+y*SS, base+2*SS+18, f'f {16-y:g}', 12, '#666', 'middle'))
-    s.append(dim_h(sx, sx+16*SS, base+2*SS+44, '16 ft'))
-    s.append(dim_v(sx-20, base-3.0*SS, base, '3.0 ft crest'))
-    s.append(T(sx, base+2*SS+80, 'Profile for the area right of the left terraces (x 3.4–9 ft). Between the marked points the ramp is a straight line. The rock hill and house sit on this ramp.', 12, '#555'))
-    # front elevation
-    fx, fy = 700, 560; FS = 44
-    s.append(T(fx, fy-14, 'FRONT: width and heights across the back (9 ft wide; left terrace boxes up to +2.0 ft)', 15, weight='bold'))
-    s.append(f'<rect x="{fx}" y="{fy+3.2*FS}" width="{9*FS}" height="{2*FS}" fill="#33333a"/>')
-    s.append(f'<rect x="{fx+3.4*FS}" y="{fy+0.2*FS}" width="{5.6*FS}" height="{3.0*FS}" fill="#e3c590" stroke="#8a5a12" stroke-width="2"/>')
-    for (lv, x0, x1) in ((2.0, 0, 3.4),):
-        s.append(f'<rect x="{fx}" y="{fy+(3.2-lv)*FS}" width="{3.4*FS}" height="{lv*FS}" fill="#e8efd8" stroke="#2f8a4a" stroke-width="2.2"/>' + T(fx+1.7*FS, fy+(3.2-lv)*FS-6, 'terraces to +2.0', 13, '#2f8a4a', 'middle', 'bold'))
-    s.append(T(fx+6.2*FS, fy+0.2*FS-6, '+3.0 ft back area (right of the terraces)', 13, '#8a5a12', 'middle', 'bold'))
-    s.append(dim_h(fx, fx+9*FS, fy+5.2*FS+26, '9 ft'))
+    for i in range(10): s.append(f'<line x1="{tx+i*S}" y1="{ty}" x2="{tx+i*S}" y2="{ty+16*S}" stroke="#e4e8f0"/>')
+    for j in range(17): s.append(f'<line x1="{tx}" y1="{ty+j*S}" x2="{tx+9*S}" y2="{ty+j*S}" stroke="#e4e8f0"/>')
+    for k, (x0, nm) in enumerate(((0, 'U1'), (4.5, 'U2'))):
+        s.append(f'<rect x="{tx+x0*S}" y="{ty}" width="{4.5*S}" height="{4.5*S}" fill="#e3c590" stroke="#8a5a12" stroke-width="2.2"/>' + T(tx+(x0+2.25)*S, ty+1.7*S, nm, 22, '#6b5a36', 'middle', 'bold') + T(tx+(x0+2.25)*S, ty+2.3*S, '4.5 × 4.5 × 1.5 ft', 14, '#6b5a36', 'middle'))
+    s.append(f'<line x1="{tx}" y1="{ty+4.5*S}" x2="{tx+9*S}" y2="{ty+4.5*S}" stroke="#6b5a36" stroke-width="5" stroke-dasharray="14 6"/>')
+    s.append(T(tx+4.5*S, ty+10.5*S, 'LOWER LAYER = the rented deck', 18, '#444', 'middle', 'bold') + T(tx+4.5*S, ty+10.5*S+22, 'flat, 11.5 ft deep, deck level', 15, '#444', 'middle'))
+    for nm, (x, y, w, h) in (('4', (0, 0.2, 1.2, 0.8)), ('5', (1.0, 3.6, 1.0, 0.8)), ('6', (0, 15, 1, 1))):
+        s.append(f'<rect x="{tx+x*S}" y="{ty+y*S}" width="{w*S}" height="{h*S}" fill="#fff2c8" stroke="#006e66" stroke-width="2.5" stroke-dasharray="6 3"/>' + num(nm, tx+(x+w/2)*S, ty+(y+h/2)*S))
+    s.append(num(1, tx+2.25*S, ty+3.4*S)); s.append(num(2, tx+6.7*S, ty+4.5*S)); s.append(num(3, tx+2.0*S, ty+8.0*S))
+    s.append(f'<line x1="{tx-4}" y1="{ty+16*S}" x2="{tx+9*S}" y2="{ty+16*S}" stroke="#111" stroke-width="9"/><line x1="{tx-4}" y1="{ty}" x2="{tx-4}" y2="{ty+16*S}" stroke="#111" stroke-width="9"/>')
+    s.append(num(7, tx+6.5*S, ty+16*S)); s.append(num(7, tx, ty+8*S))
+    for i in range(10): s.append(T(tx+i*S, ty-18, str(i), 11, '#666', 'middle'))
+    for j in range(17): s.append(T(tx-10, ty+j*S+4, str(j), 11, '#666', 'end'))
+    s.append(dim_h(tx, tx+9*S, ty+16*S+34, '9 ft wide (front)')); s.append(dim_v(tx-40, ty, ty+16*S, '16 ft long (left side)'))
+    s.append(dim_v(tx+9*S+34, ty, ty+4.5*S, '4.5 ft')); s.append(dim_v(tx+9*S+34, ty+4.5*S, ty+16*S, '11.5 ft'))
+    sx, base, SS = 700, 360, 44
+    s.append(T(sx, 120, 'SIDE: back wall on the left, front on the right', 15, weight='bold'))
+    s.append(f'<rect x="{sx}" y="{base}" width="{16*SS}" height="{2*SS}" fill="#33333a"/>' + T(sx+8*SS, base+SS+6, 'rented deck 2 ft above the church floor', 14, '#fff', 'middle'))
+    s.append(f'<rect x="{sx}" y="{base-1.5*SS}" width="{4.5*SS}" height="{1.5*SS}" fill="#e3c590" stroke="#8a5a12" stroke-width="2.2"/>' + T(sx+2.25*SS, base-0.6*SS, 'upper layer', 15, '#6b5a36', 'middle', 'bold'))
+    s.append(f'<line x1="{sx}" y1="{base}" x2="{sx+16*SS}" y2="{base}" stroke="#2b2a33" stroke-width="2"/><line x1="{sx-16}" y1="{base+2*SS}" x2="{sx+16*SS+16}" y2="{base+2*SS}" stroke="#2b2a33" stroke-width="3"/>')
+    s.append(T(sx+10*SS, base-12, 'flat lower layer (deck level)', 15, '#444', 'middle', 'bold'))
+    s.append(dim_h(sx, sx+16*SS, base+2*SS+40, '16 ft')); s.append(dim_h(sx, sx+4.5*SS, base-1.5*SS-30, '4.5 ft')); s.append(dim_h(sx+4.5*SS, sx+16*SS, base-1.5*SS-30, '11.5 ft'))
+    s.append(dim_v(sx-26, base-1.5*SS, base, '1.5 ft')); s.append(dim_v(sx-26, base, base+2*SS, '2 ft deck'))
+    fx, fb, FS = 700, 800, 44
+    s.append(T(fx, 540, 'FRONT: width and heights (9 ft wide)', 15, weight='bold'))
+    s.append(f'<rect x="{fx}" y="{fb}" width="{9*FS}" height="{2*FS}" fill="#33333a"/>' + T(fx+4.5*FS, fb+FS+6, 'rented deck, black skirting', 14, '#fff', 'middle'))
+    s.append(f'<rect x="{fx}" y="{fb-1.5*FS}" width="{9*FS}" height="{1.5*FS}" fill="#e3c590" stroke="#8a5a12" stroke-width="2.2"/><line x1="{fx+4.5*FS}" y1="{fb-1.5*FS}" x2="{fx+4.5*FS}" y2="{fb}" stroke="#8a5a12" stroke-width="2"/>' + T(fx+2.25*FS, fb-0.6*FS, 'U1', 18, '#6b5a36', 'middle', 'bold') + T(fx+6.75*FS, fb-0.6*FS, 'U2', 18, '#6b5a36', 'middle', 'bold'))
+    s.append(dim_h(fx, fx+9*FS, fb+2*FS+36, '9 ft')); s.append(dim_v(fx-26, fb-1.5*FS, fb, '1.5 ft')); s.append(dim_v(fx-26, fb, fb+2*FS, '2 ft'))
     s.append('</svg>')
     return '\n'.join(s), W, H
 
@@ -521,5 +525,3 @@ def png(svg, w, h, path):
 
 if __name__ == '__main__':
     svg, w, h = master(); png(svg, w, h, os.path.join(OUT, 'final-blueprint-3-views.png')); print('master')
-    for b in 'ABCEFGHIJKL':
-        svg, w, h = block_sheet(b); png(svg, w, h, os.path.join(BV, f'{b}-views.png')); print(b)

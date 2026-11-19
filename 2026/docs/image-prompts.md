@@ -17,12 +17,13 @@ Tell the model once: **"The grey block-out images are the exact composition. Kee
 Block-out key:
 - big brown block in the centre = rock hill with the cave (cave mouth turned toward the camera)
 - white box on top of the brown block = the upper guest room of the house, cut open at the front
-- stepped green blocks on the left = terraced shepherds' field with dry-stone walls
+- low pale slab across the back = the raised second level (1.5 ft high, dry-stone wall face); the shepherds' field is on the flat floor in front of it and on the slab
 - blue panel on the left, above the field = the floating angel (a glowing angel in mid-air, nothing solid)
 - three white-grey tall boxes on the right = flat-roofed village houses on a cobbled street
 - pale low strip right of the cave, above the houses = far village on the ridge, tiny houses
 - thin gold shelf above it on the right wall = Magi caravan, three kings on camels, tiny
 - yellow line on the deck = a thin path of light running to the cave mouth
+- flat light-blue slab in the front left = a shallow pond, 1.6 ft by 3 ft, pebble edge, a few reeds, cool-white light
 - big green cylinders = two olive trees in the front corners
 - pink box = Roman census table with a soldier and scribe; light-blue cylinder = stone well; white box front right = small wooden plaque
 - white spiral from the corner of the ceiling = a spiral of cotton clouds with tiny white angels, hanging from a gold star burst with crystal strands
@@ -52,7 +53,7 @@ Use the attached grey block-out as the exact composition and the attached key pl
 
 SETTING: wooden pews on both sides of the centre aisle in the foreground. The church's altar stands at the centre-left of the frame on the front wall, with a white altar cloth and a few candles. To the RIGHT, at the very end of the front wall, in the right-hand corner of the church, is the Christmas crib: a raised platform about 2 feet high with black pleated skirting, filling the corner. The right side wall of the church runs from that corner toward the camera on the right of the frame. The crib is about one quarter of the frame width. Above the crib, deep-blue velvet drape with gold stars rises up both walls of the corner to the ceiling, and a white spiral of cotton clouds with tiny angels hangs down from a gold star burst in the corner of the ceiling. Everything else in the church is normal and unlit except the crib.
 
-THE CRIB (as in the block-out and the key): a rock hill with a cave in the centre, a stone guest-room house on top, terraced shepherds' fields on the left, a small cobbled village street on the right, a far village and a tiny camel caravan on the right wall above it. A thin path of golden light leads to the cave.
+THE CRIB (as in the block-out and the key): a rock hill with a cave in the centre, a stone guest-room house on top, a shepherds' field on the left over two flat levels, a small cobbled village street on the right, a far village and a tiny camel caravan on the right wall above it. A thin path of golden light leads to the cave.
 
 STYLE: real church interior, mixed daylight and warm interior lights, photorealistic, natural phone-camera exposure, slightly wide-angle, 16:9. The crib is handmade museum-quality, real stone, plaster, straw, clay and wool textures.
 ```
@@ -70,8 +71,9 @@ BACKDROP: on both walls, the lower 5 feet is a painted twilight Judean hills bac
 
 SCENE (first-century Bethlehem, hyper-realistic museum diorama, forced perspective: large figures at the front, small pale buildings far back):
 - Centre: a limestone rock hill with a cave mouth 3 feet wide, turned toward the camera. In the cave: a carved stone manger with straw, an ox and a donkey, and Mary, Joseph and baby Jesus (2-foot figures). On top of the hill: a whitewashed stone house cut open to show an upper guest room full of sleeping travellers and clay jars.
-- Left: terraced fields with dry-stone walls, a sheepfold, a round watchtower, two shepherds with real wool sheep and a campfire, a low rocky ridge.
+- Left: a field on two flat levels (the back level raised 1.5 ft behind a dry-stone wall), a sheepfold, a round watchtower, two shepherds with real wool sheep and a campfire, a low rocky ridge.
 - Right: a narrow cobbled street rising toward the back with three flat-roofed whitewashed houses, a stone well, donkeys, a Roman soldier at a census table. A gnarled olive tree at each front corner and a small wooden plaque at the front edge.
+- Front left: a shallow rectangular pond with a pebble edge and a few reeds, lit softly in cool white.
 - A narrow sandy path winds from the front-right of the platform to the cave mouth.
 - On the right wall: a far village on the ridge, tiny and pale, and above it a shelf with a tiny caravan of three kings on camels.
 - Overhead, from the far corner of the ceiling: a gold star burst with strands of crystal beads and a spiral of white cotton clouds with tiny white angels descending toward the hill (clouds, beads and angels only; no Christmas tree, no snow).

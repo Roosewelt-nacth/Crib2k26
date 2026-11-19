@@ -11,7 +11,7 @@ import crew_steps as cs
 ROOT = mb.ROOT; OUT = os.path.join(ROOT, '2026', 'crew'); os.makedirs(os.path.join(OUT, 'img'), exist_ok=True)
 mc.OUT = OUT   # reuse the picture helpers, writing into the crew folder
 
-CSS = mc.CSS + ('.pg{height:197mm}.pic{max-height:62mm}.bp{width:100%;max-height:96mm;object-fit:contain;display:block;border:1px solid #cfc9b8;border-radius:5px}'
+CSS = mc.CSS + ('pre{font-size:7.6px!important;line-height:1.25!important}.pg .top .gen.two img{height:26mm!important}.pic{max-height:52mm!important}' + '.pg{height:197mm}.pic{max-height:62mm}.bp{width:100%;max-height:96mm;object-fit:contain;display:block;border:1px solid #cfc9b8;border-radius:5px}'
                 '.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.cols3{display:grid;grid-template-columns:1fr 1.1fr;gap:10px}'
                 '.parts{font-size:11px}.parts td,.parts th{padding:2px 4px}.two-col{column-count:2;column-gap:12px}.note{background:#fbf3df;border:1px solid #e0c98a;border-radius:6px;padding:6px 10px;font-size:11.5px;margin-top:6px}'
                 '.steps2{margin:2px 0 0;padding-left:20px}.steps2 li{margin-bottom:5px}')
@@ -57,7 +57,7 @@ def page3(k):
 def page4(k):
     x = cs.X[k]; b = mb.B[k]
     mats = ', '.join(f'{r[0]} ({r[1]})' for r in b['rows'] if r[0] != 'Total')
-    steps = ''.join(f'<li>{html.escape(s)}</li>' for s in x['steps'])
+    steps = ''.join(f'<li>{html.escape(s)}</li>' for s in (x['steps'] or b['steps']))
     return (f'<section class="pg">{mc.head(k, "Exact build: do this, in this order", "Page 4 of 4 · build it")}'
             f'<div class="cols3" style="margin-top:8px"><div class="box"><h2>Do exactly this</h2><ol class="steps2" style="font-size:12.5px">{steps}</ol></div>'
             f'<div><div class="box"><h2>Before you start</h2>{li(b["before"])}</div><div class="box"><h2>Materials to get</h2><div style="font-size:11.5px">{html.escape(mats)}</div><p style="margin:5px 0 0;font-size:11.5px"><b>Tools:</b> {html.escape(b["tools"])}</p></div>'
@@ -65,15 +65,15 @@ def page4(k):
 
 def start_pages():
     d = os.path.join(ROOT, '2026', 'share', 'final-blueprint-3-views.png'); shutil.copy(d, os.path.join(OUT, 'img', 'final-blueprint.png'))
-    shutil.copy(os.path.join(ROOT, '2026', 'images', 'eye-view-v3-generated.jpg'), os.path.join(OUT, 'img', 'final-look.jpg'))
-    thumbs = ''.join(f'<img src="img/{n}.jpg" style="width:100%;height:21mm;object-fit:cover;border-radius:3px">' for k in mb.ORDER for n in mc.GEN.get(k, []) if mc.have(n))
+    shutil.copy(os.path.join(mc.GENDIR, 'crib-final-3q.jpg'), os.path.join(OUT, 'img', 'final-look.jpg')); shutil.copy(os.path.join(mc.GENDIR, 'crib-final-top.jpg'), os.path.join(OUT, 'img', 'final-top.jpg'))
+    thumbs = ''
     for k in mb.ORDER:
         for n in mc.GEN.get(k, []):
             if mc.have(n): shutil.copy(os.path.join(mc.GENDIR, n + '.jpg'), os.path.join(OUT, 'img', n + '.jpg'))
-    team = ''.join(f'<tr><td><b>{k}</b></td><td>{html.escape(mv.NAMES[k])}</td><td>{mc.fd(*mc.window(k))}</td><td>{html.escape(mb.B[k]["team"])}</td></tr>' for k in mb.ORDER)
-    checks = ['Deck height (2 ft assumed) and a free 9 × 16 ft', 'Ceiling height (about 15 ft assumed) and ceiling type', 'Altar centred on the front wall; crib at its right end', 'Power point, exit and the deck load rating', 'Work-at-height rules for hanging block I', 'How much 2023 plywood still exists']
-    p1 = (f'<section class="pg"><div class="head" style="background:#2b2a33"><div><h1>Crib 2026 · That Night in Bethlehem · crew pack</h1><p>Opens 24 December 2026 · stage 9 ft wide × 16 ft deep · 11 blocks (A, B, C, E to L; there is no D, the rock hill is part of B)</p></div></div>'
-          f'<div class="cols" style="margin-top:6px"><div><img src="img/final-look.jpg" style="width:100%;border-radius:6px;border:1px solid #cfc9b8"><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin-top:4px">{thumbs}</div></div>'
+    team = ''.join(f'<tr><td><b>{k}</b></td><td>{html.escape(mv.NAMES[k])}</td><td>{mc.fd(*mc.window(k))}</td><td>{html.escape(mb.B[k]["team"])}</td></tr>' for k in mb.ALL)
+    checks = ['The church socket right behind the stage (back-left corner): exact spot and circuit rating', 'Deck height (2 ft assumed), size, level, and whether you may screw into it', 'Ceiling height (about 15 ft assumed) and ceiling type', 'Altar centred on the front wall; crib at its right end', 'Exit and the deck load rating', 'Work-at-height rules for hanging block I', 'How much 2023 plywood still exists']
+    p1 = (f'<section class="pg"><div class="head" style="background:#2b2a33"><div><h1>Crib 2026 · That Night in Bethlehem · crew pack</h1><p>Opens 24 December 2026 · stage 9 ft wide × 16 ft deep · 12 blocks (A, B, C, E to M; there is no D, the rock hill is part of B)</p></div></div>'
+          f'<div class="cols" style="margin-top:6px"><div><img src="img/final-look.jpg" style="width:100%;border-radius:6px;border:1px solid #cfc9b8"><div style="display:flex;gap:6px;margin-top:5px;align-items:flex-start"><img src="img/final-top.jpg" style="height:96mm;border-radius:6px;border:1px solid #cfc9b8"><div style="font-size:11.5px;color:#444"><b>The finished crib</b> from the public spot and from directly above. Generated pictures: build to the blueprints on pages 2 and 3 of your block.</div></div></div>'
           f'<div><div class="box"><h2>Who builds what, and when</h2><table><tr><th>Block</th><th>Name</th><th>Build window</th><th>Team</th></tr>{team}</table></div>'
           f'<div class="box"><h2>How to use this pack</h2><ol><li>Find your block letter.</li><li>Page 1: what it looks like and a prompt for a picture of the finished block.</li><li>Page 2: the blueprint drawing. Page 3: every numbered part with its exact size and place, and the cut list. Page 4: the steps, in order. Tick "done when" and hand over.</li></ol></div></div></div></section>')
     p2 = (f'<section class="pg"><div class="head" style="background:#2b2a33"><div><h1>The whole crib: front, side and top, plus the view from the public spot</h1><p>Feet. Stage 9 ft wide at the front × 16 ft deep. Letters are the block letters.</p></div></div>'
@@ -82,9 +82,9 @@ def start_pages():
     return p1 + p2
 
 if __name__ == '__main__':
-    md = ['# Crew prompts (one per block)', '', 'Attach the final crib photo `2026/images/eye-view-v3-generated.jpg` and the block picture `2026/crew/img/<letter>-pic.png`.', '']
+    md = ['# Crew prompts (one per block)', '', 'Attach the final crib photo `2026/images/generated/crib-final-3q.jpg` and the block picture `2026/crew/img/<letter>-pic.png`.', '']
     bodies = []
-    for k in mb.ORDER:
+    for k in mb.ALL:
         b1, prompt = page1(k); body = b1 + page2(k) + page3(k) + page4(k); bodies.append(body)
         md += [f'## Block {k} · {mv.NAMES[k]}', '', '```', prompt, '```', '']
         hp = os.path.join(OUT, f'{k}-crew.html'); open(hp, 'w', encoding='utf8').write(f'<!doctype html><meta charset="utf-8"><style>{CSS}</style>{body}')

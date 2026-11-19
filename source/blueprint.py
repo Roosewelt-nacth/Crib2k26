@@ -37,7 +37,7 @@ O = {  # solid floor objects for the overlap check
  "magi": rect(8.7, 5.4, 0.3, 3.0), "hA": rect(7.6, 9.4, 1.4, 1.6), "hB": rect(7.4, 11.3, 1.6, 1.8),
  "hC": rect(7.6, 13.4, 1.4, 1.6), "street": rect(6.2, 9.3, 1.1, 6.7), "well": circ(5.6, 11.2, 0.45),
  "census": rect(4.5, 12.8, 1.4, 1.0), "donk": rect(4.6, 10.0, 1.2, 0.6), "oliveL": circ(1.0, 14.2, 0.6),
- "oliveR": circ(5.4, 14.9, 0.5), "plaque": rect(3.2, 15.5, 2.0, 0.4),
+ "oliveR": circ(5.4, 14.9, 0.5), "plaque": rect(3.2, 15.5, 2.0, 0.4), "pond": rect(0.35, 10.3, 1.6, 3.0),
 }
 ALLOW = {frozenset(p) for p in (("cave", "holy"), ("cave", "house"), ("holy", "house"))}
 
@@ -105,11 +105,13 @@ s.append(f'<rect x="40" y="128" width="1050" height="22" fill="url(#hatch)" stro
 s.append(f'<rect x="1050" y="128" width="22" height="1540" fill="url(#hatch)" stroke="{INK}" stroke-width="2"/>')
 s.append(T(700, 122, "CHURCH WALL (back) · 9 ft of stage", 15, INK, "middle", SANS, weight="bold"))
 s.append(T(1095, 790, "CHURCH WALL (right side) · 16 ft of stage", 15, INK, "middle", SANS, rot=90, weight="bold"))
-# zones (terraces, hill, rake)
-s.append(poly(rect(0, 0, 3.4, 7.0), "#e8efd8", "#9fb27f", 1, "6 5"))
-s.append(T(*P(1.7, 6.7), "⑫ terraces +0.8 → +2.0", 13, "#5d7a3e", "middle"))
+# zones (second layer, hill)
+s.append(poly(rect(0, 0, 9, 4.5), "#efe6d2", "#8d7a52", 1.4, "8 5", 0.85))
+s.append(T(*P(1.0, 4.2), "⑫ second layer +1.5 ft", 13, "#6b5a36", "middle"))
 hill = [(3.0, 2.2), (6.0, 1.8), (9.0, 1.7), (9.0, 9.0), (7.1, 9.1), (6.2, 8.9), (5.6, 9.9), (3.4, 9.6), (2.0, 7.6), (2.6, 5.0)]
 s.append(poly(hill, "url(#rock)", "#a8956b", 1.4, "7 5"))
+s.append(f'<path d="M{P(0,4.5)[0]} {P(0,4.5)[1]}H{P(9,4.5)[0]}" stroke="#6b5a36" stroke-width="5" stroke-dasharray="16 6"/>')
+s.append(T(*P(6.1, 4.3), "step: 11.5 ft from the front, 1.5 ft high", 12, "#6b5a36", "middle", weight="bold"))
 # scale zone arcs (distance from viewer)
 for r, lab in ((11, "A | B"), (15, "B | C"), (18, "C | D")):
     X, Y = P(*V)
@@ -125,13 +127,12 @@ for k in range(6):
 s.append(poly(O["tower"], "#f1e9d6", INK, 1.6)); s.append(T(*P(3.0, 1.12), "⑬", 13, INK, "middle"))
 s.append(poly(O["fold"], "#f1e9d6", PEN, 1.4)); s.append(T(*P(1.4, 2.45), "⑪ sheepfold", 12, INK, "middle"))
 s.append(poly(O["magi"], "#fff6e2", GOLD, 1.4)); s.append(T(*P(8.85, 6.95), "⑮", 12, GOLD, "middle", weight="bold"))
-# hologram + ridge
-s.append(poly(O["holo"], "#eef2fb", BLUE, 1.6))
-a1, a2 = P(0.5, 4.4), P(2.6, 3.4)
-s.append(f'<path d="M{a1[0]} {a1[1]}L{a2[0]} {a2[1]}" stroke="{BLUE}" stroke-width="4"/>')
-s.append(poly(rect(0.9, 3.7, 1.3, 0.6), "#33384a", PEN, 1))
-s.append(T(*P(1.55, 3.45), "⑨ floating angel (Pepper's ghost)", 12, BLUE, "middle"))
-s.append(poly(O["ridge"], "url(#rock)", "#8d7a52", 1.6)); s.append(T(*P(1.5, 5.2), "⑩ rock ridge + mist tray", 12, INK, "middle"))
+# pipe-cleaner angel choir (upper layer, above the sheepfold)
+for (x, y) in ((0.6, 2.0), (0.9, 3.3), (2.2, 2.4), (2.4, 3.6), (1.2, 1.3), (2.0, 1.0), (0.5, 3.9), (1.8, 3.9), (2.6, 2.9)):
+    s.append(poly(circ(x + 0.12, y + 0.12, 0.13, 10), "#eef2fb", BLUE, 1.2))
+s.append(poly(circ(1.6, 2.4, 0.22, 12), "#ffffff", BLUE, 2))
+s.append(T(*P(1.6, 4.35), "⑨ pipe-cleaner angel choir", 12, BLUE, "middle"))
+s.append(T(*P(1.6, 4.1), "hero 2 ft + 9 small", 11, PEN, "middle"))
 # shepherds
 s.append(poly(O["shep"], "#f6f1e3", PEN, 1.4))
 for (x, y) in ((0.6, 7.6), (1.4, 7.9), (0.7, 8.8), (1.5, 9.1), (1.1, 8.3)):
@@ -193,21 +194,20 @@ for k, lab in (("oliveL", "㉓ olive h 2 ft"), ("oliveR", "㉔ olive")):
     cxo = sum(q[0] for q in O[k]) / len(O[k]); cyo = sum(q[1] for q in O[k]) / len(O[k])
     s.append(T(*P(cxo, cyo + 0.07), lab, 11, "#3d5a26", "middle"))
 s.append(poly(O["plaque"], "#fff", INK, 1.6)); s.append(T(*P(4.2, 15.8), "㉕ plaque", 12, INK, "middle"))
+s.append(poly(O["pond"], "#d9ecf5", BLUE, 1.8)); s.append(T(*P(1.15, 11.75), "㉛ pond", 13, BLUE, "middle", weight="bold")); s.append(T(*P(1.15, 12.1), "1.6 × 3 ft, 1 in water", 11, PEN, "middle"))
+s.append(T(*P(-3.85, 20.0), "㉜ selfie mirror: on the church floor, 6 ft left of the stage edge", 12, BLUE, "start", weight="bold")); s.append(T(*P(-3.85, 20.32), "(3 ft left of the view spot, faces the queue, turned 23° toward the crib)", 11, PEN, "start"))
 # path of light
 pp = " ".join(f"{P(x,y)[0]:.1f},{P(x,y)[1]:.1f}" for x, y in path)
 s.append(f'<polyline points="{pp}" fill="none" stroke="#f1d58a" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>')
 s.append(f'<polyline points="{pp}" fill="none" stroke="{GOLD}" stroke-width="3" stroke-dasharray="10 7"/>')
 s.append(T(*P(2.95, 13.9), "① path of light 0.5 ft", 13, GOLD, "middle", rot=-74, weight="bold"))
 # under-deck & hidden
-s.append(poly(rect(7.6, 15.2, 1.2, 0.7), "none", PEN, 1.4, "4 4")); s.append(T(*P(8.2, 15.65), "㉗ control", 11, PEN, "middle"))
-for (x, y) in ((0.05, 11.3), (8.65, 8.7)):
+s.append(poly(rect(0.0, 0.2, 1.2, 0.8), "#fff2c8", PEN, 1.4, "4 4")); s.append(T(*P(0.6, 0.72), "㉗ box", 11, PEN, "middle"))
+for (x, y) in ((0.05, 15.2), (8.65, 8.7)):
     s.append(poly(rect(x, y, 0.3, 0.5), "#444", PEN, 1))
-s.append(T(*P(0.45, 11.65), "㉘ spkr", 11, PEN))
-s.append(f'<path d="M{P(3.6,0.18)[0]} {P(3.6,0.18)[1]}H{P(8.8,0.18)[0]}M{P(8.82,0.2)[0]} {P(8.82,0.2)[1]}V{P(8.82,4.9)[1]}" stroke="#7d3fbf" stroke-width="5" stroke-dasharray="14 6"/>')
-s.append(T(*P(8.6, 2.6), "㉙ UV bars (hidden)", 12, "#7d3fbf", "middle", rot=90))
+s.append(T(*P(0.45, 15.55), "㉘ spkr", 11, PEN))
 # spot levels
-for (x, y, t) in ((0.25, 15.75, "±0.0"), (2.6, 9.9, "+0.8"), (0.35, 6.25, "+1.5"), (2.45, 0.35, "+2.0"),
-                  (6.0, 8.5, "+0.3"), (7.2, 4.6, "+3.0 crest"), (6.4, 15.6, "+0.3"), (6.4, 9.75, "+0.8")):
+for (x, y, t) in ((0.9, 15.85, "±0.0"), (2.6, 5.9, "±0.0"), (0.35, 3.4, "+1.5"), (7.6, 3.4, "+1.5"), (7.2, 4.9, "+3.3 hill top")):
     X, Y = P(x, y)
     s.append(f'<path d="M{X-6} {Y-12}h12l-6 9z" fill="{INK}"/>' + T(X + 9, Y - 2, t, 12, INK, font=SANS))
 # open edges skirting
@@ -237,6 +237,7 @@ for r, lab in ((11, "A|B"), (15, "B|C"), (18, "C|D")):
 s.append(T(330, 1560, "Scale zones measured from the view spot: A < 11 ft · B 11–15 ft · C 15–18 ft · D > 18 ft", 14, "#5c6ea8", font=SANS))
 s.append(T(330, 1582, "Blue strip on both walls = backdrop: lower 5 ft twilight-hills print, above it blue drape with gold stars up to the ceiling.", 14, BLUE, font=SANS))
 s.append(T(330, 1604, f"Cave and house are turned {ANG:.0f}° so their open fronts face the view spot, like the 2023 church at 45°.", 14, INK, font=SANS))
+s.append(T(330, 1626, "Two layers only, no slope: the deck (flat, ±0.0) and a second layer +1.5 ft across the back 4.5 ft, starting 11.5 ft from the front.", 14, "#6b5a36", font=SANS, weight="bold"))
 
 # ---------------- SECTION along main sightline ----------------
 SX0, SFL, SS = 1250, 830, 45
@@ -256,25 +257,28 @@ s.append(f'<path d="M{sx(-1)} {sy(15)}H{sx(s_wall)}" stroke="{PEN}" stroke-dasha
 s.append(f'<rect x="{sx(s_edge)}" y="{sy(DECK)}" width="{sx(s_wall)-sx(s_edge)}" height="{SS*DECK}" fill="#3b3b42"/>')
 s.append(T(sx(s_edge) + 8, sy(DECK) + 50, "deck 2 ft (confirm) · black skirting", 13, "#f0f0f0", font=SANS))
 # terrain
-prof = [(s_edge, 0), (s_mouth - 1.5, 0.15), (s_mouth, 0.3), (s_mouth + 2.4, 0.3), (s_mouth + 2.6, 2.8), (s_land, 3.0), (s_wall, 3.0)]
+s_step = (4.5 - V[1]) / dirv[1]
+prof0 = [(s_edge, 0), (s_mouth - 1.5, 0), (s_mouth, 0), (s_mouth + 2.4, 0), (s_mouth + 2.6, 3.1), (s_land, 3.3), (s_wall, 3.3), (s_step, 0), (s_step, 1.5)]
+prof = [(a_, (max(b_, 1.5) if a_ > s_step else b_)) for a_, b_ in sorted(prof0)]
 tp = [f"{sx(a):.1f},{sy(DECK+b):.1f}" for a, b in prof]
 s.append(f'<polygon points="{sx(s_edge):.1f},{sy(DECK):.1f} {" ".join(tp)} {sx(s_wall):.1f},{sy(DECK):.1f}" fill="url(#rock)" stroke="#8d7a52" stroke-width="2"/>')
+s.append(T(sx(s_step) + 6, sy(DECK + 1.5) - 6, "second layer +1.5 ft", 12, "#6b5a36", font=SANS, weight="bold"))
 # cave arch cut
-s.append(f'<path d="M{sx(s_mouth)} {sy(DECK+0.3)} V{sy(DECK+2.5)} Q{sx(s_mouth+1.2)} {sy(DECK+3.0)} {sx(s_mouth+2.5)} {sy(DECK+2.5)} V{sy(DECK+0.3)}Z" fill="#5a4026"/>')
-s.append(f'<rect x="{sx(s_cave)-26}" y="{sy(DECK+2.3)}" width="40" height="{SS*2.0}" fill="#f3dfb0" stroke="{GOLD}" stroke-width="2"/>')
-s.append(T(sx(s_cave) - 6, sy(DECK + 0.3) + 32, "Holy Family 2 ft", 13, GOLD, "middle", weight="bold"))
+s.append(f'<path d="M{sx(s_mouth)} {sy(DECK)} V{sy(DECK+2.5)} Q{sx(s_mouth+1.2)} {sy(DECK+3.0)} {sx(s_mouth+2.5)} {sy(DECK+2.5)} V{sy(DECK)}Z" fill="#5a4026"/>')
+s.append(f'<rect x="{sx(s_cave)-26}" y="{sy(DECK+2.0)}" width="40" height="{SS*2.0}" fill="#f3dfb0" stroke="{GOLD}" stroke-width="2"/>')
+s.append(T(sx(s_cave) - 6, sy(DECK) + 32, "Holy Family 2 ft", 13, GOLD, "middle", weight="bold"))
 s.append(T(sx(s_mouth) - 14, sy(DECK + 3.0), "cave arch 2.5 ft", 13, INK, "end"))
 # house
 hs0 = s_mouth + 1.9
-s.append(f'<rect x="{sx(hs0)}" y="{sy(DECK+4.3)}" width="{SS*2.3}" height="{SS*1.5}" fill="#f7f3ea" stroke="{RED}" stroke-width="2"/>')
-s.append(T(sx(hs0) + SS * 2.3 + 10, sy(DECK + 4.3) + 14, "house upper room", 13, RED))
-s.append(T(sx(hs0) + SS * 2.3 + 10, sy(DECK + 4.3) + 32, "floor +2.8 → +4.3", 13, RED))
+s.append(f'<rect x="{sx(hs0)}" y="{sy(DECK+4.8)}" width="{SS*2.3}" height="{SS*1.5}" fill="#f7f3ea" stroke="{RED}" stroke-width="2"/>')
+s.append(T(sx(hs0) + SS * 2.3 + 10, sy(DECK + 4.8) + 14, "house upper room", 13, RED))
+s.append(T(sx(hs0) + SS * 2.3 + 10, sy(DECK + 4.8) + 32, "floor +3.3 → +4.8", 13, RED))
 # backdrop
 s.append(f'<rect x="{sx(s_wall)-10}" y="{sy(DECK+5)}" width="10" height="{SS*5}" fill="#9a8f78"/>')
 s.append(f'<rect x="{sx(s_wall)-10}" y="{sy(15)}" width="10" height="{sy(DECK+5)-sy(15)}" fill="{BLUE}"/>')
 s.append(T(sx(s_wall) + 40, sy(DECK + 2.5), "hills print 5 ft", 13, PEN, font=SANS))
 s.append(T(sx(s_wall) + 40, sy(11), "blue drape + gold stars", 13, BLUE, font=SANS))
-s.append(T(sx(s_wall) + 40, sy(10.5), "fibre stars + UV angels", 13, "#7d3fbf", font=SANS))
+s.append(T(sx(s_wall) + 40, sy(10.5), "cool-white star points + painted angels", 13, "#7d3fbf", font=SANS))
 # cascade helix
 hz = []
 for k in range(61):
@@ -310,28 +314,30 @@ rows = [
  ("1", "Path of light", "0.5 ft wide, ~7.5 ft long", "0 → +0.3", "—", "Addressable LED strip under sand"),
  ("2", "Cave (grotto)", f"4 × 2.5 ft, turned {ANG:.0f}°", "arch 2.5 ft", "—", "Mouth 3 ft wide faces view spot"),
  ("3", "Holy Family + stone manger", "3 × 1.2 ft group", "figures 2 ft", "1:3 (hero)", "Ox and donkey inside the cave"),
- ("4", "House, upper guest room", "4 × 2 ft over cave back", "floor +2.8, room 1.5", "1:6", "Cut open; travellers + lamps"),
- ("5", "Rock hill mass", "around cave & house", "up to +3.0", "—", "Thermocol + plaster + grout"),
+ ("4", "House, upper guest room", "4 × 2 ft over cave back", "floor +3.3, room 1.5", "1:6", "Cut open; travellers + lamps"),
+ ("5", "Rock hill mass", "around cave & house", "up to +3.3", "—", "Thermocol + plaster + grout"),
  ("6", "Cloud + angel spiral", "≈ 2.5 ft wide helix", "ceiling → +4.5", "angels 4–6 in", "Flame-retardant fibre, LED only"),
  ("7", "Star + bead strands", "star 2 ft dia", "~1 ft below ceiling", "—", "Hang from corner; confirm height"),
- ("8", "Shepherds, sheep, campfire", "1.7 × 2.6 ft", "+0.8", "1:6 (1.2 ft)", "Real wool sheep"),
- ("9", "Floating angel unit", "2.4 × 1.4 ft", "acrylic 2.4 × 2 ft at 45°", "—", "Pepper's ghost, screen hidden"),
- ("10", "Rock ridge + mist tray", "2.4 × 1.0 ft", "ridge 0.8 ft", "—", "Hides screen; ultrasonic mister"),
+ ("8", "Shepherds, sheep, campfire", "1.7 × 2.6 ft", "deck level", "1:6 (1.2 ft)", "Real wool sheep"),
+ ("9", "Pipe-cleaner angel choir", "hero 2 ft + 9 small angels", "8–24 in above the upper layer", "—", "White and silver, handmade; above the sheepfold"),
+ ("10", "(not used)", "—", "—", "—", "Ridge and mist tray dropped: no screen, no mist"),
  ("11", "Sheepfold", "2 × 1.3 ft", "walls 0.25 ft", "1:12", "Dry-stone pebbles"),
- ("12", "Terraces", "3.4 × 7 ft zone", "+0.8 → +2.0", "—", "4 steps, real soil + grass"),
- ("13", "Watchtower", "1 ft dia", "1.5 ft on +2.0", "1:12", "Round stone"),
- ("14", "Far village", "3.8 × 0.8 ft, right-wall crest", "houses 3–5 in", "1:24", "Pale, cool; clear of cave house"),
+ ("12", "Second layer (upper level)", "9 × 4.5 ft, full width at the back", "+1.5 ft", "—", "Starts 11.5 ft from the front; stone wall face"),
+ ("13", "Watchtower", "1 ft dia", "1.5 ft on +1.5", "1:12", "Round stone"),
+ ("14", "Far village", "3.8 × 0.8 ft, right-wall crest", "houses 3–5 in", "1:24", "Pale, cool; on a 3 ft rock ridge, clear of cave house"),
  ("15", "Magi caravan", "3 × 0.3 ft wall shelf", "shelf +3.6, figs 2.5 in", "1:24", "Above far village; tiny lamps"),
  ("16–18", "Village houses A, B, C", "1.4–1.6 × 1.6–1.8 ft", "2.0 / 2.5 / 1.8 ft", "1:6", "Against right wall; lit windows"),
- ("19", "Cobbled street", "1.1 × 6.7 ft", "+0.3 → +0.8", "—", "Rises toward the back"),
+ ("19", "Cobbled street", "1.1 × 6.7 ft", "flat, deck level", "—", "No slope"),
  ("20", "Well", "0.9 ft dia", "0.6 ft", "1:6", "Real water"),
  ("21", "Census table, soldier, scribe", "1.4 × 1.0 ft", "figures 1.2 ft", "1:6", "Scrolls with names"),
  ("22", "Donkeys + travellers", "1.2 × 0.6 ft", "0.6 ft", "1:6", "Near the cave steps"),
  ("23–24", "Olive trees", "1.2 / 1.0 ft canopy", "2.0 / 1.6 ft", "—", "Wire + bark + real leaves"),
  ("25", '"Find 12 details" plaque', "2 × 0.4 ft", "0.8 ft", "—", "At the front edge"),
  ("26", "Backdrop (both walls)", "9 ft + 16 ft, curved corner", "print 5 ft, drape to ceiling", "—", "Hills print + blue drape + gold stars"),
- ("27–29", "Control box, speakers, UV bars", "under deck / hidden", "—", "—", "ESP32, DFPlayer, 395 nm UV"),
+ ("27–29", "Light box, speaker (no UV)", "box at back-left, speaker front-left", "—", "—", "One plug, 12 V inside, 3 hand switches"),
  ("30", "Public view spot + rope", "3 ft + 3 ft from corner", "eye 5.2 ft (floor)", "—", "All scale zones measured from here"),
+ ("31", "Pond (photo spot)", "1.6 × 3 ft, front left", "0.12 ft, 1 in water", "—", "Sealed tray, pebble edge, 12 V cool-white LEDs"),
+ ("32", "Selfie mirror (photo spot)", "2 ft wide, on the church floor", "5 ft tall", "—", "6 ft left of the stage edge; faces the queue"),
 ]
 TX, TY, RH = 1250, 920, 25
 cols = [(0, "#"), (62, "Item"), (390, "Footprint"), (650, "Height"), (870, "Scale"), (1010, "Notes")]
@@ -351,7 +357,7 @@ by = TY + RH * (len(rows) + 1) + 30
 s.append(f'<rect x="{TX-8}" y="{by}" width="1412" height="{Ht-40-by}" fill="#fff" stroke="{INK}" stroke-width="2"/>')
 s.append(T(TX + 10, by + 34, "CRIB 2026 · THAT NIGHT IN BETHLEHEM", 22, INK))
 s.append(T(TX + 10, by + 62, "Assumed as in the 2023 layout: back wall 9 ft, right wall 16 ft, people view from the front-left corner. Check on site before cutting: deck height, ceiling height, star hook.", 13.5, PEN, font=SANS))
-s.append(T(TX + 1394, by + 34, "Master sheet · 16 Nov 2026", 14, PEN, "end", SANS))
+s.append(T(TX + 1394, by + 34, "Master sheet · 18 Nov 2026 (two-layer stage; items 31 pond and 32 selfie mirror)", 14, PEN, "end", SANS))
 
 # ---------------- church key plan inset (right column)
 KX, KY = 2740, 150

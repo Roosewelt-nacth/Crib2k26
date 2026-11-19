@@ -8,8 +8,7 @@ import make_prompts as mp
 
 ROOT = mb.ROOT; OUT = os.path.join(ROOT, '2026', 'owner'); os.makedirs(os.path.join(OUT, 'img'), exist_ok=True)
 GENDIR = os.path.join(ROOT, '2026', 'images', 'generated')
-GEN = {'A': ['A-stage-frame'], 'B': ['B-cave-holy-family', 'B-rock-hill-empty'], 'C': ['C-upper-house'], 'E': ['E-shepherds-field'], 'F': ['F-floating-angel'],
-       'G': ['G-village-street'], 'H': ['H-lights-control'], 'I': ['I-sky-cascade'], 'J': ['J-backdrop'], 'K': ['K-far-village-magi'], 'L': ['L-foreground-view-spot']}
+GEN = {'A': ['stage-bare-3q'], 'B': ['B-cave-holy-family', 'B-rock-hill-empty'], 'C': ['C-upper-house'], 'G': ['G-village-street'], 'I': ['I-sky-cascade'], 'K': ['K-far-village-magi'], 'L': ['L-foreground-view-spot']}
 def have(n): return os.path.exists(os.path.join(GENDIR, n + '.jpg'))
 
 def crew_pic(b):
@@ -111,15 +110,30 @@ CSS = ('@page{size:297mm 210mm;margin:6mm}*{box-sizing:border-box}body{margin:0;
 def head(k, sub, pgn):
     return f'<div class="head" style="background:{mb.rgb(k)}"><div class="L">{k}</div><div><h1>{html.escape(mv.NAMES[k])}</h1><p>{html.escape(sub)}</p></div><div class="pgn">{pgn}</div></div>'
 
+def top_crop(k):
+    from PIL import Image
+    src = os.path.join(GENDIR, 'crib-final-top.jpg')
+    if not os.path.exists(src): return None
+    im = Image.open(src); L, Rr, Tp, Bt = 135, 960, 88, 1348
+    els = [e for e in mv.E if e['b'] == k and e['name'] != 'selfie mirror']
+    xs = [x for e in els for x, y in e['poly']]; ys = [y for e in els for x, y in e['poly']]
+    if k in ('A', 'H', 'J'): x0, x1, y0, y1 = 0, 9, 0, 16
+    else: x0, x1, y0, y1 = max(min(xs)-1.0, 0), min(max(xs)+1.0, 9), max(min(ys)-1.0, 0), min(max(ys)+1.0, 16)
+    box = (int(L+x0/9*(Rr-L)), int(Tp+y0/16*(Bt-Tp)), int(L+x1/9*(Rr-L)), int(Tp+y1/16*(Bt-Tp)))
+    path = os.path.join(OUT, 'img', f'{k}-above.jpg'); im.crop(box).save(path, quality=90); return f'img/{k}-above.jpg'
+
 def gen_html(k):
     names = [x for x in GEN.get(k, []) if have(x)]
-    if not names: return '<div class="nogen">No picture yet.<br>Generate it with the prompt on page 2.</div>'
+    if not names:
+        c = top_crop(k)
+        if c: return f'<div class="gen one"><img src="{c}" style="height:58mm;width:100%;object-fit:cover;object-position:center"><p class="cap" style="margin-top:2px">cut from the final top view</p></div>'
+        return '<div class="nogen">No picture yet.<br>Generate it with the prompt on page 2.</div>'
     for x in names: shutil.copy(os.path.join(GENDIR, x + '.jpg'), os.path.join(OUT, 'img', x + '.jpg'))
     return f'<div class="gen {"two" if len(names) > 1 else "one"}">' + ''.join(f'<img src="img/{x}.jpg">' for x in names) + '</div>'
 
 def card(k):
     b = mb.B[k]; look, mat = mp.LOOK[k]; pic = crew_pic(k); tt = totals(k); a, e = window(k)
-    steps = [short(s) for s in b['steps'] if not s.isupper()][:8]; sd = step_dates(k, len(steps))
+    steps = [short(s) for s in b['steps'] if not s.isupper()][:(10 if k == 'H' else 8)]; sd = step_dates(k, len(steps))
     dl = dims_lines(k)
     prompt = ('Stage: 9 ft wide at the SHORT front, 16 ft DEEP along the long left side (do not swap). Attached: (1) the final photo of the whole crib, to match its look and materials; (2) a picture of ONE block, to match its shape and place. '
               'Create ONE real-looking phone photograph of just this block as built, seen from the front-left at a three-quarter angle, turned about 33 degrees as in the attached picture, on a plain light-grey background with soft warm light. '
@@ -154,20 +168,20 @@ def start_pages():
     rows += f'<tr><td></td><td>Tools and transport</td><td class="n">{inr(TOOLS["prop"])}</td><td class="n">{inr(TOOLS["lean"])}</td><td class="n">{inr(TOOLS["full"])}</td></tr>'
     rows += f'<tr><td></td><td>Spare (10%)</td><td class="n">{inr(tot[0]-base[0])}</td><td class="n">{inr(tot[1]-base[1])}</td><td class="n">{inr(tot[2]-base[2])}</td></tr>'
     rows += f'<tr class="tot"><td></td><td>TOTAL TO BUDGET</td><td class="n">{inr(tot[0])}</td><td class="n">{inr(tot[1])}</td><td class="n">{inr(tot[2])}</td></tr>'
-    thumbs = ''.join(f'<img src="img/{x}.jpg" style="width:100%;height:21mm;object-fit:cover;border-radius:3px">' for k in mb.ORDER for x in GEN.get(k, []) if have(x))
-    p1 = (f'<section class="pg"><div class="head" style="background:#2b2a33"><div><h1>Crib 2026 · That Night in Bethlehem · START HERE</h1><p>Opens 24 December 2026 · stage 9 ft wide × 16 ft deep · 11 blocks (A, B, C, E to L; there is no D, the rock hill is part of B)</p></div></div>'
-          f'<div class="cols" style="margin-top:6px"><div><img src="img/final-look.jpg" style="width:100%;border-radius:6px;border:1px solid #cfc9b8"><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin-top:4px">{thumbs}</div></div>'
+    thumbs = ''
+    p1 = (f'<section class="pg"><div class="head" style="background:#2b2a33"><div><h1>Crib 2026 · That Night in Bethlehem · START HERE</h1><p>Opens 24 December 2026 · stage 9 ft wide × 16 ft deep · 12 blocks (A, B, C, E to M; there is no D, the rock hill is part of B)</p></div></div>'
+          f'<div class="cols" style="margin-top:6px"><div><img src="img/final-look.jpg" style="width:100%;border-radius:6px;border:1px solid #cfc9b8"><div style="display:flex;gap:6px;margin-top:5px;align-items:flex-start"><img src="img/final-top.jpg" style="height:96mm;border-radius:6px;border:1px solid #cfc9b8"><div style="font-size:11.5px;color:#444"><b>Final look</b>: the finished crib from the public spot (above) and from directly above (left). Generated pictures; the crew builds to the blueprints in the crew pack.</div></div></div>'
           f'<div class="box"><h2>What it costs (₹, rough, ±25%)</h2><table><tr><th>Block</th><th>Name</th><th class="n">Reuse</th><th class="n">Lean</th><th class="n">New</th></tr>{rows}</table>'
           '<p style="font-size:11.5px;margin:4px 0 0"><b>Reuse</b> = figures from 2023, stage and lights rented. <b>Lean</b> = reuse and make it yourself, own lights. <b>New</b> = buy everything new. Pick one with the committee.</p></div></div></section>')
     d0 = dt.date(2026, 11, 18); days = (dt.date(2026, 12, 24) - d0).days + 1
     cells = '<div class="c"></div>' + ''.join(f'<div class="c h">{(d0 + dt.timedelta(days=i)).day if (i % 3 == 0) else ""}</div>' for i in range(days))
-    for k in mb.ORDER:
+    for k in mb.ALL:
         a, e = window(k); s = max((a - d0).days, 0) + 2; w = (e - a).days + 1
         cells += f'<div class="c"><b>{k}</b> {html.escape(mv.NAMES[k])[:20]}</div><div class="c" style="grid-column:{s} / span {w}"><div class="bar" style="background:{mb.rgb(k)}">{fd(a, e)}</div></div>'
     cells += '<div class="c"><b>Install</b></div><div class="c" style="grid-column:%d / span 4"><div class="bar" style="background:#555">14–17 Dec</div></div>' % ((dt.date(2026, 12, 14) - d0).days + 2)
     cells += '<div class="c"><b>Wire, aim, rehearse</b></div><div class="c" style="grid-column:%d / span 6"><div class="bar" style="background:#555">18–23 Dec</div></div>' % ((dt.date(2026, 12, 18) - d0).days + 2)
     cells += '<div class="c"><b>OPEN</b></div><div class="c" style="grid-column:%d / span 1"><div class="bar" style="background:#a8322c">24</div></div>' % ((dt.date(2026, 12, 24) - d0).days + 2)
-    checks = ['Deck height (2 ft assumed) and a free 9 × 16 ft', 'Ceiling height (about 15 ft assumed) and ceiling type', 'Altar centred on the front wall; crib at its right end', 'Power point, exit and the deck load rating', 'Work-at-height rules for hanging block I', 'How much 2023 plywood still exists']
+    checks = ['The church socket right behind the stage (back-left corner): exact spot and circuit rating', 'Deck height (2 ft assumed), size, level, and whether you may screw into it', 'Ceiling height (about 15 ft assumed) and ceiling type', 'Altar centred on the front wall; crib at its right end', 'Exit and the deck load rating', 'Work-at-height rules for hanging block I', 'How much 2023 plywood still exists']
     p2 = (f'<section class="pg"><div class="head" style="background:#2b2a33"><div><h1>When: who builds what</h1><p>18 Nov to 24 Dec. Bars show the build window of each block.</p></div></div>'
           f'<div class="box" style="margin-top:6px"><div class="gantt">{cells}</div></div>'
           f'<div class="cols2"><div class="box"><h2>How to use a card</h2><ol><li>Find your letter. Page 1 shows what it looks like, its size, cost, time and what to do on which days.</li><li>Page 2 is the shopping list with prices, the checks, and a prompt if you want a picture of the finished block.</li><li>Do the steps in order and tick "done when". Then hand over to the next block.</li></ol></div>'
@@ -175,16 +189,16 @@ def start_pages():
     return p1 + p2
 
 if __name__ == '__main__':
-    shutil.copy(os.path.join(ROOT, '2026', 'images', 'eye-view-v3-generated.jpg'), os.path.join(OUT, 'img', 'final-look.jpg'))
+    shutil.copy(os.path.join(GENDIR, 'crib-final-3q.jpg'), os.path.join(OUT, 'img', 'final-look.jpg')); shutil.copy(os.path.join(GENDIR, 'crib-final-top.jpg'), os.path.join(OUT, 'img', 'final-top.jpg'))
     for k in mb.ORDER:
         for x in GEN.get(k, []):
             if have(x): shutil.copy(os.path.join(GENDIR, x + '.jpg'), os.path.join(OUT, 'img', x + '.jpg'))
     whole = re.search(r'```\n(.*?)\n```', open(os.path.join(ROOT, '2026', 'docs', 'eye-view-prompt.md'), encoding='utf8').read(), flags=re.S).group(1)
     md = ['# Crew prompts: one per block, plus the whole crib', '', '## Whole crib (corner view)', 'Attach: `2026/images/view1-visitor.png`, `2026/share/final-blueprint-3-views.png`, `2026/images/church-key-plan.png`, two style images.', '', '```', whole, '```', '']
     bodies = []
-    for k in mb.ORDER:
+    for k in mb.ALL:
         body, prompt = card(k); bodies.append(body)
-        md += [f'## Block {k} · {mv.NAMES[k]}', f'Attach: `2026/images/eye-view-v3-generated.jpg` and `2026/crew/img/{k}-pic.png`. Target look already generated: `2026/images/generated/`', '', '```', prompt, '```', '']
+        md += [f'## Block {k} · {mv.NAMES[k]}', f'Attach: `2026/images/generated/crib-final-3q.jpg` and `2026/crew/img/{k}-pic.png`. Target look already generated: `2026/images/generated/`', '', '```', prompt, '```', '']
         hp = os.path.join(OUT, f'{k}-card.html'); open(hp, 'w', encoding='utf8').write(f'<!doctype html><meta charset="utf-8"><style>{CSS}</style>{body}')
         mb.pdf(hp, os.path.join(OUT, f'{k}-card.pdf')); print(k)
     full = f'<!doctype html><meta charset="utf-8"><style>{CSS}</style>{start_pages()}{"".join(bodies)}'

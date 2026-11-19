@@ -30,11 +30,11 @@ The Nativity as it most likely happened: a limestone village in Judea at night. 
 - Public viewing spot V = 3 ft left of and 3 ft in front of the front-left corner. Eye height 5.2 ft above the floor.
 - Cave and house turned about 32.5° toward V.
 - Ceiling assumed about 15 ft (to confirm); star hook position and ceiling type unknown.
-- Raked stage: 0 at the front to +3 ft at the hill crest. Terraces +0.8 to +2.0 ft.
+- TWO LAYERS ONLY, NO SLOPE (user, 18 Nov): the flat deck, and a second layer +1.5 ft high across the full 9 ft width for the back 4.5 ft (it starts 11.5 ft from the front), with a dry-stone wall face. Cave and rock hill stand on the lower layer, backs against the step (cave floor at deck level; arch 2.5 ft; the hill top and house floor are at +3.3 ft so about 10 in of rock sits above the arch; room 1.5 ft, roof +4.8 ft); shepherds, sheep and campfire on the lower layer; sheepfold, watchtower and the pipe-cleaner angel choir on the upper layer; street and village houses flat at deck level; far village on a 3 ft rock ridge. All updated on 19 Nov: blueprint, views, guides, owner guide, crew pack, prompts.
 - Scale tiers by distance from V: A under 11 ft (1:3, 2 ft hero figures), B 11–15 ft (1:6), C 15–18 ft (1:12), D over 18 ft (1:24). Farther is paler, cooler and less saturated.
 
-### The 30 numbered items (the same numbers on every sheet)
-1 path of light · 2 cave · 3 Holy Family, ox, donkey, manger · 4 house with upper guest room · 5 rock hill · 6 cloud and angel spiral · 7 star burst with bead strands · 8 shepherds, sheep, campfire · 9 floating angel (Pepper's ghost) · 10 rock ridge with mist tray · 11 sheepfold · 12 terraces · 13 watchtower · 14 far village · 15 Magi caravan (wall shelf) · 16–18 village houses · 19 cobbled street · 20 well · 21 census table, soldier, scribe · 22 donkeys and travellers · 23–24 olive trees · 25 "find 12 details" plaque · 26 backdrop (hills print, blue drape, gold stars, fibre-optic stars, UV angel choir) · 27 control box · 28 speakers · 29 UV bars · 30 public view spot and rope.
+### The 32 numbered items (the same numbers on every sheet)
+1 path of light · 2 cave · 3 Holy Family, ox, donkey, manger · 4 house with upper guest room · 5 rock hill · 6 cloud and angel spiral · 7 star burst with bead strands · 8 shepherds, sheep, campfire · 9 floating angel (Pepper's ghost) · 10 rock ridge with mist tray · 11 sheepfold · 12 second layer (upper level, +1.5 ft) · 13 watchtower · 14 far village · 15 Magi caravan (wall shelf) · 16–18 village houses · 19 cobbled street · 20 well · 21 census table, soldier, scribe · 22 donkeys and travellers · 23–24 olive trees · 25 "find 12 details" plaque · 26 backdrop (hills print, blue drape, gold stars, fibre-optic stars, UV angel choir) · 27 control box · 28 speakers · 29 UV bars · 30 public view spot and rope · 31 pond · 32 selfie mirror (photo corner, added 18 Nov: block M).
 
 Coordinates and checks live in `source/blueprint.py` (no overlaps, nothing outside 9 × 16 ft, path of light clear of solids).
 
@@ -51,13 +51,16 @@ Rules: gold only in five places (cave, star, path, lamps, Magi lanterns); about 
 ## Costs (rough, ±25%, 10% contingency included)
 | Tier | Total | What it counts |
 |---|---|---|
-| Prop-only | ₹82,885 | Prop materials only. Figures reused from 2023, stage rented, lights rented. Half the 2023 plywood reused. Smaller rock, painted hills, simpler backdrop and cascade. |
-| Lean | ₹1,50,535 | Reuse and DIY where possible, own lights, own electrics |
-| Full | ₹2,53,660 | Everything bought new |
-Levers: contingency 5% gives about ₹79,000; skipping the far village and Magi shelf saves about ₹2,100; all of the plywood reused saves a further ₹3,250. Details per part are in `2026/pack/` and `2026/docs/build-pack.pdf`.
+| Prop-only | ₹71,885 | Prop materials only. Figures reused from 2023, stage rented, lights rented. Half the 2023 plywood reused. Smaller rock, painted hills, simpler backdrop and cascade. |
+| Lean | ₹1,37,720 | Reuse and DIY where possible, own lights, own electrics |
+| Full | ₹2,30,835 | Everything bought new |
+Totals as rebuilt on 19 Nov for the FINAL plan (two layers, craft angels, lights as one block with one plug, pond and mirror included; they replace the earlier ₹82,885 / ₹1,50,535 / ₹2,53,660 and ₹84,645 / ₹1,58,015 / ₹2,66,640). Per block: see the owner guide start page. Block H (lights) is ₹11,550 / ₹22,550 / ₹34,900. All costs are estimates; get quotes. The interactive pack, `build-pack.pdf` and `index.html` still show the old plan and numbers.
 
 ## Schedule (today when written: 16 Nov 2026)
 Week 1 (16–22 Nov): measure on site, order long-lead items, start frame and backdrop. 23 Nov → 13 Dec: build in the workshop. 14–17 Dec: install in the church. 18–23 Dec: wire, aim, rehearse. 24 Dec: open. About 80 person-days with 6–8 volunteers.
+
+## Crew (set 18 Nov 2026; names are in `TEAMS` in `source/make_blocks.py`)
+Team 1 Rufus, Sanjeetha, Andrew, Samuel: E · Team 2 Lenin, Runo, Aarthi, Milton, Monus: C · Team 3 Austin Joel, Richard, Allwyn: H, I, F, J · Team 4 Janet, Mithul, Yugesh, Stephen, Alvin: B, K · Team 5 Jino, Shibi, Suja, Adrian, Deric, Vk: G · Stage team Vk, Samuel: A, L. Vk is in teams 5 and stage; Samuel is in team 1 and stage. Block M (pond and selfie mirror, approved 18 Nov): pond 1.6 × 3 ft along the left edge, long side front to back (x 0.35–1.95, y 10.3–13.3), blue cloth under a clear sheet (no water on the deck); selfie mirror 2 × 5 ft acrylic on the church floor at x −6, y 19, faces the queue, turned about 23° toward the crib. Team to be assigned (suggest the Stage team). The speaker and hatch C are at the front-left corner (x 0, y 15–16) and hatch A (the light box) is at the back-left of the upper layer.
 
 ## Still to confirm on site
 Deck height (2 ft assumed) · ceiling height (about 15 ft assumed) and ceiling type · altar centred on the front wall and crib at its right end · power point and exit · deck load rating and work-at-height rules · how much of the 2023 plywood exists.
@@ -67,15 +70,22 @@ Deck height (2 ft assumed) · ceiling height (about 15 ft assumed) and ceiling t
 - `2026/docs/component-prompts.md`: one studio-shot prompt per component.
 - The first prompts failed because they said "church hall" and never said where the altar is. Version 2 fixed that. If a generated image is wrong, compare it against the blueprint before changing the prompt.
 
+## FINAL plan (19 Nov 2026, built into every guide)
+- Two flat layers, no slope; craft props only (no screen, mist, resin, UV, microcontroller); pipe-cleaner angel choir is block F; lights are block H: one plug from the church socket (right behind the stage, back-left corner) into one box at the back-left of the upper layer, 12 V inside, three hand switches (Lamps, Night sky, Glory), Austin Joel's team (Team 3) builds it. Colour rule: gold only in the cave, star, path, lamps and Magi lanterns; warm white, cool white and deep indigo otherwise; no red, bright green, pink, multicolour, flashing or UV.
+- Approved looks: `2026/images/generated/crib-final-3q.jpg` and `crib-final-top.jpg` (the finished crib), `stage-bare-3q.jpg` and `stage-bare-top.jpg` (the empty stage). Reference drawings: `2026/images/top-view-reference.png`, `stage-only-reference.png`, `lighting-plan.png`.
+- Prompts: `2026/docs/final-prompts.md` (finished crib, night version, bare stage, top views). Plans: `craft-simplification-plan.md`, `lighting-plan.md`.
+- Outputs to send: crew = `2026/crew/crew-pack.pdf` (no prices). Keep: owner = `2026/owner/owner-guide.pdf`.
+- Regenerate everything: `make_views.py`, `make_topview_ref.py`, `make_lighting.py`, `make_stage_ref.py`, then `make_crew.py` and `make_crew_pack.py` (block data in `make_blocks.py`, steps in `crew_steps.py`, image looks in `make_prompts.py`).
+- `2026/blocks/` and `2026/share/` (older block sheets and share pack) were removed because they showed the old plan.
+
 ## Files
 - `index.html`: the showcase site (GitHub Pages). `2026/pack/index.html`: the full interactive build pack.
 - `2026/images/`: blueprint, two block-outs, church key plan, "Book of Bethlehem" concept render.
 - `2026/docs/`: build pack PDF, 23 concepts, final theme, prompts, the first five concepts page.
 - `references/`: three AI style images (daylight diorama, night show, a real cascade with blue drape) and two UI references for the site design (glass folders, dark moss course).
-- `2026/blocks/`: one blueprint and build guide per block A–L (PDF and HTML), plus `all-blocks.pdf` and `00-overview.pdf`. Block list and order in `2026/docs/build-blocks.md`. Generated by `source/make_blocks.py` from the pack; images `layout-plan-only.png` and `layout-plan-blocks.png` in `2026/images/`.
-- `2026/share/`: group share pack: `final-blueprint-3-views.png` (front, side, top and the tilted view from V), `block-views/<A-L>-views.png`, `block-view-prompts.md`, `share-pack.pdf`. Generated by `source/make_views.py` and `source/make_prompts.py`. The eye-view image prompt is `2026/docs/eye-view-prompt.md` (v3, corrected for the 33-degree tilt).
+- `2026/share/`: `final-blueprint-3-views.png` (front, side, top and the tilted view from V), made by `source/make_views.py`.
 - `2026/crew/`: the CREW pack, no prices (`crew-pack.pdf`, `<letter>-crew.pdf`, `crew-prompts.md`): per block 4 pages (card with picture and image prompt, full-page blueprint drawing, parts table with exact size and place plus cut list, exact numbered build steps). Made by `source/make_crew_pack.py`; build data in `source/crew_steps.py`.
-- `2026/owner/`: the OWNER guide with prices, dated steps, shopping lists and budget (`owner-guide.pdf`, `<letter>-card.pdf`, `owner-prompts.md`). Keep this one for the project owner; send the crew `2026/crew/`. Made by `source/make_crew.py`. 11 blocks: A, B, C, E–L (no D: rock hill merged into B). Generated target-look photos are in `2026/images/generated/` (add `F-floating-angel.jpg` there for block F).
+- `2026/owner/`: the OWNER guide with prices, dated steps, shopping lists and budget (`owner-guide.pdf`, `<letter>-card.pdf`, `owner-prompts.md`). Keep this one for the project owner; send the crew `2026/crew/`. Made by `source/make_crew.py`. 12 blocks: A, B, C, E–M (no D: rock hill merged into B). Generated photos are in `2026/images/generated/`.
 - `source/`: Python that generates everything: `blueprint.py` (geometry, plan, section, schedule), `persp.py` (grey block-outs), `church.py` (key plan), `drawkit.py`, `drawings.py`, `drawings_fix.py` (part sheets), `pack.py` (PDF), `build_html.py` (web pack). Needs Python 3, Pillow, pypdfium2 and Chrome for rendering. Some paths are absolute to the original machine and need adjusting.
 
 ## Adding a new year
