@@ -10,7 +10,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, '2026', 'share'); BV = os.path.join(OUT, 'block-views'); os.makedirs(BV, exist_ok=True)
 COL = {'A': (120,120,120), 'B': (230,120,20), 'C': (200,50,50), 'E': (40,150,70), 'F': (120,60,200),
        'G': (30,110,220), 'H': (210,170,0), 'I': (0,170,190), 'J': (60,60,160), 'K': (230,60,160), 'L': (110,200,60), 'M': (0,120,110), 'N': (150,110,60)}
-NAMES = {'A':'Two-layer stage','B':'Cave, rock hill and Holy Family','C':'House with upper room','E':"Shepherds' field",'F':'Pipe-cleaner angel choir','G':'Village street','H':'Lights (one plug, one box)','I':'Star and cloud spiral','J':'Backdrop','K':'Far village and Magi caravan','L':'Foreground and view spot','M':'Photo corner: pond and selfie mirror','N':'Foreground: rocks, shepherd boy, front wall'}
+NAMES = {'A':'Two-layer stage','B':'Cave, rock hill and Holy Family','C':'House with upper room','E':"Shepherds' field",'F':'Pipe-cleaner angel choir','G':'Village street','H':'Lights (one plug, one box)','I':'Star and cloud spiral','J':'Backdrop','K':'Far village and Magi caravan','L':'Foreground and view spot','M':'Selfie mirror (church floor)','N':'Foreground: rocks, pond, shepherd boy, front wall'}
 CEIL = 13.0; EYE = 3.2
 V = (-3.0, 19.0); HANG = (7.8, 1.2); C = (4.4, 7.4)
 d = (V[0]-C[0], V[1]-C[1]); L_ = math.hypot(*d); v = (d[0]/L_, d[1]/L_); u = (-v[1], v[0])
@@ -85,7 +85,7 @@ add('N', 'sleeping dog', 'box', rect(3.15,15.1,0.4,0.2), 0.0, 0.2)
 add('N', 'water jar', 'box', circ(3.0,14.6,0.12,8), 0.0, 0.4)
 add('N', 'front dry-stone wall', 'box', rect(3.4,14.6,1.85,0.3), 0.0, 0.6)
 add('N', 'herbs and reeds', 'box', rect(5.4,15.75,0.6,0.2), 0.0, 0.5)
-add('M', 'pond', 'box', rect(0.35,10.3,1.6,3.0), 0.0, 0.12, glass=True)
+add('N', 'pond (part of the scene)', 'box', rect(0.35,10.3,1.6,3.0), 0.0, 0.12, glass=True)
 _mc = (-6.0, 19.0); _n = (math.cos(math.radians(23)), -math.sin(math.radians(23))); _t = (-_n[1], _n[0])
 add('M', 'selfie mirror', 'box', [(_mc[0]+sx*_t[0]*1.0+sy*_n[0]*0.08, _mc[1]+sx*_t[1]*1.0+sy*_n[1]*0.08) for sx, sy in ((-1,1),(1,1),(1,-1),(-1,-1))], -2.0, 3.0)
 
@@ -308,7 +308,7 @@ def master():
         else:
             s.append(dim_h(vw.X(0), vw.X(9), vw.oy+16*S+30, '9 ft')); s.append(dim_v(vw.X(0)-24, vw.oy, vw.oy+16*S, '16 ft'))
             s.append(T(vw.X(0), vw.oy+16*S+84, '32 selfie mirror: on the church floor, 6 ft left of the stage edge and 3 ft left of V,', 15, '#006e66'))
-    s.append(T(vw.X(0), vw.oy+16*S+104, 'turned 23° toward the crib (outside this view). 31 pond: 1.6 × 3 ft at the front left.', 15, '#006e66'))
+    s.append(T(vw.X(0), vw.oy+16*S+104, 'turned 23° toward the crib (outside this view). 31 pond (block N): 1.6 × 3 ft in the field at the front left.', 15, '#006e66'))
     s.append(T(vw.X(0), vw.oy+16*S+62, 'Public view spot V: 3 ft left and 3 ft in front of the front-left corner, eye 5.2 ft above the floor.', 15, '#a8322c'))
     py0 = top0 + (ZMAX-ZMIN)*S + 150
     s.append(T(40, py0-20, 'TILTED VIEW FROM THE PUBLIC SPOT V: the stage is turned 33 degrees, 9 ft wall on the left, 16 ft wall running away to the right', 20, weight='bold'))
@@ -381,7 +381,7 @@ def part_groups(b):
         elif e['kind'] == 'spiral': size = '2.5 ft wide, 3 turns, from 10.5 ft down to 4.5 ft above the deck; 30 small angels (4-6 in)'
         elif e['kind'] == 'star': size = '2 ft wide, hung about 1 ft below the ceiling'
         elif e['kind'] == 'flat': size = '0.5 ft (6 in) wide × 7.7 ft long, set flush in the deck'
-        elif nm == 'pond': size = '1.6 ft (19 in) wide × 3 ft (36 in) long; tray 1.5 in high, blue cloth under a clear 3 mm sheet (NO water), pebble edge'
+        elif nm.startswith('pond'): size = '1.6 ft (19 in) wide × 3 ft (36 in) long; tray 1.5 in high, blue cloth under a clear 3 mm sheet (NO water), pebble edge'
         elif nm == 'selfie mirror': size = '2 ft (24 in) wide × 5 ft (60 in) tall acrylic mirror in a frame about 1.5 in thick, on a weighted base; stands on the church floor, faces the queue, turned about 23° toward the crib'
         elif nm == 'hero angel (pipe cleaner)': size = 'about 2 ft (24 in) tall, white chenille and tulle, on a wire pole about 1 ft long'
         elif nm == 'small angel (pipe cleaner)': size = '8–10 in tall on a wire stake 8–12 in long, white chenille and tulle'

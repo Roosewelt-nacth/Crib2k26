@@ -221,16 +221,11 @@ X['L'] = dict(
  )
 
 X['M'] = dict(
- cut=[('Pond tray', 'plywood 12 mm, 1.6 ft × 3 ft, walls 1.5 in high; long side front to back along the left edge at x 0.35–1.95, y 10.3–13.3; blue cloth inside and a clear 3 mm sheet over it for the water (no water on the deck)'),
-      ('Pond dressing', 'pebble edge, sand, 3–5 artificial reeds; two cool-white lights from block H (not gold)'),
-      ('Mirror', 'acrylic mirror sheet 2 ft × 5 ft (24 × 60 in), frame 2 × 2 in battens with 12 mm ply back, about 1.5 in thick'),
+ cut=[('Mirror', 'acrylic mirror sheet 2 ft × 5 ft (24 × 60 in), frame 2 × 2 in battens with 12 mm ply back, about 1.5 in thick'),
       ('Mirror base', 'weighted base about 2.5 ft × 1.5 ft so it cannot tip; edges covered'),
       ('Mirror place', 'on the church floor, centre x −6.0 ft (6 ft left of the stage edge), y 19.0 ft, turned about 23° toward the crib'),
       ('Sign and marker', 'sign "Take a photo, share it" and a floor marker for the photo spot; keep a 4 ft aisle clear')],
  steps=['Confirm there is clear church floor 6 ft to the left of the stage edge and 3 ft left of V, and that the aisle stays 4 ft clear.',
-        'Pond: build the plywood tray 1.6 × 3 ft with walls 1.5 in high, line it with blue cloth and cover it with the clear sheet.',
-        'Set the pond on the deck at x 0.35–1.95, y 10.3–13.3 with its long side front to back. Edge it with pebbles and sand and add a few artificial reeds.',
-        'Leave two light holes for block H (cool-white pond lights) with a 1 ft cable tail. No mains voltage near the pond.',
         'Mirror: build the frame 2 ft × 5 ft from 2 × 2 in battens with a 12 mm ply back; fix the acrylic mirror sheet and round and cover every edge.',
         'Fit a weighted base about 2.5 ft × 1.5 ft with rubber feet so the mirror cannot tip.',
         'Stand the mirror on the floor at x −6, y 19 and turn it about 23° toward the crib. Test with a phone: a person at V with their back to the crib should see the crib behind them. Adjust by up to 10° on the day.',
@@ -243,7 +238,8 @@ X['N'] = dict(
       ('Front dry-stone wall', '1.85 ft long × 0.3 ft deep × 0.6 ft high, x 3.4–5.25, y 14.6–14.9; stones bigger than in the field wall'),
       ('Sleeping dog', '0.4 × 0.2 ft, 0.2 ft high, at x 3.15–3.55, y 15.1–15.3, beside the boy'),
       ('Water jar', 'terracotta, 0.25 ft across, 0.4 ft high, at x 3.0, y 14.6'),
-      ('Herbs and reeds', 'a strip 0.6 × 0.2 ft, 0.5 ft high, at x 5.4–6.0, y 15.75–15.95, plus tufts between the rocks')],
+      ('Herbs and reeds', 'a strip 0.6 × 0.2 ft, 0.5 ft high, at x 5.4–6.0, y 15.75–15.95, plus tufts between the rocks'),
+      ('Pond (part of the scene)', 'plywood tray 1.6 ft wide × 3 ft long, walls 1.5 in high, set into the field floor with its long side front to back at x 0.35–1.95, y 10.3–13.3; blue cloth under a clear 3 mm sheet (NO water); the front rocks run down to its edge; pebbles, sand and 3–5 reeds around it; two cool-white lights from block H')],
  steps=['Mark the front-left corner with tape: rocks from x 0 to 1.7, y 13.6 to 16, and keep hatch C (x 0–1, y 15–16) free.',
         'Glue 4 in thermocol layers to 1 ft high, carve them as rough rock, and press real rocks and pebbles in while the plaster is wet.',
         'Leave a hole for olive 23 at x 0.7, y 14.3 (block L plants it).',
@@ -251,5 +247,6 @@ X['N'] = dict(
         'Build the front wall 1.85 × 0.3 ft, 0.6 ft high, at x 3.4–5.25, y 14.6, with stones about 3 × 2 in.',
         'Seat the shepherd boy (1.3 ft) on a rock at x 2.5–3.1, y 14.9, looking at the cave, the lamb in his arms; put the dog and the water jar beside him.',
         'Add herbs, reeds and dry grass in the gaps; the path of light (block H) runs between the rocks and the boy.',
-        'Check from V: the boy and rocks frame the view and hide nothing; hatch C opens freely.'],
+        'Pond: build the 1.6 × 3 ft tray (12 mm ply, 1.5 in walls), lay wrinkled blue cloth and the clear sheet, set it at x 0.35–1.95, y 10.3–13.3 so the floor sand and the rocks lap over its edge; add pebbles and reeds; leave two light holes for block H (no mains near it).',
+        'Check from V: the boy, rocks and pond read as one scene and hide nothing; hatch C opens freely.'],
  )

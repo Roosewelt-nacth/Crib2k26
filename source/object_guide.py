@@ -517,13 +517,6 @@ O['L'] = [
 ]
 
 O['M'] = [
- ('Pond tray', '1.6 ft wide × 3 ft long, walls 1.5 in high; x 0.35–1.95, y 10.3–13.3, long side front to back. NO water.',
-  '12 mm ply offcut, 1 × 1½ in strips, blue cloth, clear 3 mm acrylic sheet 1.6 × 3 ft.',
-  'Reusable.',
-  ['Cut the base and screw strips round the edge.',
-   'Lay blue cloth inside; wrinkle slightly for ripples.',
-   'Lay the clear sheet on top.',
-   'Edge with pebbles, sand and 3–5 reeds; leave 2 light holes for block H.']),
  ('Selfie mirror', '2 ft × 5 ft acrylic mirror; frame 1.5 in thick; on the church floor at x −6, y 19, turned 23° toward the crib.',
   'Acrylic mirror 2 × 5 ft, 2 × 2 in battens, 12 mm ply back, weighted base 2.5 × 1.5 ft, rubber feet.',
   'Reusable.',
@@ -558,6 +551,13 @@ O['N'] = [
   ['Cut a strip 1.85 × 0.6 ft; score big stones 3 × 2 in.',
    'Glue real flat stones on the front face.',
    'Grout and paint limestone, darker in the joints.']),
+ ('Pond (part of the scene)', '1.6 ft wide × 3 ft long, walls 1.5 in high, set into the field floor; x 0.35–1.95, y 10.3–13.3, long side front to back; the front rocks run down to it. NO water.',
+  '12 mm ply offcut, 1 × 1½ in strips, blue cloth, clear 3 mm acrylic sheet 1.6 × 3 ft.',
+  'Reusable.',
+  ['Cut the base and screw strips round the edge.',
+   'Lay blue cloth inside; wrinkle slightly for ripples.',
+   'Lay the clear sheet on top.',
+   'Edge with pebbles, sand and 3–5 reeds; leave 2 light holes for block H.']),
  ('Dog, water jar, herbs and reeds', 'Dog 0.4 × 0.2 ft at x 3.15–3.55, y 15.1; jar 0.4 ft high at x 3.0, y 14.6; herbs strip 0.6 × 0.2 ft at x 5.4–6.0, y 15.75.',
   'Air-dry clay, a small terracotta pot, herbs, reeds, dry grass.',
   'Reusable.',
@@ -579,7 +579,7 @@ BOX = {
  'J': [(25.0, 0.2, 0.2), (25.0, 0.05, 5.0), (25.0, 0.3, 8.5), (25.0, 0.05, 0.33), (0.25, 0.01, 0.25), (5.4, 0.3, 2.5), (1.2, 0.05, 4.0), (1.0, 0.05, 2.0)],
  'K': [(0.8, 3.8, 3.0), (0.3, 0.3, 0.4), (0.3, 3.0, 0.05), (0.2, 0.1, 0.25)],
  'L': [(1.1, 1.1, 2.6), (2.0, 0.4, 0.8), None],
- 'M': [(1.6, 3.0, 0.12), (2.0, 0.15, 5.0), (0.7, 0.05, 1.0)],
- 'N': [(1.7, 2.4, 1.0), (0.6, 0.5, 1.3), (1.85, 0.3, 0.6), (0.4, 0.2, 0.2)],
+ 'M': [(2.0, 0.15, 5.0), (0.7, 0.05, 1.0)],
+ 'N': [(1.7, 2.4, 1.0), (0.6, 0.5, 1.3), (1.85, 0.3, 0.6), (1.6, 3.0, 0.12), (0.4, 0.2, 0.2)],
 }
 for _k in O: assert len(BOX[_k]) == len(O[_k]), _k

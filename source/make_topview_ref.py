@@ -15,15 +15,15 @@ def T(x, y, t, size=20, fill=INK, anchor='start', weight='700', rot=None):
 DESC = [('A', 'The plywood stage floor itself: flat front 11.5 ft, step, raised back 4.5 ft (1.5 ft high); lids A, B, C'),
         ('B', 'Rock hill with the cave (mouth faces the front-left) and the guest-room house on top'),
         ('C', '(part of B in the picture) house with flat roof, cat on the roof'),
-        ('E', "Shepherds' field: 2 shepherds, 6 sheep, campfire; sheepfold and watchtower at the back"),
+        ('E', "Shepherds' field: terrace wall, tent, 3 shepherds, 14 sheep, campfire, fig tree; sheepfold and watchtower at the back"),
         ('F', 'Pipe-cleaner angel choir above the sheepfold'),
-        ('G', 'Flat village street, 3 flat-roofed houses, well, census table, donkeys'),
+        ('G', 'Narrowing street, 5 flat-roofed houses stepping down, well, census table, donkeys, stall, palm'),
         ('H', 'Path of light (thin gold line) from the front edge to the cave mouth'),
-        ('I', 'Star burst (back-right corner) and the cloud spiral curling toward the hill'),
-        ('J', 'Backdrop edges along the back wall and the right wall'),
+        ('I', 'Star burst (back-right corner), cloud spiral and gold rays to the cave'),
+        ('J', 'Backdrop edges, far-hill silhouette and palm cut-outs'),
         ('K', 'Far village on a rock ridge and the Magi shelf along the right wall'),
-        ('L', 'Two olive trees and the plaque at the front'),
-        ('M', 'Pond along the left edge (long side front to back)')]
+        ('L', 'Two olive trees and the plaque'),
+        ('N', 'Front rocks, pond set into the field, shepherd boy, front wall')]
 
 def svg():
     S = 56; W, H = 1700, 1080; px, py = 110, 120

@@ -8,7 +8,7 @@ import make_prompts as mp
 
 ROOT = mb.ROOT; OUT = os.path.join(ROOT, '2026', 'owner'); os.makedirs(os.path.join(OUT, 'img'), exist_ok=True)
 GENDIR = os.path.join(ROOT, '2026', 'images', 'generated')
-GEN = {'A': ['stage-bare-3q'], 'B': ['B-cave-holy-family', 'B-rock-hill-empty'], 'C': ['C-upper-house'], 'G': ['G-village-street'], 'I': ['I-sky-cascade'], 'K': ['K-far-village-magi'], 'L': ['L-foreground-view-spot']}
+GEN = {'A': ['stage-bare-3q'], 'B': ['B-cave-holy-family', 'B-rock-hill-empty'], 'C': ['C-upper-house'], 'E': ['E-shepherds-field'], 'F': ['F-angel-choir'], 'G': ['G-village-street'], 'H': ['H-lights-control'], 'I': ['I-sky-cascade'], 'J': ['J-backdrop'], 'K': ['K-far-village-magi'], 'L': ['L-foreground-view-spot'], 'N': ['N-foreground']}
 def have(n): return os.path.exists(os.path.join(GENDIR, n + '.jpg'))
 
 def crew_pic(b):
@@ -117,6 +117,7 @@ def top_crop(k):
     im = Image.open(src); L, Rr, Tp, Bt = 135, 960, 88, 1348
     els = [e for e in mv.E if e['b'] == k and e['name'] != 'selfie mirror']
     xs = [x for e in els for x, y in e['poly']]; ys = [y for e in els for x, y in e['poly']]
+    if not xs and k not in ('A', 'H', 'J'): return None
     if k in ('A', 'H', 'J'): x0, x1, y0, y1 = 0, 9, 0, 16
     else: x0, x1, y0, y1 = max(min(xs)-1.0, 0), min(max(xs)+1.0, 9), max(min(ys)-1.0, 0), min(max(ys)+1.0, 16)
     box = (int(L+x0/9*(Rr-L)), int(Tp+y0/16*(Bt-Tp)), int(L+x1/9*(Rr-L)), int(Tp+y1/16*(Bt-Tp)))
