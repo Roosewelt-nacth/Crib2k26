@@ -168,23 +168,21 @@ X['I'] = dict(
  )
 
 X['J'] = dict(
- cut=[('Hills print', '5 panels, each 5 ft × 5 ft = 25 ft run (back wall 9 ft + right wall 16 ft), twilight Judean hills'),
-      ('Blue drape', 'drop 8.5 ft (from 5 ft up to about 13.5 ft), 25 ft run, 1.5× pleat fullness (about 28 m of fabric); bottom hem laps the print by 6 in'),
-      ('Track + rope backup', '25 ft ceiling track along both walls, rope backup, rings, hooks, clamps; track about 13 ft above the deck'),
-      ('Gold stars', 'about 120 stars of card + glitter, glued in irregular clusters'),
-      ('Choir angels', '12 angels 2 ft tall cut from card or foam, painted white and silver, no glow paint'),
-      ('Pocket for lights', 'a pocket along the top of the print on both walls for the star lights from block H'),
-      ('Far-hill silhouette', '4 mm plywood 5.4 ft long, up to 2.5 ft high with a soft hill outline, standing on the upper level at x 3.6–9.0, y 0.15–0.3 (just in front of the print), on two feet; painted dusk violet fading to mist blue, 4–5 tiny window dots'),
-      ('Palm cut-outs ×3', 'each 1.2 ft wide × 4 ft tall, dark midnight blue silhouettes, fixed to the drape at 4–8 ft: back wall x 0.4–1.6 and x 2.4–3.6, right wall y 12.6–13.8')],
- steps=['Measure the real ceiling height: the drape length and cost depend on it.',
-        'Fit the ceiling track and a rope backup along both walls first.',
-        'Hang the 5 print panels, each 5 × 5 ft, and tape the joins flat. The corner is rounded with a 1.5 ft radius.',
-        'Sew and pleat the drape at 1.5× fullness and hang it on rings so its hem laps the print by 6 in.',
-        'Sew a pocket along the top of the print on both walls for the star lights (block H fits them).',
-        'Glue the gold stars in irregular clusters.',
-        'Cut and paint the 12 choir angels (2 ft tall) in white and silver and fix them to the drape.',
-        'Cut the far-hill silhouette (5.4 × 2.5 ft) and the three palm cut-outs (1.2 × 4 ft) from 4 mm plywood or card; paint; stand the silhouette at y 0.2 on the upper level and pin the palms to the drape at 4–8 ft.',
-        'Check from the public spot: the print joins are flat, the pleats are even, and no colour is used outside the palette.'],
+ cut=[('Back-wall banner', '9 ft wide × 7 ft high (108 × 84 in), printed on matt flex or fabric from 2026/banners/back-banner-9x7ft.pdf; eyelets every 1 ft along the top; bottom edge on the deck (the bottom 18 in sits behind the raised level)'),
+      ('Right-wall banner', '16 ft wide × 7 ft high (192 × 84 in) from 2026/banners/right-banner-16x7ft.pdf; its left edge meets the back banner in the corner so the hills run on; houses (G), ridge (K) and the Magi shelf stand in front of it'),
+      ('Blue drape', 'from 7 ft up to the ceiling: about 6 ft drop (ceiling minus 7 ft), 25 ft run, 1.5× pleat fullness (about 20 m of fabric); bottom hem laps the banner top by 6 in'),
+      ('Track + rope backup', '25 ft ceiling track along both walls, rope backup, rings, hooks, clamps; track about 13 ft above the deck; a batten or rope at 7 ft for the banner eyelets'),
+      ('Gold stars', 'about 120 stars of card + glitter, glued on the drape in irregular clusters'),
+      ('Choir angels', '12 angels 2 ft tall cut from card or foam, painted white and silver, no glow paint, on the drape'),
+      ('Pocket for lights', 'a pocket along the top of each banner for the star lights from block H')],
+ steps=['Measure the real ceiling height: the drape drop is the ceiling height minus 7 ft.',
+        'Send both banner PDFs (2026/banners/) to the printer at full size: 9 × 7 ft and 16 × 7 ft, matt finish, eyelets every 1 ft along the top edge.',
+        'Fit the ceiling track and rope backup along both walls; fix a rope or batten at 7 ft above the deck on both walls for the banners.',
+        'Hang the back banner first, bottom edge on the deck, tied through its eyelets; then the right banner so its left edge meets the back banner in the corner and the hills line up.',
+        'Sew a pocket along the top of each banner for the star lights (block H fits them).',
+        'Pleat the drape at 1.5× fullness and hang it on rings from the track so its hem laps the banner top by 6 in.',
+        'Glue the gold stars in irregular clusters and fix the 12 white-and-silver angels to the drape.',
+        'Check from the public spot: the banners hang flat, the corner join lines up, the pleats are even.'],
  )
 
 X['K'] = dict(

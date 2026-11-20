@@ -20,7 +20,7 @@ DESC = [('A', 'The plywood stage floor itself: flat front 11.5 ft, step, raised 
         ('G', 'Narrowing street, 5 flat-roofed houses stepping down, well, census table, donkeys, stall, palm'),
         ('H', 'Path of light (thin gold line) from the front edge to the cave mouth'),
         ('I', 'Star burst (back-right corner), cloud spiral and gold rays to the cave'),
-        ('J', 'Backdrop edges, far-hill silhouette and palm cut-outs'),
+        ('J', 'Backdrop: banners 9 × 7 ft (back) and 16 × 7 ft (right), drape above'),
         ('K', 'Far village on a rock ridge and the Magi shelf along the right wall'),
         ('L', 'Two olive trees and the plaque'),
         ('N', 'Front rocks, pond set into the field, shepherd boy, front wall')]

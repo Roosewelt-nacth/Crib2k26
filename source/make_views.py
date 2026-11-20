@@ -69,13 +69,10 @@ add('H', 'angel lamp (clip lamp)', 'box', rect(1.8,2.3,0.3,0.3), 2.0, 2.5)
 add('I', 'star burst', 'star', circ(HANG[0],HANG[1],1.0), 10.5, 12.5)
 add('I', 'bead strands', 'strands', circ(HANG[0],HANG[1],0.9), 4.5, 10.5)
 add('I', 'cloud and angel spiral', 'spiral', [HANG, LND], 4.5, 10.5)
-add('J', 'back-wall print', 'box', rect(0,-0.12,9,0.12), 0.0, 5.0)
-add('J', 'back-wall drape', 'box', rect(0,-0.12,9,0.12), 5.0, CEIL, drape=True)
-add('J', 'right-wall print', 'box', rect(9.0,0,0.12,16), 0.0, 5.0)
-add('J', 'right-wall drape', 'box', rect(9.0,0,0.12,16), 5.0, CEIL, drape=True)
-add('J', 'far-hill silhouette', 'box', [(3.6,0.15),(9.0,0.15),(9.0,0.3),(3.6,0.3)], 1.5, 4.0)
-for (x, w) in ((0.4,1.2),(2.4,1.2)): add('J', 'palm cut-out', 'box', rect(x,-0.1,w,0.05), 4.0, 8.0)
-add('J', 'palm cut-out', 'box', rect(8.95,12.6,0.05,1.2), 4.0, 8.0)
+add('J', 'back-wall banner 9 x 7 ft', 'box', rect(0,-0.12,9,0.12), 0.0, 7.0)
+add('J', 'back-wall drape', 'box', rect(0,-0.12,9,0.12), 7.0, CEIL, drape=True)
+add('J', 'right-wall banner 16 x 7 ft', 'box', rect(9.0,0,0.12,16), 0.0, 7.0)
+add('J', 'right-wall drape', 'box', rect(9.0,0,0.12,16), 7.0, CEIL, drape=True)
 add('L', 'olive tree (front left)', 'tree', circ(0.7,14.3,0.55), 0.0, 2.6)
 add('L', 'olive tree (front right)', 'tree', circ(3.7,12.3,0.45), 0.0, 1.8)
 add('L', 'plaque', 'box', rect(3.2,15.5,2.0,0.4), 0.0, 0.8)
@@ -397,8 +394,8 @@ def part_groups(b):
             dia = math.hypot(p[0][0]-p[len(p)//2][0], p[0][1]-p[len(p)//2][1])*1.25
             size = f'canopy about {fi(dia)} across, {fi(z)} tall'
         elif nm == 'deck + skirting': size = '9 ft wide at the front × 16 ft deep; skirting 2 ft'
-        elif nm.endswith('print'): size = '5 ft high; wall length ' + ('16 ft' if 'right' in nm else '9 ft')
-        elif nm.endswith('drape'): size = 'from 5 ft up to the ceiling (about 13 ft above the deck); wall length ' + ('16 ft' if 'right' in nm else '9 ft')
+        elif 'banner' in nm: size = ('16 ft wide × 7 ft high' if 'right' in nm else '9 ft wide × 7 ft high') + ' printed banner, bottom edge on the deck'
+        elif nm.endswith('drape'): size = 'from 7 ft up to the ceiling (about 13 ft above the deck, a 6 ft drop); wall length ' + ('16 ft' if 'right' in nm else '9 ft')
         else:
             if len(p) == 4:
                 w = math.hypot(p[1][0]-p[0][0], p[1][1]-p[0][1]); d = math.hypot(p[2][0]-p[1][0], p[2][1]-p[1][1])

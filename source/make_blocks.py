@@ -171,21 +171,19 @@ add('I', name='Star and cloud spiral', items='6 cloud and angel spiral, 7 star b
     hands='Hangs above the hill. H fits the star light, the spiral strings and the ceiling feed. Hang after the drape track (J) is fitted.',
     tools='Ladder or scaffold, plumb line, pliers, wire cutters, fire-retardant spray')
 
-add('J', name='Backdrop', items='26 hills print, blue drape, gold stars, painted angel choir',
-    window='20 Nov → 17 Dec', days='7',
-    where='Both walls: back wall 9 ft and right wall 16 ft, rounded corner. Print 5 ft high; blue drape from 5 ft up to the ceiling (about 13 ft above the deck); about 120 gold stars; 12 angels 2 ft tall painted white and silver. A plywood far-hill silhouette 5.4 ft long (x 3.6–9.0) stands on the upper level 2.5 ft high in front of the print; three palm cut-outs 1.2 × 4 ft are fixed to the drape (two on the back wall, one on the right wall). Star lights are fitted behind the drape by block H.',
-    rows=[['Hills print on matt fabric / flex, 5 × 25 ft', '125 sq ft', '800', '1,750', '4,400'],
-          ['Blue drape, 8.5 ft drop × 25 ft (poly vs velvet)', '~28 m', '1,800', '2,600', '5,200'],
+add('J', name='Backdrop', items='26 two printed banners (9 × 7 ft and 16 × 7 ft, one night scene across the corner), blue drape above, gold stars, angel choir',
+    window='20 Nov → 17 Dec', days='6',
+    where='Two printed banners, bottom edge on the deck: back wall 9 ft wide × 7 ft high, right wall 16 ft wide × 7 ft high; one continuous painted Bethlehem night (hills, the town, palms, olive trees, stars) that meets at the corner. Above them, from 7 ft up to the ceiling (about 13 ft above the deck, a 6 ft drop), the midnight-blue drape with about 120 gold stars and 12 white-and-silver angels. Star lights are fitted behind the drape by block H. Print files: 2026/banners/.',
+    rows=[['Printed banners: matt flex or fabric, 9 × 7 ft + 16 × 7 ft (print files ready)', '175 sq ft', '1,750', '3,500', '6,100'],
+          ['Blue drape, 6 ft drop × 25 ft (poly vs velvet)', '~20 m', '1,300', '1,850', '3,700'],
           ['Gold stars: card + glitter + glue', '120', '600', '600', '1,000'],
           ['Curtain track, rope, hooks, clamps', '25 ft', '700', '1,500', '2,500'],
-          ['Stitching + pleat tape', 'lot', '0', '1,000', '1,600'],
-          ['Choir angels 2 ft, card or foam, white and silver paint', '12', '300', '600', '900'],
-          ['Far-hill silhouette: 4 mm plywood 5.4 × 2.5 ft + 2 feet', '1', '400', '700', '900'],
-          ['Palm cut-outs 1.2 × 4 ft: card or 4 mm plywood, dark paint', '3', '300', '500', '800']],
-    before=['Order the print and drape early; they are long-lead items.', 'Measure the real ceiling height; drape cost scales with it (about ₹280 per extra foot of drop).', 'Leave a pocket along the top of the print for the star lights (block H).'],
-    done=['Track and rope backup fitted; print joins flat from V.', 'Drape pleats even at 1.5× fullness; the hem laps the print by 6 in.', 'Twelve painted angels in white and silver, no glow paint.', 'Gold stars in irregular clusters; no colour other than the palette.'],
-    hands='Hangs on both walls. H fits the star points and the night-sky wash. Houses (G) leave 1 in below the drape.',
-    tools='Drill, rope, clamps, sewing machine, scissors')
+          ['Eyelets, cable ties, stitching + pleat tape', 'lot', '0', '800', '1,300'],
+          ['Choir angels 2 ft, card or foam, white and silver paint', '12', '300', '600', '900']],
+    before=['Send the two print files in 2026/banners/ (PDF, full size) to the printer early; ask for matt finish, eyelets every 1 ft along the top.', 'Measure the real ceiling height; the drape drop is ceiling minus 7 ft.', 'Leave a pocket along the top of each banner for the star lights (block H).'],
+    done=['Both banners hang flat, bottom edge on the deck, top at 7 ft; the scene meets at the corner.', 'Drape pleats even at 1.5× fullness; the hem laps the banner top by 6 in.', 'Twelve painted angels in white and silver, no glow paint.', 'Gold stars in irregular clusters; no colour other than the palette.'],
+    hands='Hangs on both walls. H fits the star points and the night-sky wash. Houses (G) and the ridge (K) stand in front of the right banner.',
+    tools='Drill, rope, clamps, cable ties, sewing machine, scissors')
 
 add('K', name='Far village and Magi caravan', items='14 far village (1:24), 15 Magi caravan on a wall shelf',
     window='10 Dec → 17 Dec', days='4',

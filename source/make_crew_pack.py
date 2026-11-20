@@ -67,7 +67,7 @@ def page4(k):
             f'<div class="box"><h2>Done when (tick each)</h2>{li(b["done"], "chk")}</div><div class="box"><h2>Hands over to</h2>{html.escape(b["hands"])}</div></div></div></section>')
 
 PER = 3
-def npg(k): return 4 + -(-len(og.O[k]) // PER)
+def npg(k): return 4 + -(-len(og.O[k]) // PER) + (1 if k == 'J' else 0)
 
 def obj_pages(k):
     objs = og.O[k]; out = ''
@@ -81,7 +81,18 @@ def obj_pages(k):
                       + f'<p><b>How to make it:</b></p><ol>{"".join(f"<li>{html.escape(s)}</li>" for s in steps)}</ol></div>')
         n = 5 + p // PER
         out += f'<section class="pg">{mc.head(k, "Every object, one by one: size, materials, how to make it", f"Page {n} of {npg(k)} · objects")}<div class="ob">{cards}</div></section>'
+    if k == 'J': out += banner_page()
     return out
+
+def banner_page():
+    bd = os.path.join(ROOT, '2026', 'banners')
+    for n in ('banners-measured.png', 'back-banner-9x7ft.png', 'right-banner-16x7ft.png'): shutil.copy(os.path.join(bd, n), os.path.join(OUT, 'img', n))
+    pj = f'Page {npg("J")} of {npg("J")} · banners'
+    return (f'<section class="pg">{mc.head("J", "The two banners: print files and measurements", pj)}'
+            '<div class="box" style="margin-top:6px"><img src="img/banners-measured.png" style="width:100%;max-height:58mm;object-fit:contain"></div>'
+            '<div class="cols3" style="grid-template-columns:108fr 192fr"><div class="box"><h2>Back wall · 9 ft × 7 ft</h2><img src="img/back-banner-9x7ft.png" style="width:100%"></div>'
+            '<div class="box"><h2>Right wall · 16 ft × 7 ft</h2><img src="img/right-banner-16x7ft.png" style="width:100%"></div></div>'
+            '<p class="note">Print files at full size: 2026/banners/back-banner-9x7ft.pdf and right-banner-16x7ft.pdf (full size, 100 px per inch; JPG also there; the free Pexels night photo as it is, see 2026/banners/source/SOURCES.txt). Matt flex or fabric, eyelets every 1 ft along the top. Bottom edge on the deck, top at 7 ft; the blue drape hangs above from 7 ft to the ceiling.</p></section>')
 
 def team_cover(lab, ks):
     svg, legend = tp.team_layout_svg(ks)
