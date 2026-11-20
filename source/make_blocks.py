@@ -18,7 +18,7 @@ TEAMS = {'A': 'Stage team: Vk, Samuel',
          'J': 'Team 3: Austin Joel, Richard, Allwyn',
          'K': 'Team 4: Janet, Mithul, Yugesh, Stephen, Alvin',
          'L': 'Stage team: Vk, Samuel',
-         'M': 'To be assigned (suggest the Stage team: Vk, Samuel)',
+         'M': 'Stage team: Vk, Samuel',
          'N': 'Team 2: Lenin, Runo, Aarthi, Milton, Monus'}
 
 B = {}

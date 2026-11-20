@@ -88,7 +88,7 @@ def team_cover(lab, ks):
     rows = ''.join(f'<tr><td><b>{k}</b></td><td>{html.escape(mv.NAMES[k])}</td><td>{mc.fd(*mc.window(k))}</td><td>{len(og.O[k])}</td></tr>' for k in ks)
     mats = ''.join(f'<li><b>{k}</b> · {html.escape(r[0])} ({html.escape(r[1])})</li>' for k in ks for r in mb.B[k]['rows'] if r[0] != 'Total')
     tools = '; '.join(f'{k}: {mb.B[k]["tools"]}' for k in ks)
-    extra = '<p class="note">Block M is not assigned yet; it is in this pack as suggested.</p>' if 'M' in ks else ''
+    extra = ''
     return (f'<section class="pg"><div class="head" style="background:#2b2a33"><div><h1>{html.escape(lab)} · team pack</h1><p>Crib 2026 · That Night in Bethlehem · your blocks: {", ".join(ks)} · everything your team builds, sizes in feet</p></div></div>'
             f'<div class="cols3" style="margin-top:6px;grid-template-columns:1.45fr 1fr"><div class="box"><h2>Your area on the stage (top view, 1 ft grid; x from the LEFT edge, y from the BACK wall)</h2>{svg}</div>'
             f'<div><div class="box"><h2>Your blocks</h2><table><tr><th>Block</th><th>Name</th><th>Build</th><th>Objects</th></tr>{rows}</table>{extra}</div>'
