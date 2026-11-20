@@ -54,7 +54,7 @@ def dims_lines(k):
     for e in mv.E:
         if e['b'] != k: continue
         nm = e['name']; p = e['poly']; z = e['z1'] - e['z0']
-        if e['kind'] == 'strands': txt = '60 strands, each 6 ft long, on a 1.8 ft ring'
+        if e['kind'] == 'strands': txt = '30 strands, each 6 ft long, on a 1.8 ft ring'
         elif e['kind'] == 'spiral': txt = '2.5 ft wide, 3 turns, about 6.5 ft tall, 30 small angels'
         elif e['kind'] == 'star': txt = '2 ft wide'
         elif e['kind'] == 'flat': txt = '0.5 ft wide × 7.7 ft long, flat in the deck'

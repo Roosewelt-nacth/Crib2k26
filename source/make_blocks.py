@@ -24,7 +24,7 @@ B = {}
 def add(k, **kw): B[k] = kw
 
 add('A', name='Two-layer stage', items='12 second layer (the upper level); the rented deck stays as the lower level',
-    window='20 Nov → 5 Dec', days='4',
+    window='20 Nov → 5 Dec', days='4', phase='20–22 Nov: measure on site and buy wood (week 1). 23 Nov – 5 Dec: build in the workshop and fit on the deck.',
     where='Lower level: the rented deck, flat, 9 ft wide × 16 ft long, 2 ft above the church floor. Upper level: a plywood box 9 ft wide × 4.5 ft deep × 1.5 ft high against the back wall (the step starts 11.5 ft from the front). Black skirting on the front and the left side.',
     rows=[['Plywood 9–12 mm, 8 × 4 ft', '3 sheets', '1,950', '3,900', '5,100'],
           ['Pine battens 2 × 2 in', '~90 ft', '1,800', '2,000', '2,800'],
@@ -59,16 +59,17 @@ add('B', name='Cave, rock hill and Holy Family', items='2 cave, 3 Holy Family wi
 add('C', name='House with upper room', items='4 house with the upper guest room (kataluma), cut open',
     window='30 Nov → 14 Dec', days='5',
     where='4 × 2 ft room, floor at +3.3 ft on the hill top, room height 1.5 ft, roof at +4.8 ft. Turned 33° toward V. Outside stair of 8 steps rising 3.3 ft.',
-    rows=[['Thermocol 2 in, 8 × 4 ft', '2 sheets', '2,400', '2,400', '3,200'],
-          ['Plywood 12 mm floor tray, 4 × 2 ft', '1 piece', '400', '400', '600'],
-          ['PoP + whitewash paint', '1 bag + 1 L', '1,100', '1,100', '1,300'],
+    rows=[['Plywood 4 mm, 8 × 4 ft (walls, roof)', '1 sheet', '700', '900', '1,100'],
+          ['Plywood 9 mm floor tray, 4 × 2 ft + 2 × 2 in posts', '1 set', '400', '500', '700'],
+          ['Pine strip 1 × 1 in (corners) + screws, wood glue', '~20 ft', '300', '400', '500'],
+          ['Wall putty + sand (texture) + whitewash paint', '1 bag + 1 L', '900', '1,000', '1,200'],
           ['Sleeping travellers 1:6 (clay + cloth, or bought)', '6', '0', '600', '2,400'],
           ['Props: jars, baskets, mats, blankets', 'lot', '500', '500', '900'],
           ['Balsa / bamboo for beams, door', 'lot', '250', '250', '400']],
     before=['Take the cave arch height (2.5 ft) and the +3.3 ft hill top from block B.', 'Gather six 1:6 sleeping travellers (about 1 ft long) or clay to make them.'],
-    done=['Whole room weighs under 8 kg and sits on the hill top and the two posts.', 'Hidden details placed: cat on the roof, clay oven, sleeping child.', 'Three small holes with 1 ft cable tails are left for the room lamps (block H fits them).', 'Lifts off the hill as one piece.'],
+    done=['Plywood room, screwed (not glued), weighs under 12 kg and sits on the two posts and the hill top.', 'Hidden details placed: cat on the roof, clay oven, sleeping child.', 'Three small holes with 1 ft cable tails are left for the room lamps (block H fits them).', 'Lifts off the hill as one piece.'],
     hands='Sits on B. H fits the three room lamps through the holes you leave.',
-    tools='Hot knife, hobby saw, glue gun, small brushes')
+    tools='Jigsaw or hand saw, drill + 3 mm bit, screwdriver, sandpaper, putty knife, brushes')
 
 add('E', name="Shepherds' field", items='8 shepherds, sheep and campfire; 11 sheepfold; 13 watchtower; the dry-stone step wall',
     window='26 Nov → 11 Dec', days='6',
@@ -105,7 +106,8 @@ add('F', name='Pipe-cleaner angel choir', items='9 the angel choir (replaces the
 add('G', name='Village street', items='16–18 three houses, 19 flat cobbled street, 20 well, 21 census table, 22 donkeys and travellers',
     window='30 Nov → 17 Dec', days='9',
     where='Right wall side, all on the flat lower level (no slope). Street 1.1 × 6.7 ft; houses 2.0 / 2.5 / 1.8 ft tall at 1:6; well 0.9 ft across, 0.6 ft high; figures 1.2 ft.',
-    rows=[['Thermocol 2 in, 8 × 4 ft', '4 sheets', '2,400', '4,800', '6,000'],
+    rows=[['Plywood 6 mm, 8 × 4 ft (house walls, roofs) + 12 mm offcuts (bases)', '2 sheets', '1,800', '2,400', '3,000'],
+          ['Pine strip 1 × 1 in (corners) + screws, wood glue', '~40 ft', '500', '700', '900'],
           ['Lime plaster / PoP + white paint', 'lot', '1,600', '2,400', '3,000'],
           ['Doors, beams, stairs (balsa, bamboo)', 'lot', '700', '700', '1,000'],
           ['Cobbles: cut cork or grooved clay', 'lot', '400', '600', '900'],
@@ -115,9 +117,9 @@ add('G', name='Village street', items='16–18 three houses, 19 flat cobbled str
           ['Well: PVC ring, pebbles, blue plastic sheet for the water', '1', '500', '500', '800'],
           ['Miniature props: jars, baskets, barrels', 'lot', '600', '600', '1,000']],
     before=['Leave 15 small window holes and a 1 ft cable tail inside each house (block H fits the lamps).', 'Keep 1 in clear below the drape bottom (block J).'],
-    done=['Three houses plastered and lime-washed; plain flat roofs, no white frosting.', 'Street is flat with a cobble pattern.', 'Well has a blue plastic-sheet water surface (no real water).', 'Figures stand without glue; cable tails reach the right-wall trunk.'],
+    done=['Three plywood houses, screwed, putty-textured and lime-washed; plain flat roofs, no white frosting.', 'Street is flat with a cobble pattern.', 'Well has a blue plastic-sheet water surface (no real water).', 'Figures stand without glue; cable tails reach the right-wall trunk.'],
     hands='Sits against the right wall on A. H fits the window lamps. Olive trees and plaque are in L.',
-    tools='Hot knife, plaster, cork, glue gun, small brushes')
+    tools='Jigsaw or hand saw, drill + 3 mm bit, screwdriver, sandpaper, putty knife, glue gun, brushes')
 
 add('H', name='Lights (one plug, one box)', items='1 path of light, 27 box, 28 speaker; every light in the crib',
     window='23 Nov → 22 Dec (bench build first)', days='9',

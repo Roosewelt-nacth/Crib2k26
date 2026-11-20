@@ -51,10 +51,10 @@ Rules: gold only in five places (cave, star, path, lamps, Magi lanterns); about 
 ## Costs (rough, ±25%, 10% contingency included)
 | Tier | Total | What it counts |
 |---|---|---|
-| Prop-only | ₹71,885 | Prop materials only. Figures reused from 2023, stage rented, lights rented. Half the 2023 plywood reused. Smaller rock, painted hills, simpler backdrop and cascade. |
-| Lean | ₹1,37,720 | Reuse and DIY where possible, own lights, own electrics |
-| Full | ₹2,30,835 | Everything bought new |
-Totals as rebuilt on 19 Nov for the FINAL plan (two layers, craft angels, lights as one block with one plug, pond and mirror included; they replace the earlier ₹82,885 / ₹1,50,535 / ₹2,53,660 and ₹84,645 / ₹1,58,015 / ₹2,66,640). Per block: see the owner guide start page. Block H (lights) is ₹11,550 / ₹22,550 / ₹34,900. All costs are estimates; get quotes. The interactive pack, `build-pack.pdf` and `index.html` still show the old plan and numbers.
+| Prop-only | ₹70,015 | Prop materials only. Figures reused from 2023, stage rented, lights rented. Half the 2023 plywood reused. Smaller rock, painted hills, simpler backdrop and cascade. |
+| Lean | ₹1,34,640 | Reuse and DIY where possible, own lights, own electrics |
+| Full | ₹2,26,765 | Everything bought new |
+Totals as rebuilt on 20 Nov for the FINAL plan (two layers, craft angels, lights as one block with one plug, pond and mirror included, plywood houses in C and G; they replace ₹71,885 / ₹1,37,720 / ₹2,30,835 of 19 Nov and the earlier ₹82,885 / ₹1,50,535 / ₹2,53,660 and ₹84,645 / ₹1,58,015 / ₹2,66,640). Per block: see the owner guide start page. Block H (lights) is ₹11,550 / ₹22,550 / ₹34,900. All costs are estimates; get quotes. The interactive pack, `build-pack.pdf` and `index.html` still show the old plan and numbers.
 
 ## Schedule (today when written: 16 Nov 2026)
 Week 1 (16–22 Nov): measure on site, order long-lead items, start frame and backdrop. 23 Nov → 13 Dec: build in the workshop. 14–17 Dec: install in the church. 18–23 Dec: wire, aim, rehearse. 24 Dec: open. About 80 person-days with 6–8 volunteers.
@@ -74,6 +74,8 @@ Deck height (2 ft assumed) · ceiling height (about 15 ft assumed) and ceiling t
 - Two flat layers, no slope; craft props only (no screen, mist, resin, UV, microcontroller); pipe-cleaner angel choir is block F; lights are block H: one plug from the church socket (right behind the stage, back-left corner) into one box at the back-left of the upper layer, 12 V inside, three hand switches (Lamps, Night sky, Glory), Austin Joel's team (Team 3) builds it. Colour rule: gold only in the cave, star, path, lamps and Magi lanterns; warm white, cool white and deep indigo otherwise; no red, bright green, pink, multicolour, flashing or UV.
 - Approved looks: `2026/images/generated/crib-final-3q.jpg` and `crib-final-top.jpg` (the finished crib), `stage-bare-3q.jpg` and `stage-bare-top.jpg` (the empty stage). Reference drawings: `2026/images/top-view-reference.png`, `stage-only-reference.png`, `lighting-plan.png`.
 - Prompts: `2026/docs/final-prompts.md` (finished crib, night version, bare stage, top views). Plans: `craft-simplification-plan.md`, `lighting-plan.md`.
+- Houses (C guest room, G houses A/B/C) are PLYWOOD (20 Nov, user): 4–6 mm walls and roof on 1 × 1 in corner strips, 9–12 mm base, screwed for reuse, putty + sand texture, whitewash. Guest room under 12 kg. Reuse first everywhere (2023 figures, plywood, LEDs).
+- Crew pack (66 pages): per block pages 1–4 plus "Every object, one by one" pages (size, materials, reuse tip, simple steps; 6 objects per page) from `source/object_guide.py`. No prices anywhere in the crew pack (`nop()` strips ₹ from "before").
 - Outputs to send: crew = `2026/crew/crew-pack.pdf` (no prices). Keep: owner = `2026/owner/owner-guide.pdf`.
 - Regenerate everything: `make_views.py`, `make_topview_ref.py`, `make_lighting.py`, `make_stage_ref.py`, then `make_crew.py` and `make_crew_pack.py` (block data in `make_blocks.py`, steps in `crew_steps.py`, image looks in `make_prompts.py`).
 - `2026/blocks/` and `2026/share/` (older block sheets and share pack) were removed because they showed the old plan.

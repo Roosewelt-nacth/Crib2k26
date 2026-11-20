@@ -459,7 +459,7 @@ def m8():
         a = math.radians(k * 6); d2.circ(.9 * math.cos(a), .9 * math.sin(a), .018, "#9aa6c9", PEN, .5)
     d2.dh(-1, 1, 1, "2 ft star, ring 1.8 ft", 30)
     d2.txt(0, -1.15, "TOP VIEW", 12, INK, "middle", "bold")
-    d2.ptxt(300, 70, "60 strands, one every 6°", 12.5, INK); d2.ptxt(300, 90, "each strand 6 ft of crystal beads", 12.5, INK)
+    d2.ptxt(300, 70, "30 strands, one every 12°", 12.5, INK); d2.ptxt(300, 90, "each strand 6 ft of crystal beads", 12.5, INK)
     d2.ptxt(300, 110, "fixed to eyelets on a 1.8 ft ring", 12.5, INK)
     # side view
     d2.ox, d2.oy = 620, 140

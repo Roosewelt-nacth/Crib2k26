@@ -356,11 +356,11 @@ def part_groups(b):
     mine = [e for e in E if e['b'] == b]; groups = {}
     for idx, e in enumerate(mine):
         p = e['poly']; nm = e['name']; z = e['z1'] - e['z0']; xs = [q[0] for q in p]; ys = [q[1] for q in p]
-        if e['kind'] == 'strands': size = '60 strands, each 6 ft long, hung from a 1.8 ft ring'
+        if e['kind'] == 'strands': size = '30 strands, each 6 ft long, hung from a 1.8 ft ring (one every 12°)'
         elif e['kind'] == 'spiral': size = '2.5 ft wide, 3 turns, from 10.5 ft down to 4.5 ft above the deck; 30 small angels (4-6 in)'
         elif e['kind'] == 'star': size = '2 ft wide, hung about 1 ft below the ceiling'
         elif e['kind'] == 'flat': size = '0.5 ft (6 in) wide × 7.7 ft long, set flush in the deck'
-        elif nm == 'pond': size = '1.6 ft (19 in) wide × 3 ft (36 in) long; sealed tray 1.5 in high holding 1 in of water, pebble edge'
+        elif nm == 'pond': size = '1.6 ft (19 in) wide × 3 ft (36 in) long; tray 1.5 in high, blue cloth under a clear 3 mm sheet (NO water), pebble edge'
         elif nm == 'selfie mirror': size = '2 ft (24 in) wide × 5 ft (60 in) tall acrylic mirror in a frame about 1.5 in thick, on a weighted base; stands on the church floor, faces the queue, turned about 23° toward the crib'
         elif nm == 'hero angel (pipe cleaner)': size = 'about 2 ft (24 in) tall, white chenille and tulle, on a wire pole about 1 ft long'
         elif nm == 'small angel (pipe cleaner)': size = '8–10 in tall on a wire stake 8–12 in long, white chenille and tulle'
@@ -385,6 +385,7 @@ def part_groups(b):
             else: w = max(xs)-min(xs); d = max(ys)-min(ys)
             big, small = max(w, d), min(w, d)
             size = f'{fi(big)} × {fi(small)}' + (f' × {fi(z)} high' if z > 0.05 else '')
+            if nm.startswith('house '): size = f'{fi(max(xs)-min(xs))} wide (across) × {fi(max(ys)-min(ys))} long (along the wall)' + (f' × {fi(z)} high' if z > 0.05 else '')
             if e['kind'] == 'cave': size += ', arch 2.5 ft high'
         if e['kind'] in ('cave',) or nm in ('Holy Family', 'guest room'): size += '; turned 33° toward V'
         if e['kind'] in ('spiral', 'strands', 'star', 'flat'): where = f'centre x {sum(xs)/len(xs):.1f} ft from the left edge, y {sum(ys)/len(ys):.1f} ft from the back wall' if e['kind'] in ('star', 'strands') else 'see top view'

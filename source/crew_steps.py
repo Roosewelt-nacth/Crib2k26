@@ -3,7 +3,7 @@ Sizes in feet and inches. Positions are measured from the LEFT edge (x) and the 
 Things marked 'about' are working sizes: confirm on the first mock-up."""
 
 STACK_NOTE = ('STACK (cave, hill, house): the cave floor is at deck level and the arch is 2.5 ft high. The hill top and the house floor are at +3.3 ft, so about 10 in of rock sits above the arch. '
-              'The room is 1.5 ft high, so its roof is at +4.8 ft. Make a cardboard mock-up of cave + house first and look at it from the public spot before cutting thermocol.')
+              'The room is 1.5 ft high, so its roof is at +4.8 ft. Make a cardboard mock-up of cave + house first and look at it from the public spot before cutting the hill or the wood.')
 
 X = {}
 
@@ -43,21 +43,23 @@ X['B'] = dict(
  )
 
 X['C'] = dict(
- cut=[('Floor tray, plywood 12 mm', '4 ft × 2 ft'),
-      ('Walls, thermocol 2 in thick', 'back wall 4 ft × 1.5 ft high; two side walls 2 ft × 1.5 ft high; the front is cut open'),
-      ('Roof slab', '4 ft × 2 ft, with a parapet about 3 in high around it; roof at +4.8 ft'),
-      ('Posts 2 × 2 in', '2 posts, length 3.3 ft (about 39 in) minus the plywood thickness, standing on the cave base (not on the cave roof)'),
-      ('Outside stair', '8 steps, total rise 3.3 ft (40 in), so each step rises 5 in; tread about 6 in'),
-      ('Light points', '3 small holes in the room ceiling with a 1 ft cable tail each (block H fits the lamps)'),
+ cut=[('Floor tray, plywood 9 mm', '4 ft × 2 ft; 1 × 1 in pine strip screwed under all four edges'),
+      ('Back wall, plywood 4 mm', '4 ft long × 1.5 ft high'),
+      ('Side walls, plywood 4 mm', '2 pieces, 2 ft × 1.5 ft high; the front is left open'),
+      ('Corner strips, pine 1 × 1 in', '4 pieces, 1.5 ft long, inside each corner; walls are glued and screwed to them'),
+      ('Roof slab, plywood 4 mm', '4 ft × 2 ft, with a parapet of 1 × 3 in pine strip around three sides; roof at +4.8 ft'),
+      ('Posts 2 × 2 in', '2 posts, 3.3 ft (40 in) minus 9 mm, standing on the cave base (not on the cave roof)'),
+      ('Outside stair', '8 wood blocks from offcuts, each 5 in high, 6 in deep, 1 ft wide, stacked and screwed; total rise 3.3 ft (40 in)'),
+      ('Light points', '3 holes of 10 mm in the roof slab with a 1 ft cable tail each (block H fits the lamps)'),
       ('Dressing', '6 sleeping travellers 1:6 (about 1 ft long), jars, mats, blankets; cat on the roof, clay oven, sleeping child')],
  steps=['Check the cave arch (2.5 ft) and the +3.3 ft hill top with the mock-up (see block B). ' + STACK_NOTE,
-        'Cut the 12 mm plywood floor tray 4 × 2 ft. It rests on the hill top at +3.3 ft and on two 2 × 2 in posts that stand on the cave base; cut the posts so the floor is exactly 3.3 ft above the deck.',
-        'Cut the walls from 2 in thermocol: back wall 4 ft × 1.5 ft, side walls 2 ft × 1.5 ft. Glue them to the tray and leave the front open.',
-        'Make the flat roof slab 4 × 2 ft with a 3 in parapet and fit it. The whole room must weigh under 8 kg.',
-        'Plaster and whitewash with plain flat roofs (no white frosting). Cut the outside stone steps: 8 steps, each 5 in high and about 6 in deep.',
-        'Cut the three lamp holes and leave a 1 ft cable tail at each.',
+        'Cut the 9 mm plywood floor tray 4 × 2 ft and screw 1 × 1 in strips under its edges. It rests on the hill top at +3.3 ft and on two 2 × 2 in posts that stand on the cave base; cut the posts so the floor is exactly 3.3 ft above the deck.',
+        'Cut the walls from 4 mm plywood: back wall 4 ft × 1.5 ft, side walls 2 ft × 1.5 ft. Glue and screw them to the tray and to 1 × 1 in corner strips; leave the front open.',
+        'Cut the roof slab 4 × 2 ft from 4 mm plywood, add a 3 in parapet strip on three sides and screw it on (no glue, so it lifts off for the lamps). The whole room must weigh under 12 kg.',
+        'Fill screw heads and joints with wall putty, then brush on putty mixed with fine sand for a stone texture; whitewash; roofs plain flat (no white frosting). Make the 8 stair blocks (5 in rise, 6 in tread) from offcuts.',
+        'Drill the three 10 mm lamp holes in the roof slab and leave a 1 ft cable tail at each.',
         'Dress the room: mats, blankets, jars, six sleepers. Add the hidden details: cat on the roof, clay oven, sleeping child.',
-        'Check the room lifts off the hill as one piece and passes the church door.'],
+        'Check the room lifts off the hill as one piece and passes the church door. After Christmas unscrew the roof and store the room flat for next year.'],
  )
 
 X['E'] = dict(
@@ -91,16 +93,17 @@ X['F'] = dict(
  )
 
 X['G'] = dict(
- cut=[('House A', '1.4 × 1.6 ft, 2.0 ft high (x 7.6–9.0, y 9.4–11.0)'),
-      ('House B (outside stair)', '1.6 × 1.8 ft, 2.5 ft high (x 7.4–9.0, y 11.3–13.1)'),
-      ('House C', '1.4 × 1.6 ft, 1.8 ft high (x 7.6–9.0, y 13.4–15.0)'),
+ cut=[('House A', '1.4 ft wide (across) × 1.6 ft long (along the wall), 2.0 ft high (x 7.6–9.0, y 9.4–11.0)'),
+      ('House B (outside stair)', '1.6 ft wide (across) × 1.8 ft long (along the wall), 2.5 ft high (x 7.4–9.0, y 11.3–13.1)'),
+      ('House C', '1.4 ft wide (across) × 1.6 ft long (along the wall), 1.8 ft high (x 7.6–9.0, y 13.4–15.0)'),
+      ('House build (all three)', '6 mm plywood walls and flat roof on 1 × 1 in pine corner strips, 12 mm plywood base, glued and screwed; back (wall side) left open for the lamps; putty-and-sand texture, lime-wash'),
       ('Cobbled street', '1.1 ft wide × 6.7 ft long, flat at deck level, no slope (x 6.2–7.3, y 9.3–16.0), cobble pattern in cork or clay'),
       ('Well', '0.9 ft across, 0.6 ft high, blue plastic sheet for the water (centre x 5.6, y 11.2)'),
       ('Census scene', 'table 1.4 × 1.0 ft with a standing soldier, a seated scribe and scrolls, figures 1.2 ft (x 4.5–5.9, y 12.8–13.8); 2 donkeys 1.2 × 0.6 ft, 0.6 ft high, and 2 travellers (x 4.6–5.8, y 10.0–10.6)'),
       ('Light points', '15 small window holes (A 5, B 6, C 4) and a 1 ft cable tail inside each house (block H fits the lamps)')],
- steps=['Cut house blocks from 2 in thermocol: A 1.4 × 1.6 ft × 2.0 ft, B 1.6 × 1.8 ft × 2.5 ft, C 1.4 × 1.6 ft × 1.8 ft. Cut doors (about 0.9 ft high at 1:6) and windows.',
+ steps=['Build three plywood boxes (6 mm walls on 1 × 1 in corner strips, 12 mm base, screwed): A 1.4 ft wide × 1.6 ft long × 2.0 ft high, B 1.6 × 1.8 × 2.5 ft, C 1.4 × 1.6 × 1.8 ft. The back (wall side) stays open. Cut doors (0.9 ft high × 0.5 ft wide) and windows (4 × 3 in) with a jigsaw.',
         'Add wood lintels and the outside stair on house B.',
-        'Plaster, lime-wash and stain the cut edges with a thin brown glaze. Walls stay 2 in thick; roofs plain flat plaster.',
+        'Fill joints and screw heads with wall putty, brush on putty mixed with fine sand for a stone texture, lime-wash, and glaze the door and window edges thin brown. Roofs plain and flat.',
         'Make the street 1.1 × 6.7 ft, flat, with a cobble pattern in cork or grooved clay.',
         'Build the well (0.9 ft across, 0.6 ft high) with a blue plastic sheet for the water.',
         'Place the houses against the right wall; keep 1 in clear below the drape bottom (block J).',
