@@ -1,11 +1,11 @@
-"""Block data for the 2026 crib (12 blocks A, B, C, E-M; there is no D). Plan of 19 Nov 2026:
+"""Block data for the 2026 crib (13 blocks A, B, C, E-N; there is no D). Plan of 19 Nov 2026:
 two flat layers (deck + a second layer 1.5 ft high across the back 4.5 ft), craft props, one-plug lighting (block H), pond + selfie mirror (block M).
 Costs are rough estimates in rupees (reuse / lean / all new), +-25%. Used by make_crew.py (owner guide) and make_crew_pack.py (crew pack)."""
 import os, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COL = {'A': (120,120,120), 'B': (230,120,20), 'C': (200,50,50), 'E': (40,150,70), 'F': (120,60,200),
-       'G': (30,110,220), 'H': (210,170,0), 'I': (0,170,190), 'J': (60,60,160), 'K': (230,60,160), 'L': (110,200,60), 'M': (0,120,110)}
+       'G': (30,110,220), 'H': (210,170,0), 'I': (0,170,190), 'J': (60,60,160), 'K': (230,60,160), 'L': (110,200,60), 'M': (0,120,110), 'N': (150,110,60)}
 
 TEAMS = {'A': 'Stage team: Vk, Samuel',
          'B': 'Team 4: Janet, Mithul, Yugesh, Stephen, Alvin',
@@ -18,7 +18,8 @@ TEAMS = {'A': 'Stage team: Vk, Samuel',
          'J': 'Team 3: Austin Joel, Richard, Allwyn',
          'K': 'Team 4: Janet, Mithul, Yugesh, Stephen, Alvin',
          'L': 'Stage team: Vk, Samuel',
-         'M': 'To be assigned (suggest the Stage team: Vk, Samuel)'}
+         'M': 'To be assigned (suggest the Stage team: Vk, Samuel)',
+         'N': 'Team 2: Lenin, Runo, Aarthi, Milton, Monus'}
 
 B = {}
 def add(k, **kw): B[k] = kw
@@ -73,13 +74,15 @@ add('C', name='House with upper room', items='4 house with the upper guest room 
 
 add('E', name="Shepherds' field", items='8 shepherds, sheep and campfire; 11 sheepfold; 13 watchtower; the dry-stone step wall',
     window='26 Nov → 11 Dec', days='6',
-    where='Left side. Lower level: 2 shepherds, 6 sheep and a campfire (x 0.2–1.9, y 7.0–9.6). Upper level behind the step: sheepfold 2 × 1.3 ft (x 0.4–2.4, y 1.75–3.05) and a 1 ft round watchtower 1.5 ft tall at x 3.0, y 1.0. The step face (9 ft × 1.5 ft) is faced as a dry-stone wall.',
+    where='Left side. Lower level: a low terrace wall 1.55 × 0.25 ft, 0.5 ft high (x 0–1.55, y 6.3), 2 standing shepherds 1 ft tall and 1 lying down, 14 sheep spread from y 4.6 to 9.6, a campfire at x 1.0, y 8.3, a black goat-hair tent, boulders, thorn bushes, a stone trough and a fig tree. Upper level behind the step: sheepfold 2 × 1.3 ft (x 0.4–2.4, y 1.75–3.05) and a 1 ft round watchtower 1.5 ft tall at x 3.0, y 1.0. The step face (9 ft × 1.5 ft) is faced as a dry-stone wall.',
     rows=[['Thermocol 2 in, 8 × 4 ft (step wall, sheepfold base)', '2 sheets', '1,600', '3,200', '3,900'],
           ['PoP + grout', '1 bag', '400', '600', '800'],
           ['Soil, sand, artificial grass, moss', 'lot', '900', '900', '1,300'],
           ['Paint + brushes', '3 L', '750', '1,100', '1,500'],
-          ['Shepherd figures 1.2 ft (old man, young man + lamb)', '2', '0', '2,400', '5,000'],
-          ['Wool sheep', '6', '0', '600', '1,800'],
+          ['Shepherd figures 1 ft (old man, young man + lamb, one lying down)', '3', '0', '3,000', '6,000'],
+          ['Wool sheep (pipe cleaner + wool, made by the team)', '14', '300', '700', '1,800'],
+          ['Terrace wall: thermocol 2 in strip + pebbles', '1', '100', '200', '300'],
+          ['Goat-hair tent (felt or old blanket), trough, fig tree, boulders, thorn bushes', 'lot', '200', '400', '700'],
           ['Campfire: twigs and pebbles (light fitted by H)', '1', '100', '100', '200'],
           ['Pebbles + glue for the sheepfold', 'lot', '500', '500', '600'],
           ['Watchtower: PVC pipe, clay, pebbles', '1', '500', '500', '700']],
@@ -103,11 +106,14 @@ add('F', name='Pipe-cleaner angel choir', items='9 the angel choir (replaces the
     hands='Stands on the upper level beside E. H clips a cool-white angel lamp above them.',
     tools='Wire cutters, pliers, glue gun, scissors')
 
-add('G', name='Village street', items='16–18 three houses, 19 flat cobbled street, 20 well, 21 census table, 22 donkeys and travellers',
+add('G', name='Village street', items='16–18 five houses stepping down toward the back, 19 cobbled street that narrows away from you, 20 well, 21 census table, 22 donkeys and travellers, market stall, palm, chickens',
     window='30 Nov → 17 Dec', days='9',
-    where='Right wall side, all on the flat lower level (no slope). Street 1.1 × 6.7 ft; houses 2.0 / 2.5 / 1.8 ft tall at 1:6; well 0.9 ft across, 0.6 ft high; figures 1.2 ft.',
-    rows=[['Plywood 6 mm, 8 × 4 ft (house walls, roofs) + 12 mm offcuts (bases)', '2 sheets', '1,800', '2,400', '3,000'],
-          ['Pine strip 1 × 1 in (corners) + screws, wood glue', '~40 ft', '500', '700', '900'],
+    where='Right wall side, all on the flat lower level. Five plywood houses along the right wall, tallest at the front: 3.5 / 3.0 / 2.5 / 2.0 / 1.5 ft (1:6, people 1 ft). Street 1.25 ft wide at the front (y 16) narrowing to 0.55 ft at the back (y 9.2). Well, census table, donkeys, a market stall at the front and a palm at the back.',
+    rows=[['Plywood 6 mm, 8 × 4 ft (house walls, roofs) + 12 mm offcuts (bases)', '3 sheets', '2,700', '3,600', '4,500'],
+          ['Pine strip 1 × 1 in (corners) + screws, wood glue', '~70 ft', '800', '1,100', '1,400'],
+          ['Market stall: sticks, cloth awning, tiny baskets', '1', '200', '300', '500'],
+          ['Palm tree 3.5 ft: wire, jute, paper or card fronds', '1', '200', '300', '500'],
+          ['Washing line, hanging lamps, chickens (clay)', 'lot', '200', '300', '500'],
           ['Lime plaster / PoP + white paint', 'lot', '1,600', '2,400', '3,000'],
           ['Doors, beams, stairs (balsa, bamboo)', 'lot', '700', '700', '1,000'],
           ['Cobbles: cut cork or grooved clay', 'lot', '400', '600', '900'],
@@ -116,8 +122,8 @@ add('G', name='Village street', items='16–18 three houses, 19 flat cobbled str
           ['Travellers', '2', '0', '800', '2,000'],
           ['Well: PVC ring, pebbles, blue plastic sheet for the water', '1', '500', '500', '800'],
           ['Miniature props: jars, baskets, barrels', 'lot', '600', '600', '1,000']],
-    before=['Leave 15 small window holes and a 1 ft cable tail inside each house (block H fits the lamps).', 'Keep 1 in clear below the drape bottom (block J).'],
-    done=['Three plywood houses, screwed, putty-textured and lime-washed; plain flat roofs, no white frosting.', 'Street is flat with a cobble pattern.', 'Well has a blue plastic-sheet water surface (no real water).', 'Figures stand without glue; cable tails reach the right-wall trunk.'],
+    before=['Leave 20 small window holes (houses 1–5: 6, 5, 4, 3, 2) and a 1 ft cable tail inside each house (block H fits the lamps).', 'Keep 1 in clear below the drape bottom (block J).'],
+    done=['Five plywood houses, screwed, putty-textured and lime-washed, stepping down 3.5 → 1.5 ft toward the back; plain flat roofs.', 'Street is flat with a cobble pattern.', 'Well has a blue plastic-sheet water surface (no real water).', 'Figures stand without glue; cable tails reach the right-wall trunk.'],
     hands='Sits against the right wall on A. H fits the window lamps. Olive trees and plaque are in L.',
     tools='Jigsaw or hand saw, drill + 3 mm bit, screwdriver, sandpaper, putty knife, glue gun, brushes')
 
@@ -151,14 +157,15 @@ add('H', name='Lights (one plug, one box)', items='1 path of light, 27 box, 28 s
 
 add('I', name='Star and cloud spiral', items='6 cloud and angel spiral, 7 star burst with bead strands',
     window='30 Nov → 21 Dec', days='6',
-    where='Hangs from the ceiling over the right-back corner: star 2 ft wide about 1 ft below the ceiling at x 7.8, y 1.2; 30 strands of plastic crystal beads 6 ft long on a 1.8 ft ring; spiral 2.5 ft wide, 3 turns, ending 4.5 ft above the deck near x 6.0, y 4.9. Three hang points only.',
+    where='Hangs from the ceiling over the right-back corner: star 2 ft wide about 1 ft below the ceiling at x 7.8, y 1.2; 30 strands of plastic crystal beads 6 ft long on a 1.8 ft ring; spiral 2.5 ft wide, 3 turns, ending 4.5 ft above the deck near x 6.0, y 4.9. Five gold threads run from the star down to the cave roof as rays. Three hang points only.',
     rows=[['Polyfill / cotton wool', '3 kg', '900', '900', '1,200'],
           ['Galvanised wire 3 mm + florist wire', '20 m', '800', '800', '1,000'],
           ['Star base: foil, card or foam core + silver', '1', '600', '600', '900'],
           ['Plastic crystal-bead strands, 6 ft each', '30', '500', '1,250', '2,500'],
           ['Small pipe-cleaner angels for the spiral (same method as F)', '30', '300', '500', '900'],
           ['Fishing line 20 kg, swivels, anchors, hooks (3 hang points)', 'lot', '600', '600', '900'],
-          ['Ladder / scaffold hire', '2 days', '0', '1,500', '3,000']],
+          ['Ladder / scaffold hire', '2 days', '0', '1,500', '3,000'],
+          ['Gold metallic thread for the star rays', '5 × 10 ft', '100', '150', '250']],
     before=['Measure the ceiling height and type; plasterboard needs toggle anchors or a rope over a beam. Mark the 3 hang points with a plumb line.', 'Ask the church about working at height; two people at all times.'],
     done=['Built and lit at floor level first; hung last.', 'Two lines per hang point, never a single line.', 'Light cables from block H are tied along the lines to the ceiling feed.', 'Cascade lines stay 2 m clear of any sambrani holder.'],
     hands='Hangs above the hill. H fits the star light, the spiral strings and the ceiling feed. Hang after the drape track (J) is fitted.',
@@ -166,13 +173,15 @@ add('I', name='Star and cloud spiral', items='6 cloud and angel spiral, 7 star b
 
 add('J', name='Backdrop', items='26 hills print, blue drape, gold stars, painted angel choir',
     window='20 Nov → 17 Dec', days='7',
-    where='Both walls: back wall 9 ft and right wall 16 ft, rounded corner. Print 5 ft high; blue drape from 5 ft up to the ceiling (about 13 ft above the deck); about 120 gold stars; 12 angels 2 ft tall painted white and silver. Star lights are fitted behind the drape by block H.',
+    where='Both walls: back wall 9 ft and right wall 16 ft, rounded corner. Print 5 ft high; blue drape from 5 ft up to the ceiling (about 13 ft above the deck); about 120 gold stars; 12 angels 2 ft tall painted white and silver. A plywood far-hill silhouette 5.4 ft long (x 3.6–9.0) stands on the upper level 2.5 ft high in front of the print; three palm cut-outs 1.2 × 4 ft are fixed to the drape (two on the back wall, one on the right wall). Star lights are fitted behind the drape by block H.',
     rows=[['Hills print on matt fabric / flex, 5 × 25 ft', '125 sq ft', '800', '1,750', '4,400'],
           ['Blue drape, 8.5 ft drop × 25 ft (poly vs velvet)', '~28 m', '1,800', '2,600', '5,200'],
           ['Gold stars: card + glitter + glue', '120', '600', '600', '1,000'],
           ['Curtain track, rope, hooks, clamps', '25 ft', '700', '1,500', '2,500'],
           ['Stitching + pleat tape', 'lot', '0', '1,000', '1,600'],
-          ['Choir angels 2 ft, card or foam, white and silver paint', '12', '300', '600', '900']],
+          ['Choir angels 2 ft, card or foam, white and silver paint', '12', '300', '600', '900'],
+          ['Far-hill silhouette: 4 mm plywood 5.4 × 2.5 ft + 2 feet', '1', '400', '700', '900'],
+          ['Palm cut-outs 1.2 × 4 ft: card or 4 mm plywood, dark paint', '3', '300', '500', '800']],
     before=['Order the print and drape early; they are long-lead items.', 'Measure the real ceiling height; drape cost scales with it (about ₹280 per extra foot of drop).', 'Leave a pocket along the top of the print for the star lights (block H).'],
     done=['Track and rope backup fitted; print joins flat from V.', 'Drape pleats even at 1.5× fullness; the hem laps the print by 6 in.', 'Twelve painted angels in white and silver, no glow paint.', 'Gold stars in irregular clusters; no colour other than the palette.'],
     hands='Hangs on both walls. H fits the star points and the night-sky wash. Houses (G) leave 1 in below the drape.',
@@ -193,7 +202,7 @@ add('K', name='Far village and Magi caravan', items='14 far village (1:24), 15 M
 
 add('L', name='Foreground and view spot', items='23–24 olive trees, 25 "find 12 details" plaque, 30 public view spot and rope',
     window='19 Dec → 23 Dec (olives and plaque can start earlier)', days='4',
-    where='V is 3 ft left and 3 ft in front of the stage corner, eye 5.2 ft above the floor. Rope barrier curved 5 ft from the stage front, 4 ft clear aisle. Olive 23 at x 1.0, y 14.2 (2.0 ft); olive 24 at x 5.4, y 14.9 (1.6 ft); plaque 2 × 0.4 ft at x 3.2–5.2, y 15.5–15.9.',
+    where='V is 3 ft left and 3 ft in front of the stage corner, eye 5.2 ft above the floor. Rope barrier curved 5 ft from the stage front, 4 ft clear aisle. Olive 23 grows from the front-left rocks at x 0.7, y 14.3 (2.6 ft tall); olive 24 at x 3.7, y 12.3 (1.8 ft); plaque 2 × 0.4 ft at x 3.2–5.2, y 15.5–15.9.',
     rows=[['Jute rope 15 m + 4 brass or wood posts', '1 set', '1,000', '1,200', '2,200'],
           ['Floor marker, signage, printing', 'lot', '300', '400', '800'],
           ['CO2 extinguisher (if the church has none)', '1', '0', '0', '3,000'],
@@ -218,9 +227,21 @@ add('M', name='Photo corner: pond and selfie mirror', items='31 pond, 32 selfie 
     hands='Pond sits on A at the front-left (H fits its lights). The mirror stands on the church floor beside V and the rope barrier (L).',
     tools='Saw, drill, staple gun, spirit level, phone for the angle test')
 
+add('N', name='Foreground: rocks, shepherd boy, front wall', items='33 rock outcrop, 34 shepherd boy with lamb, 35 front dry-stone wall, 36 dog, water jar, herbs and reeds',
+    window='7 Dec → 20 Dec', days='5',
+    where='The front 2.5 ft of the stage, nearest the visitors (largest and darkest things in the crib). Rock outcrop 1.7 × 2.4 ft, 1 ft high, in the front-left corner (x 0–1.7, y 13.6–16, leaving hatch C free) with olive 23 growing from it. Shepherd boy 1.3 ft (sitting, 1:3) with a lamb at x 2.5–3.1, y 14.9–15.4, facing the cave. Front dry-stone wall 1.85 × 0.3 ft, 0.6 ft high (x 3.4–5.25, y 14.6). Dog, water jar, herbs and reeds.',
+    rows=[['Real rocks and pebbles (collected), thermocol 4 in core', 'lot + 1 sheet', '300', '800', '1,200'],
+          ['PoP + grout + earth paint', '1 bag', '400', '500', '700'],
+          ['Shepherd boy 1.3 ft sitting, with a lamb (reuse 2023 or clay)', '1', '0', '1,500', '3,500'],
+          ['Sleeping dog (clay) and a terracotta water jar', '2', '100', '300', '600'],
+          ['Herbs, reeds, dry grass, moss', 'lot', '100', '200', '400']],
+    before=['Leave hatch C (x 0–1, y 15–16) free: the rocks stop at x 1.05 there.', 'Agree the olive 23 hole with block L: the tree grows out of the rocks.'],
+    done=['From V the rocks, boy and wall frame the scene but hide nothing (check from V).', 'Everything here is darker and larger than the field behind.', 'Hatch C opens without moving a rock.', 'Each piece lifts out on its own.'],
+    hands='Sits on A at the front. L plants olive 23 in the rocks; H runs the path of light between them.',
+    tools='Hot knife, trowel, glue gun, brushes, gloves')
 for _k, _t in TEAMS.items(): B[_k]['team'] = _t
 
-ORDER = list('ABCEFGHIJKLM')
+ORDER = list('ABCEFGHIJKLMN')
 ALL = ORDER
 ADDITIONAL = []
 
