@@ -8,7 +8,7 @@ import make_prompts as mp
 
 ROOT = mb.ROOT; OUT = os.path.join(ROOT, '2026', 'owner'); os.makedirs(os.path.join(OUT, 'img'), exist_ok=True)
 GENDIR = os.path.join(ROOT, '2026', 'images', 'generated')
-GEN = {'A': ['stage-bare-3q'], 'B': ['B-cave-holy-family', 'B-rock-hill-empty'], 'C': ['C-upper-house'], 'E': ['E-shepherds-field'], 'F': ['F-angel-choir'], 'G': ['G-village-street'], 'H': ['H-lights-control'], 'I': ['I-sky-cascade'], 'J': ['J-backdrop'], 'K': ['K-far-village-magi'], 'L': ['L-foreground-view-spot'], 'N': ['N-foreground']}
+GEN = {'A': ['stage-bare-3q'], 'B': ['B-cave-holy-family', 'B-rock-hill-empty'], 'C': ['C-upper-house'], 'E': ['E-shepherds-field'], 'F': ['F-angel-choir'], 'G': ['G-village-street'], 'H': ['H-lights-control'], 'I': ['I-sky-cascade'], 'J': ['J-backdrop'], 'K': ['K-far-village-magi'], 'L': ['L-foreground-view-spot'], 'M': ['M-selfie-mirror'], 'N': ['N-foreground', 'N-pond']}
 def have(n): return os.path.exists(os.path.join(GENDIR, n + '.jpg'))
 
 def crew_pic(b):
